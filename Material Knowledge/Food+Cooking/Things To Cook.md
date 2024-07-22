@@ -1,0 +1,11 @@
+- [x] eggs benedict 
+- [x] https://www.thespruceeats.com/rum-eggnog-recipes-760561
+- [ ] easy over, correctly
+- [ ] french souffle omelette https://www.youtube.com/watch?v=4XiWUis2eKc&ab_channel=ItaliaSquisita
+- [ ] 卤肉饭
+- [ ] ahi poke
+- [ ] gnocchi o pizza (with premade gnocchi ?)
+- [ ] cotoletta alla milanese
+- [ ] spezzatino with potatos
+- [ ] melanzane alla parmigiana
+- [ ] the korean egg rice thing i saw on insta

@@ -1,0 +1,3 @@
+- Insert a new gene that produces a fluorescent protein
+- Link it with the same promoter to the gene you want to measure
+- Then can measure gene expression by measuring fluorescence
