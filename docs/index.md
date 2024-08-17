@@ -1,17 +1,11 @@
-# Welcome to MkDocs
+# Welcome to Alex's Public Pages
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+All raw files available on [Github](https://github.com/cocohearts/public-pages). These files are a hand-picked subset of my personal Obsidian vault.
 
-## Commands
+## About Me
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+love food
 
-## Project layout
+## Sections
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+* Food – selected food and cooking notes
