@@ -9,3 +9,6 @@ nav:
     - USACO Notes: Material Knowledge/Sciences/Coding/USACO/General Thoughts, Paradigms.md
   - Food and Cooking:
     - 糖醋排骨: 糖醋排骨.md
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
