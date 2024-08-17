@@ -1,5 +1,0 @@
-- Any cut, add seasonings/rubs/butter/herbs to both sides
-- Add the machine, fill the pot to about half full with warm water
-- Set up preheating, cook with "rare" (127)
-- cook, when done dry thoroughly with paper towels
-- take to skillet outside and sear with olive oil (350degs F) till just brown flipping 30 secs

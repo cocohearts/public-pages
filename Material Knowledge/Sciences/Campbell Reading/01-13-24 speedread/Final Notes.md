@@ -1,8 +1,0 @@
-![[U1 Chem of Life]]
-![[U2 The Cell]]
-![[U3 Genetics]]
-![[U4 Evolution]]
-![[U5 Evo History]]
-![[U6 Plant Function]]
-![[U7 Animal Function]]
-![[U8 Ecology]]

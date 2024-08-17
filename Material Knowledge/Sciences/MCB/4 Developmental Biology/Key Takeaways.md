@@ -1,8 +1,0 @@
-- Inductive signalling (signal gets passed down)
-- Cell Signaling:
-	- Ligand binds to receptor (signal reception)
-	- Intracellular signal transduction (exponential protein copying)
-	- Cell response
-- Combinatorial control (small number of factors controlling large # genes)
-	- Complex stripy patterns in (embryo?)
-- HOX genes define "body segments," these r huge master regulatory genes

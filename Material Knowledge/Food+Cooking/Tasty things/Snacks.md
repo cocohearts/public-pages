@@ -1,4 +1,0 @@
-- [giant ono shrimp chips](https://www.onogiantshrimpchip.com/collections/shrimp-chips/products/four-10-oz-ono-giant-shrimp-chip-bags)
-- 紫米粥
-- 条头糕
-- 小龙虾味 锅巴

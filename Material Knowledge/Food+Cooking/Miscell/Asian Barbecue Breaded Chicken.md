@@ -1,5 +1,0 @@
-- Marinate in brown sugar, barbecue mix, drumstick asian barbecue mix
-- Cover with flour
-- Melt butter in plate, arrange drumsticks tightly on the butter
-- Turn halfway thru
-- 425 F for 45 min
