@@ -1,0 +1,6 @@
+- console hacking
+- grab elements; querySelector via class or id
+- manipulate objects
+- automate stuff like this
+- greasemonkey for using custom/existing js scripts
+- download cookies/python automate things like this

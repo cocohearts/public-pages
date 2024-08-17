@@ -1,0 +1,2 @@
+- For a single strand and several similar-length disjoint segments, we can parallelize PCR in the same tube
+- Similarly, if we have DNA change at *one point* we can have two pairs of primers, one creating a long segment in unedited case, one creating a short segment in edited case (e.g.)

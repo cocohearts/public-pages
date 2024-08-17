@@ -1,0 +1,4 @@
+- Get a sample, extract the mRNA
+- Run out the mRNAs on electrophoresis
+- Have a "probe" that binds/dyes chosen mRNA segment and labels it
+- Measure amount of probe that ends up attached to each part

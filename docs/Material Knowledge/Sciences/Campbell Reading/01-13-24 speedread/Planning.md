@@ -1,0 +1,4 @@
+- 1220 pages
+- 8 hours
+- 0.4 mins per page, 24 secs per page
+- notes at end of each chapter, calc. total time allotted for each chapter ig
