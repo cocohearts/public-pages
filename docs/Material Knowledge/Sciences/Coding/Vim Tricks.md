@@ -1,0 +1,42 @@
+### Already Mastered
+- `h,l` for left, right
+- `j,k` for down, up
+- `y,p` for copy, paste
+- combine as in `y3w`, use `p/P`
+- `v` for visual
+- `o,O` for open new line, after, before
+- `i,a` obvious
+- `w,b` known, capitalize for only whitespace no punc.
+- `.` repeat, `;` next using find character `f`, `,` to find previous
+- `>>,<<` for indents, pref with N to apply below lines
+- `0,^,$` for line movement
+- Use `/` to search, `n,N` for movement
+- Use `?` to search backwards
+- `i` for inner (no whitespace) e.g. `diw`, `a` for outer, also can do `diW` etc.
+- `V` for visual by line
+- `e` for word end
+- `C,D` delete to end; `cc,dd` delete whole; but `Y,yy` are equiv.
+- `A` for append to end of sentence
+- `t` basically `fh`
+- `%` to jump to matching `({[`
+### Learning
+- `:reg` to see list of registers; `"1p` to paste yank before this, `"ayw` to yank word to `"a`
+-  `ge` for back word end
+- `{,[]()}` for first new whitespace after last para
+- `(,)` for `{` plus firstline para
+- `gU<>,gu<>,~` for case (last toggle)
+- `CTRL-O` to old positions, `CTRL-I` to new ones
+- `CTRL-U`, `CTRL-D`
+- use `q[x]` to record macro to key `[x]`
+- `<UP>` to try previous searches from search history
+- `m[x]` create mark, `'[x]` to go to mark
+- `J` used to join selected lines with space delim
+- `:grep` to use grep inside current file
+- `s{char}{char}` v-sneak, can use op, in Obs just `cl`
+- `]]` next `{` in first column; `[[` next `}` in first column
+- `[(` for previous unmatched `(` and `[)` for next unmatched `)`; aka. previous/next in this "scope"
+- `cs{sel}([` make a selection, replace surrounding `(` with `[`
+- similarly `ds`, or `ys` to add
+### WTF
+- `<CTRL-W> S/V` to split (horizontal line) or (vertical line)
+- `<CTRL-W> h/j/k/l` to move windows
