@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>8.04.C - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#unidirectional-transmissionscattering" class="nav-link">Unidirectional transmission/scattering</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#reflective-half-domain-scattering" class="nav-link">Reflective half-domain scattering</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="unidirectional-transmissionscattering">Unidirectional transmission/scattering</h2>
+<p>Set up exponential ansatz for each domain and solve BCs.</p>
+<h3 id="example-step-potential">Example: Step Potential</h3>
+<p>Take $$
+V=\begin{cases}
+0&amp;x&lt;0 \
+V_{0}&amp;x&gt;0
+\end{cases}
+$$Then we can send an "incoming wave" $\Psi=Ae^{ikx}$ resulting in a reflected wave $Be^{-ikx}$ and a transmitted wave $Ce^{i\bar{k}x}.$ Here $k^{2}=\frac{2mE}{\hbar^{2}}$ and $\bar{k}^{2}=\frac{2m(E-V_{0})}{\hbar^{2}}$.</p>
+<p>Given this energy eigenstate we can take a pulse like "wave packet" and take Fourier series, then determine transmitted waves.</p>
+<p>In general, stationary phase paradigm can be used to determine location of "hump" of Fourier series, i.e. speed of wavepacket.</p>
+<p>For $E&gt;V_{0}$, speeds are calculable. For $E&lt;V_{0}$ reflected has a time delay, and there is no transmitted (only exponential decaying).</p>
+<h3 id="example-finite-square-well-resonance">Example: Finite square well, resonance</h3>
+<p>Suppose we're sending the same wave $Ae^{ikx}$ wave from the left through a finite square well $|x|&lt;a$, then we get the ansatz $Ae^{ikx}+Be^{-ikx}$ for $x&lt;-a,$ $Ce^{ik_2x}+De^{-ik_2x}$ for $|x|<a,$ and $Fe^{ikx}$ for $x>a.$</p>
+<p>If the wavenumber $k_{2}$ inside the well resonates with the width of the well $2a$, i.e. if $2k_{2}a=n\pi,$ then we get perfect transmission, and $E+V$ matches the $n$th bound state in the infinite square well.</p>
+<h2 id="reflective-half-domain-scattering">Reflective half-domain scattering</h2>
+<p>Consider infinite wall at $x=0$ and $V=0$ for suff. large $x$. Then send $\Psi=e^{-ikx}$ for the usual $k^{2}=\frac{2mE}{\hbar^{2}}$. With time delay $\delta(k)$ reflection is $e^{ikx+2i\delta}$, so after constant scaling for large $x$ we get $\Psi=\sin(kx+\delta)$.</p>
+<h3 id="wavepacket-delta-t">Wavepacket $\Delta t$</h3>
+<p>Devise a generalized function $\delta(k)$ for the time delay, so that $e^{-ikx}$ becomes $e^{ikx+2i\delta(k)}$. After applying stationary phase, time delay of a wavepacket becomes $\Delta t=2\hbar \frac{{\partial}}{\partial E}\delta(k_{0}).$</p>
+<h3 id="levinsons">Levinson's</h3>
+<p>Add second infinite wall at $L\to \infty.$ </p>
+<p>For $V=0,$ $kL=n\pi,$ so interval $dk$ has $\frac{L}{\pi}dk=dn$ possible scattering states.</p>
+<p>For the $V$ we want, at a distance $\Psi=\sin(kx+\delta)$ so $kL+\delta=n\pi,$ so interval $dk$ has $\frac{L}{\pi}dk+\frac{1}{\pi}\frac{{d\delta}}{dk}dk$ possible scattering states.</p>
+<p>Fix $L$. Turning on $V$ continuously/pointwise/whatever cannot change total number of eigenstates. Then turning on $V$ transforms $\frac{1}{\pi}(\delta(0)-\delta(\infty))$ scattering states into bound states, so there are $\frac{1}{\pi}(\delta(0)-\delta(\infty))$ bound states.</p>
+<h3 id="some-weird-experimentationconstruction">Some weird experimentation/construction</h3>
+<p>We want to construct arbitrarily long positive time delay (negative violates causality). Then we want high resonance.</p>
+<p>Try a double-step negative-positive-zero potential.
+![[Pasted image 20240107222205.png]]
+Amplitude of trapped area, plot (c), spikes when time delay is near $\frac{\pi}{2}$, which makes sense.</p>
+<h3 id="weird-magic">Weird magic</h3>
+<p>If we do stuff, e.g. setting $\delta(k)$  we can artificially create high resonance.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>8.04.B - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            
+            
+            <li class="nav-item" data-level="1"><a href="#problem-solving" class="nav-link">Problem Solving</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#1d-problem-solving" class="nav-link">1D Problem Solving</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h3 id="inner-product">Inner Product</h3>
+<p>Usual $\left&lt; \psi,\phi \right&gt;=\int \psi^<em>\phi$. Then the conjugate $\hat Q^</em>$ of $Q$ satisfies $\left&lt; \phi,\hat{Q}\psi \right&gt; =\left&lt; \hat{Q}^<em>\phi,\psi \right&gt;$. Then $\hat{Q}$ is Hermitian iff. $\hat{Q}=\hat{Q}^</em>$.</p>
+<blockquote>
+<p>[!important] Copenhagen Measurement Postulate
+Given $\left&lt; \phi,\phi \right&gt; =1,$ the <em>measured outcome</em> of $\hat{Q}$ is drawn from distribution of eigenvalues $\lambda_{i}$ with probability coefficient of eigenvector $\phi=\sum_{i}c_{i}v_{i}.$</p>
+</blockquote>
+<h3 id="expectation-roc">Expectation ROC</h3>
+<p>$$
+\begin{align}
+\frac{\partial}{\partial t}\left&lt; \hat{Q} \right&gt; &amp;=\frac{\partial}{\partial t}\int \Phi^<em>\hat{Q}\Phi \, dx  \
+&amp;=\int \frac{\partial}{\partial t}\left( \Phi^</em>\hat{Q}\Phi \right)  \, dx  \
+&amp;=\int \left( \left(\frac{\partial}{\partial t}\Phi^<em>\right) \hat{Q}\Phi \right)+\left( \Phi^</em>\frac{\partial}{\partial t}\left( \hat{Q}\Phi \right)  \right)   \, dx  \
+&amp;=\int \left( \left( \frac{1}{i\hbar }\hat{H}\Phi\right)^<em> \hat{Q}\Phi  \right)  +\frac{1}{i\hbar}\left( \Phi^</em>\hat{Q}\hat{H}\Phi \right)+\left( \Phi^<em>\left( \frac{\partial}{\partial t}\hat{Q} \right) \Phi \right)  \, dx  \
+&amp;=\int -\frac{1}{i\hbar}\left(\Phi^</em>\hat{H}\hat{Q}\Phi\right)  +\frac{1}{i\hbar}\left( \Phi^<em>\hat{Q}\hat{H}\Phi \right)+\left( \Phi^</em>\left( \frac{\partial}{\partial t}\hat{Q} \right) \Phi \right)  \, dx  \
+&amp;=\left(\frac{1}{i\hbar}\int \Phi^<em>[\hat{Q},\hat{H}]\Phi \, dx \right)+\int \Phi^</em> \frac{\partial\hat{Q}}{\partial t}\Phi \, dx   \
+&amp;=\frac{1}{i\hbar}\left&lt; [\hat{Q},\hat{H}] \right&gt; +\left&lt; \frac{\partial\hat{Q}}{\partial t} \right&gt; .
+\end{align}
+$$</p>
+<blockquote>
+<p>[!important] Time-Independent Expectation ROC
+If $\frac{\partial\hat{Q}}{\partial t}=0$ then $$\frac{\partial}{\partial t}\left&lt; \hat{Q} \right&gt; =\frac{1}{i\hbar}\left&lt; [\hat{Q},\hat{H}] \right&gt; .$$</p>
+</blockquote>
+<h1 id="problem-solving">Problem Solving</h1>
+<blockquote>
+<p>[!important] 
+We want to solve the <em>energy equation</em>$$\hat{H}\psi=E\psi,$$i.e. $$\frac{\hbar^{2}}{2m}\nabla^{2}\Psi=V\Psi,$$
+for the <em>energy eigenstate</em> $\psi:\mathbb{R}\to \mathbb{C},$ $\hat{H}=-\frac{\hbar^2}{2m}\nabla^{2}+V$ and $E\in \mathbb{R}.$
+Then we get the <em>stationary state</em>$$\psi(x,t)=e^{-iEt/\hbar}\psi(x).$$</p>
+</blockquote>
+<p>Wavefunctions are piecewise continuous, and can have Dirac $\delta$.
+A <em>bound state</em> satisfies $\int \Phi^{2} \, dx$ converges, i.e. it is "real". A <em>scattering state</em> is usually $\cos(kx)$ for $x \to \infty.$</p>
+<h2 id="1d-problem-solving">1D Problem Solving</h2>
+<p>Our equation is</p>
+<blockquote>
+<p>[!important] 1D Energy Equation
+$$\psi''+\frac{2m}{\hbar^{2}}(E-V(x))\psi=0.$$</p>
+</blockquote>
+<h3 id="free-particle-on-circle">Free Particle on Circle</h3>
+<p>On a looped domain $x \in[0,L]$, we get eigenstates $e^{ikx}$, matching boundaries $kL=2\pi n$ and $E_{n}=\frac{{2\pi^{2}\hbar n^{2}}}{mL^{2}}.$ </p>
+<h3 id="square-wells">Square Well(s)</h3>
+<p>Now we have domain $\mathbb{R}$ and experiment with $V(x)$.</p>
+<h4 id="infinite-case">Infinite case</h4>
+<p>$$
+V=\begin{cases}
+0&amp;x \in(0,a) \
+\infty &amp;else
+\end{cases}
+$$
+Then $\Phi=0$ at $else,$ so $\frac{d^2\psi}{dx^2}=-\frac{{2mE}}{\hbar^{2}}\psi.$ Get $\sin(kx)$, check BCs and find $k=\frac{n\pi}{a},$ $E_{n}=\frac{{\pi^{2}\hbar n^{2}}}{2ma^{2}}$ for all $n \in \mathbb{Z}$.</p>
+<h4 id="finite-case">Finite case</h4>
+<p>$$
+V=\begin{cases}
+-V_{0}&amp;|x| \leq a\
+0 &amp;else
+\end{cases}
+$$
+We want $E \in[-V_{0},0]$ yielding positive KE inside the well, negative KE outside. Then letting $k=\sqrt{ \frac{2m}{\hbar^{2}}\left( V_{0}-|E| \right) }$ and $\kappa=\sqrt{ \frac{{2m|E|}}{\hbar^{2}} },$ we get
+$$
+\Phi=\begin{cases}
+Ae^{\pm ikx}&amp;in\
+Be^{\pm \kappa x} &amp;out
+\end{cases}
+$$
+Higher bound energy $E$ means slower decay $\kappa$ and faster oscillation $k$.
+Let $\eta=ka,\xi=\kappa a,$ then cancelling $A,B$ from matching values and $\frac{\partial}{\partial x}$ yields
+$$
+\begin{align}
+\eta^{2}+\xi^{2}&amp;=\frac{{2mV_{0}a^{2}}}{\hbar^{2}},\
+\eta \tan \eta&amp;=\xi.
+\end{align}
+$$
+This yields <em>finitely</em> many stationary states. </p>
+<h3 id="deltas">Delta(s)</h3>
+<h4 id="simple-case">Simple case</h4>
+<p>$$
+V=-V_{0}\delta(x).
+$$
+Then $\psi''=\frac{2m}{\hbar^{2}}(V_{0}\delta(x)-E)\psi,$ and we must have $E&lt;0$. Integrating near $0$ means
+$$
+\Delta \psi'|<em>{0}=V</em>{0}\frac{2m}{\hbar^{2}}\psi|_{0},
+$$
+and everywhere else $\psi''=-E\psi.$ We still have to be continuous for $\psi''$ to be defined, so we get $e^{-|kx|}$.</p>
+<h3 id="simple-harmonic-oscillator">Simple Harmonic Oscillator</h3>
+<h4 id="solving-setup">Solving Setup</h4>
+<p>$$
+V(x)=\frac{1}{2}m\omega^{2}x^{2}.
+$$
+This one is a banger. Substitution yields
+$$
+\psi''=\frac{2m}{\hbar^{2}}\left( \frac{1}{2}m\omega^{2}x^{2}-E \right) \psi.
+$$
+Take $u=x\sqrt{ \frac{m\omega}{\hbar}, }$ so that letting $\mathcal E=\sqrt{  \frac{2}{\hbar \omega}E}$ yields $$\frac{{\partial^{2}\psi}}{\partial u^{2}}=\left( u^{2} -\mathcal E^{2}\right) \psi.$$
+Then plug in $\psi(u)=e^{{-x^{2}}/2}h$ to get $$h''-2uh'+(u^{2}-1)h=(u^{2}-\mathcal E^{2})h,$$
+so $h''=2uh'+(1-\mathcal E^{2})h,$ which can be solved in polynomial for arb. degree.</p>
+<h4 id="factorization">Factorization</h4>
+<p>Let $\hat{a},\hat{a}^<em>=\left(  \hat{x}\pm \frac{{i \hat{p}}}{m\omega}\right)\sqrt{ \frac{m\omega}{2\hbar} }.$ Then $[a,a^</em>]=-\frac{2i}{\hbar}\left&lt;  \hat{x},\hat{p}\right&gt;=1.$ 
+Recalling $\hat{p}=\frac{\hbar}{i} \frac{\partial}{\partial x},$
+$$
+\hat{H}=-\frac{\hbar^{2}}{2m} \frac{{\partial^{2}}}{\partial x^{2}}+\frac{1}{2}m\omega^{2}x^{2}=\frac{1}{2}m\omega^{2}\left( x^{2}+ \frac{{\hat{p}^{2}}}{m^{2}\omega^{2}} \right) =\hbar\omega \left( \frac{m\omega}{2\hbar} \right) \left( x^{2}+ \frac{{\hat{p}^{2}}}{m^{2}\omega^{2}} \right)= \hbar\omega \left(a^*a+\frac{1}{2}\right) .
+$$
+Then the ground solution $\phi_{0}$,
+$$
+\frac{\hbar\omega}{2}=E_{0}=\left&lt; \phi_{0},E\phi_{0} \right&gt; =\frac{\hbar\omega}{2}+\hbar\omega \left&lt; \hat{a}\phi_{0},\hat{a}\phi_{0} \right&gt;
+$$
+so $\hat{a}\phi_{0}=0$ everywhere.</p>
+<p>Recall that $[\hat{a},\hat{a}^<em>]=1.$ Let $\hat{N}=\hat{a}^</em>\hat{a},$ then $\hat{H}=\hat{N}+\frac{1}{2},$ and
+$$
+[\hat{N},(\hat{a}^<em>)^{k}]=\hat{a}^{</em>}\hat{a}(\hat{a}^{<em>})^{k}-(\hat{a}^{</em>})^{k}\hat{a}\hat{a}^{<em>}+(\hat{a}^{</em>})^{k}=[\hat{N},(\hat{a}^{<em>})^{k-1}]\hat{a}^{</em>}+(\hat{a}^{<em>})^{k}=k(\hat{a}^{</em>})^{k}.
+$$
+Similarly for $\hat{a}^{k}$ yields $[\hat N,\hat{a}^k]=-k\hat{a}^k.$</p>
+<p>Let $\phi_{k}=(\hat{a}^{<em>})^{k}\phi_{0},$ we get $$\hat{ N}\phi_{k}=(\hat{N}(\hat{a}^{</em>})^{k}-(\hat{a}^{<em>})^{k}\hat{N})\phi_{0}=[\hat{N},(\hat{a}^{</em>})^{k}]\phi_{0}=k(\hat{a}^{*})^{k}\phi_{0}=k\phi_k.$$
+Then $$\hat{H}\phi_{k}=\hbar\omega \left( k+\frac{1}{2} \right) \phi_{k},$$
+so $E_{k}=\hbar\omega \left( k+\frac{1}{2} \right).$ Putting it all together:</p>
+<blockquote>
+<p>[!important] SHO factorization
+Using the <em>annihilation operator</em> $\hat{a}=\left( \hat{x}+\frac{{i\hat{p}}}{m\omega} \right)\sqrt{ \frac{{m\omega}}{2\hbar} }$ and the <em>creation operator</em> $\hat{a}^{<em>}=\left( \hat{x}-\frac{{i\hat{p}}}{m\omega} \right)\sqrt{ \frac{{m\omega}}{2\hbar} },$ let $\hat{N}=\hat{a}^{</em>}\hat{a}.$</p>
+<p>Then given normalized ground $\phi_{0}$, we have:
+$$
+\begin{align}
+[\hat{a},\hat{a}^{<em>}]&amp;=1,&amp;
+\hat{a}\phi_{0}&amp;=0,\
+\phi_{{k+1}}&amp;=\frac{{\hat{a}^{</em>}\phi_{k}}}{\sqrt{ k+1 }}, &amp;
+\phi_{k-1}&amp;=\frac{{\hat{a}\phi_{k}}}{\sqrt{ k }}, \
+\hat{N}\phi_{k}&amp;=k\phi_{k}, &amp;
+\hat{H}&amp;=\hbar\omega \left( \hat{N}+\frac{1}{2} \right), &amp;
+E_{k}&amp;=\hbar\omega\left( k+\frac{1}{2} \right).
+\end{align}
+$$</p>
+</blockquote></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

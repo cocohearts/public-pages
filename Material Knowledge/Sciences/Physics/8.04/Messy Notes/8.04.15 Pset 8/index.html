@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>8.04.15 Pset 8 - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            
+            
+            
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h3 id="problem-1">Problem 1</h3>
+<blockquote>
+<p>Explore the SHO state $\psi_\alpha\equiv N\text{exp}(\alpha \hat a^\dagger)\varphi_0.$</p>
+</blockquote>
+<p>Equivalently,
+$$\psi_\alpha=N\sum_{i=0}\alpha^i (\hat a^\dagger)^i\varphi_0\frac1{i!}=N\sum_{i=0}\alpha^i \varphi_i\frac1{\sqrt{i!}}.$$
+Then
+$$1=|\psi_\alpha|^2=N^2\sum_i \alpha^{2i}\frac1{i!}=Ne^{\alpha^2/2}.$$
+Thus $N=e^{-\alpha^2/2}.$
+Now
+$$\hat a\psi_\alpha=N\sum_{i=0}\alpha^i \varphi_{i-1}\frac1{\sqrt{(i-1)!}}=\alpha\psi_\alpha.$$
+Then
+$$
+\begin{align<em>}
+\hat H\psi_\alpha
+&amp;=N\sum_{i=0}\alpha^i\varphi_i\frac1{\sqrt{i!}}E_i\
+&amp;=N\sum_{i=0}\alpha^i\varphi_i\frac1{\sqrt{i!}}(i+\frac12)\hbar\omega\
+&amp;=e^{-\alpha^2/2}\left(\sum_{i=1}\alpha^i\varphi_i\frac{\sqrt i}{\sqrt{(i-1)!}}+\sum_{i=0}\alpha^i\varphi_i\frac1{2\sqrt{i!}}\right),
+\end{align</em>}
+$$
+so
+$$\langle\hat H\rangle=e^{-\alpha^2}\left(\alpha^{}e^{\alpha^2}+\frac12e^{\alpha^2}\right)=\alpha+\frac12.$$
+Also,
+$$\langle\hat H^2\rangle
+=e^{-\alpha^2}\sum_{i=0}\alpha^i\frac{(i+\frac12)^2}{i!}.$$
+Then $(i+\frac12)^2=i^2+i+\frac14=i(i-1)+2i+\frac14,$ so we get
+$$\langle\hat H^2\rangle=e^{-\alpha^2}\left(\alpha^2e^{\alpha^2}+2\alpha e^{\alpha^2}+\frac14 e^{\alpha^2}\right)=\alpha^2+2\alpha+\frac14.$$
+Then $(\Delta\hat H)^2=\alpha^2+2\alpha+\frac14-(\alpha^2+\alpha+\frac14)=\alpha.$</p>
+<p>Finally, we can compute $\psi_\alpha$. Abbreviating as $f$ for ease,
+$$\alpha f=\hat af=(\sqrt{\frac{m\omega}{2\hbar}})(x+\frac{\hbar}{m\omega}\frac{\partial}{\partial x})f.$$
+Nondimensionalizing with $L=\sqrt{\frac{\hbar}{m\omega}}$ yields
+$$\alpha f=\frac1{\sqrt2}(x+\frac{\partial}{\partial x})f.$$
+Taking $f=e^{-x^2/2}h$ yields $\alpha h=\frac1{\sqrt 2}h',$ so $h=e^{\alpha x\sqrt 2}.$ Thus before normalization $\psi_\alpha=e^{-x^2/2+\alpha x\sqrt 2}.$</p>
+<h3 id="problem-2">Problem 2</h3>
+<blockquote>
+<p>Analyze double-delta potential, again. Use an extra $V_r(x)=\frac{\beta g}{x}$ for some small $\beta&gt;0$.</p>
+</blockquote>
+<p>Exercise in non-dimensionalization (sorta)! Use $E_0=\frac{mg^2}{2\hbar^2}.$ Recall that $\xi=\kappa a,$ where $E/E_0=-\xi^2,$ $\frac\xi{1+e^{-2\xi}}=\lambda,$ $\lambda\equiv\frac{mag}{\hbar^2}$ (recall $g$ is Joules). See that $E=-E_0\xi^2.$ Also, $V_r=\frac{\beta g}{2a}=\frac{\beta E_0}{\lambda}.$ Then we can plot $E_{tot}=E+V_r=E_0(\frac{\beta}{\lambda}-\xi^2).$ For $\beta=0.31,$ we can find local minima for $E_{tot}$ given $\lambda.$ That yields the optimal value for $a,$ distance between two $H^+$ ions!</p>
+<h3 id="problem-3">Problem 3</h3>
+<blockquote>
+<p>Analyze the energy in the forbidden region of the finite square well as it limits towards the infinite square well.</p>
+</blockquote>
+<p>From a previous analysis we've determined that as $z_0^2=\frac{2ma^2V}{\hbar^2}$ limits to $\infty$ equivalent to $V$ limit to $\infty$. In this limit, $\eta=ka\sim\frac\pi2(1-\frac1{z_0}),$ $\xi=\kappa a\sim z_0,$ and $A$ the constant factor on the outer exponential satisfies $A\sim \frac\pi{2z_0}e^{z_0}.$</p>
+<p>What is $\langle\hat K\rangle$ from the forbidden region $x&gt;a,$ given $K=\frac{\hat p^2}{2m}=-\frac{\hbar^2\partial^2}{2m\partial x^2}?$</p>
+<p>In this region we have $\psi=\frac A{\sqrt a}e^{-\kappa x}.$ Then we just get
+$$
+\begin{align<em>}
+\int_a^\infty \frac{A^2}{a}e^{-2\kappa x}\left(-\frac{\hbar^2\kappa^2}{2m}\right)
+&amp;=\frac{A^2\hbar^2\kappa}{4am}e^{-2\kappa a}\
+&amp;\approx\frac{A^2\hbar^2z_0}{4a^2m}e^{-2z_0}\
+&amp;\approx\frac{\pi^2\hbar^2}{16a^2mz_0}.
+\end{align</em>}
+$$
+Units check out. As $z_0$ limits to $\infty$ this contribution limits to $0$. yay!</p>
+<h3 id="problem-4">Problem 4</h3>
+<blockquote>
+<p>Consider step potential $V=0$ for $x&lt;0,$ $V=V_0$ else. Analyze time delay, using a Gaussian wavepacket distribution $\Phi$ with width $\beta$.</p>
+</blockquote>
+<p>First let's analyze scattering time delay. As computed earlier for incoming $1$ we get $A=\frac{\kappa+ik}{\kappa-ik},$ so letting $\tan(\delta)=\frac k{\kappa}$ means $e^{2i\delta}=-A.$</p>
+<p>Now we use $\Phi(k)=e^{-\beta^2a^2(k-k_0)^2},$ $a=\frac{\hbar}{\sqrt{mV_0}}.$ The incoming wave is
+$$\Psi_{inc}(x)=\sqrt a\int_0^{\hat k} \Phi(k)e^{ikx}e^{-iE(k)t/\hbar},$$
+so the outgoing wave is
+$$\Psi_{out}(x)=-\sqrt a\int_0^\hat k\Phi(k)e^{2i\delta(E(k))-ikx}e^{-iE(k)t/\hbar},$$
+where $\delta(E)=\arctan(\frac k\kappa)$ as derived above. After dividing by $2i$ we can rewrite the sum $-e^{2i\delta(E(k))-ikx}+e^{ikx}$ as $e^{i\delta(E)}\sin(kx-\delta).$</p>
+<p>Introduce nondimensionalized $k=\frac Ka,$ $x=au,$ and $t=\frac\hbar{V_0}\tau.$ Naturally get $K_0$ and $kx=Ku.$ Let's look at the group velocity. For given $(u,\tau)$ we need the phase derivative in $K$ at $K_0$ to be $0$.
+The phase is
+$$kx-E(k)t/\hbar=Ku-\frac{t\hbar k^2}{2m}=Ku-\frac{\hbar^2}{2V_0a^2m}K^2\tau.$$
+Then we need $u=\frac{\hbar^2}{V_0a^2m}\tau K_0,$ i.e. $\frac{du}{d\tau}=\frac{\hbar^2}{V_0 a^2m}K_0=\frac{\hbar^2 k_0}{V_0am}.$ Recall now that $\Delta x\Delta k=\Delta u\Delta K\geq \frac12.$ </p>
+<p>Our distribution for $K$ is now $\Phi(K)=e^{-\beta^2(K-K_0)^2},$ so the uncertainty $\Delta K$ is known to be $\frac 1{2\beta^2}$ (simple-ish integral by parts) so $\Delta u\geq \beta^2.$</p>
+<p>Continuing the non-dimensionalization, $E(k)=\frac{\hbar^2 k^2}{2m}=\frac{\hbar^2}{2a^2m}K^2=\frac{\hbar^2}{2a^2mV_0} V_0 K^2.$ First coeff is unitless.</p>
+<p>Furthermore, $e^{2i\delta(E)}=\frac{\kappa+ik}{\kappa-ik}=((\kappa^2-k^2)+2k\kappa i)\div(\kappa^2+k^2).$ Then $\kappa=\sqrt{\frac{(V_0-E(K))}{\hbar^2}},$ and $k=\sqrt{\frac{2mE}{\hbar^2}}=\frac Ka.$ Plugging all this in yields</p>
+<p>$$e^{2i\delta(E)}=1-\frac{\hbar^2}{a^2mV_0}K^2+K\sqrt{\frac{2\hbar^2}{a^2mV_0}-\frac{2\hbar^4}{a^4m^2V_0}K^2}\equiv\omega(K).$$
+Then $\Delta t=2\hbar\delta'(E)$ as a derivative in $k$ yields $\Delta \tau=\frac{V_0}\hbar \Delta t=2V_0\delta'(E).$ Then $\delta=\arctan(\sqrt{\frac{E}{V_0-E}}).$ Recall that $\frac d{dx}\arctan x=\frac1{x^2+1},$ so $\delta'(E)=\frac1{2\sqrt{E(V_0-E)}}.$ Then</p>
+<p>$$
+\Delta \tau
+=\frac{V_0}{\sqrt{E(V_0-E)}}
+=\frac{1}{\sqrt{E/V_0\cdot(1-E/V_0)}}.
+$$
+Recall that $E/V_0=\frac{\hbar^2}{2a^2mV_0}K^2,$ and $\Delta\tau$ is evaluated at $K=K_0$ so we get
+$$\Delta\tau=\frac1{K_0\sqrt{\frac{\hbar^2}{2a^2mV_0}(1-\frac{\hbar^2}{2a^2mV_0}K_0^2)}}=\frac{2a^2mV_0}{K_0\sqrt{2a^2mV_0\hbar^2-K_0^2}}.$$
+We've computed several uncertainties and the time delay. Now let's look at the wavefunction again.</p>
+<p>$$
+\begin{align<em>}
+a^{\frac12}\Psi(u,\tau)
+&amp;=a\int_0^{\hat k}\Phi(k)\left(e^{ikx}e^{-iE(k)t/\hbar}-e^{2i\delta(E(k))-ikx}e^{-iE(k)t/\hbar}\right)dk\
+&amp;=\int_0^{\sqrt{\frac{2a^2mV_0}{\hbar^2}}}\Phi(K)\left(e^{-i\frac{\hbar^2}{2V_0a^2m}K^2\tau}\right)\left(e^{iKu}-\omega(K)e^{-iKu}\right)dK\
+&amp;=\int_0^{\sqrt{\frac{2a^2mV_0}{\hbar^2}}}e^{-\beta^2(K-K_0)^2}\left(e^{-i\frac{\hbar^2}{2V_0a^2m}K^2\tau}\right)\left(e^{iKu}-\omega(K)e^{-iKu}\right)dK.
+\end{align</em>}
+$$
+yay!! we're done!!</p>
+<h3 id="problem-5">Problem 5</h3>
+<blockquote>
+<p>Consider same step potential. Compute reflection/transmission coefficients, and comment.</p>
+</blockquote>
+<p>For $E&lt;V_0,$ as usual set $k^2=\frac{2mE}{\hbar^2},$ and $\kappa^2=\frac{2m(V-E)}{\hbar^2}.$ Then with transmission $1,$ reflection $A$ transmitted $B$ we get $A+1=B,$ and $\frac{ik-ikA}{A+1}=-\kappa.$ As a result $|A|=1$ so reflection coefficient is $0$.</p>
+<p>For $E&gt;V_0$ set $k_2^2=\frac{2m(E-V)}{\hbar^2}.$ With the same setup we get $A+1=B$ and $\frac{ik-ikA}{1+A}=ik_2$ so $A=\frac{k-k_2}{k+k_2},$ and $B=\frac{2k}{k+k_2}.$ But since the <em>wavelength</em> changed, we actually have $T={\frac{k_2}k}\frac{B^2}{1^2}=\frac{4kk_2}{(k_1+k_2)^2}.$ Wondrously, $T+A^2=\frac{4kk_2+k^2-2kk_2+k_2^2}{k^2+2kk_2+k_2^2}=1$. We only get perfect transmission in the limit $E\to\infty.$ Higher $E$, better $T$.</p>
+<p>O and BTW, for $E=V_0$ we get $k_2=0$ so $A=1$ and $B=2$ a constant flat thing. Perfect reflection.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

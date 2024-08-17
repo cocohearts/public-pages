@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>UDL   Week 11 - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#chapter-19-rl" class="nav-link">Chapter 19: RL</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="chapter-19-rl">Chapter 19: RL</h2>
+<p>So we have <em>partially observable Markov decision processes</em>, where
+- at each timestep world state encoded in $s$, fixes a set of actions
+- each action $a$ has distribution describing subsequent state
+- actions can have reward $r$
+- observations $o$ drawn from distribution based on state</p>
+<p>A policy $\pi[a|s]$ is the distribution of next actions by state. We estimate the value of future rewards with a reverse interest rate $\gamma,$ and so can define the value of a sequence of actions or a policy from a given starting point. Also define $q$, the value from given state with given action.</p>
+<p>Relations are
+$$
+\begin{align}
+v[s_{t}]&amp;=\sum_{a_{t}}\pi[a_{t}|s_{t}]q[s_{t},a_{t}], \
+q[s_{t},a_{t}]&amp;=r[s_{t},a_{t}]+\gamma \sum Pr(s_{t+1}|s_{t},a_{t})v[s_{t+1}].
+\end{align}
+$$</p>
+<h3 id="markov-decision-problems-full-state-known">Markov Decision Problems (full state known)</h3>
+<h4 id="direct-dp">Direct DP</h4>
+<p>Now, if we know the entire action-&gt;state distribution for all states, we can initialize values for $v$ randomly, sweep through by plugging in $q$ into the first equation once, and then greedily update $\pi$. This eventually converges.</p>
+<h4 id="monte-carlo">Monte Carlo</h4>
+<p>Set policy randomly, then after each run of experimentation, for each pair $a,s$ update the policy to value of $a$ that yielded the best measured average $q$ over all runs.
+However, this requires us to see every $a,s$ pair many times, which is not always possible.</p>
+<h4 id="temporal-difference">Temporal Difference</h4>
+<p>Live updating while doing Monte Carlo, so that the new value of $q[s_{t},a_{t}]$ is the old value plus $\alpha$ times the delta in expectation.</p>
+<p>SARSA is $(r[s_{t},a_{t}]+\gamma\cdot q[s_{t+1},a_{t+1}])-q[s_{t},a_{t}].$</p>
+<p>Instead we could do <em>off-policy</em>, meaning the policy that is acting is "behavioral" whereas optimal "target" is being learned.
+Typically, behavioral is stochastic but target is deterministic. Behavioral can be modified by e.g. <em>epsilon greedy</em> where pick greedy with chance $1-\epsilon,$ random otherwise.</p>
+<p>Then we have some behavioral, but then $q[s_{t+1},a_{t+1}]$ is replaced with the best move (target policy), $\max_{a}(q[s_{t+1},a]).$ This is called <em>Q-learning</em>, however faces the same size issue as Monte Carlo.</p>
+<h4 id="fitted-q-learning">Fitted Q-learning</h4>
+<p>Represent state $s_{t}$ as a vector, put into model $q$ with parameters $\phi$. Then loss $L(\phi)$ is the average TD delta $\left( r[s_{t},a_{t}]+\gamma\cdot \max_{a}(q[s_{t+1},a]) \right) -q[s_{t},a_{t}]$ squared.</p>
+<p>Then $\phi$ gets updated using partial of this.</p>
+<h3 id="abandon-action-values">Abandon Action Values</h3>
+<p>Let's just do estimation of policy effectiveness. That would be expected discounted reward over the whole trajectory (measuring state and action). Then after taking $I$ many samples and gradient ascent, we get the addition to $\theta$ of
+$$
+\begin{align}
+\alpha\cdot \frac{1}{I}\sum_{i}^I \frac{r[\tau_{i}]}{Pr(\tau_{i}|\theta)} \frac{{\partial Pr(\tau_{i}|\theta)}}{\partial\theta}
+&amp;= \alpha \cdot Mean \left[ r[\tau]\frac{{\partial \ln(Pr[\tau|\theta])}}{\partial\theta} \right]  \
+&amp;=\alpha \cdot Mean\left[ r[\tau] \sum_{i}\frac{\partial \ln(Pr[s_{i+1}|s_{i},\theta])}{\partial\theta} \right] .
+\end{align}
+$$
+The <em>REINFORCE</em> algorithm does this for a discrete action space, using a softmaxxed neural net for probabilities. Walking through Monte-Carlo style and updating $\theta$ does the trick.</p>
+<p>Another good thing to do is to just train a parallel value model that predicts value of a state $s_{t}$ and replace $r[\tau_{it}]$ with $r[\tau_{t}]-b[s_{t}].$ This compensates for some states just being better than others.</p>
+<p>To do this at each step using temporal difference, we can update $\theta$ using $\alpha(r[s_{t},a_{t}]+\gamma v(s_{t+1})-v(s_{t}))$, where $v(s,\phi)$ is a parallel network predicting each state's value.</p>
+<p>Now $\pi[s_{t},\theta]$ is the "actor" and $v[s_{t},\phi]$ is the "critic". </p>
+<h3 id="offline-rl">Offline RL</h3>
+<p>Where we want to build a model based on past, noninteractive transcripts with the environment. This is new, and rather hard. The above is one paradigm; sequence prediction with transformers or LSTM is another, called "decision transformer," which tries to predict the reward for each action.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

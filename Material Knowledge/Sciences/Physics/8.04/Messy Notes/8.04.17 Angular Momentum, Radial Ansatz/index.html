@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>8.04.17 Angular Momentum, Radial Ansatz - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<ul>
+<li>Non-dimensionalized momentum $\frac{i\hat pa}{\hbar}$ represents location shift; $e^{\frac{i\hat pa}\hbar}=e^{a\frac{\partial}{\partial x}},$ after expansion, $e^{a\frac\partial{\partial x}}\psi(x)=\psi(x+a)$ representing shift left $-a$.</li>
+</ul>
+<h3 id="angular-momentum-operator">Angular momentum operator</h3>
+<p>Typically $\bf L=\bf r\times\bf p.$ We're using central angular momentum with spherical potential, so $\bf r=\bf x, \bf p=\hat p.$
+- $\bf\hat L\equiv\bf\hat r\times\bf\hat p$
+- $\hat L_x=\hat y\hat p_z-\hat z\hat p_y$
+- $\hat L_i$ are Hermitian
+- Computing the commutator,
+$$
+\begin{align<em>}
+[\hat L_x,\hat L_y]
+&amp;=[yp_z-zp_y,zp_x-xp_z]\
+&amp;=[yp_z,zp_x]+[zp_y,xp_z]\
+&amp;=y[p_z,z]p_x+x[z,p_z]p_y\
+&amp;=i\hbar(xp_y-yp_x)\
+&amp;=i\hbar L_z.
+\end{align</em>}
+$$
+- Commutators are ==algebraically cyclic==. Spin operators are similarly algebraically cyclic with commutator.
+- Thus no nontrivial eigenstate of $L_x,L_y$ simultaneously exists</p>
+<ul>
+<li>Expanding the original expansion yields $$\hat L_x=\frac\hbar i(y\frac d{dz}-z\frac d{dy})=\frac\hbar i\frac{\partial}{\partial \phi_x}.$$</li>
+<li>Here $\phi_x=\arctan(\frac zy),$ the angle formed by the projection onto the 2D $yz$ plane, with $y$ as base.</li>
+<li>Expressing $L_x,L_y$ using standard spherical $\phi,\theta$ is trickier.</li>
+</ul>
+<h3 id="radial-ansatz">Radial Ansatz</h3>
+<p>Working with spherical potential, Schrodinger's becomes an equation in $\bf L^2$ and $\frac d{dr}.$ Now we care about $\psi$ the eigenstate of $\hat L_z,\bf L^2.$ We specify $L_z\psi=\hbar m\psi,{\bf L^2}\psi=\hbar^2l(l+1)\psi.$</p>
+<p>Recall $\psi(\theta,\phi)$ is $2\pi$ periodic in both arguments. </p>
+<ul>
+<li>Solving first directly yields $\frac d{d\phi}\psi=im\psi,$ so $\psi\sim e^{im\phi}.$ by $2\pi$ periodicity $m\in \mathbb Z.$</li>
+<li>Solving second and doing algebra yields $x=\cos\theta,$ $\psi\sim P,$ $$\frac d{dx}\left[(1-x)^2\frac{dP}{dx}\right]+\left[l(l+1)-\frac{m^2}{1-x^2}\right]P=0.$$Here $P$ is Legendre polynomial $l,m$.</li>
+<li>Taking $m=0$, we can solve for coefficients of the series expansion, we get the Legendre polynomials $P_l=\frac1{2^l l!}\left(\frac d{dx}\right)^l(x^2-1)^l.$</li>
+<li>Normalized form is $$Y_{l,m}(\theta,\phi)=\sqrt{\frac{2l+1}{4\pi}\frac{(l-m)!}{(l+m)!}}(-1)^me^{im\phi}P_l^m(\cos\theta),$$with $P_l^m$ above Legendre polynomial.</li>
+</ul>
+<p>Resuming with radial ansatz,
+- Plugging in $\psi(r,\theta,\phi)=R(r)Y(\theta,\phi)$ yields $u\equiv rR,$ $$-\frac{\hbar^2}{2m}\frac{d^2 u}{dr^2}+\left(V(r)+\frac{\hbar^2l(l+1)}{2mr^2}\right)u=Eu.$$
+- We can match singular terms (the $r^{-2}$) as $r\to 0,$ and determine $u\sim r^{l+1}$ in that region.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

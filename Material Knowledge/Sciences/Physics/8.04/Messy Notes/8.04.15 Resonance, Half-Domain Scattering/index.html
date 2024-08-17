@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>8.04.15 Resonance, Half Domain Scattering - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#resonance" class="nav-link">Resonance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#half-domain-scattering" class="nav-link">Half-Domain Scattering</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="resonance">Resonance</h2>
+<p>Scattering state: Finite square well with incoming wave from left side. Then we have inc., refl. on left side, two oscillating in the well, and a single transmitted from the right. Specifically, $Ae^{ikx}+Be^{-ikx}$ for $x&lt;-a,$ $Ce^{ik_2x}+De^{-ik_2x}$ for $|x|<a,$ and $Fe^{ikx}$ for $x>a.$</p>
+<p>Solving in terms of $A$ by matching $\Psi,\Psi'$ at $x=\pm a.$ As usual we have $k^2=\frac{2mE}{\hbar^2},$ $k_2^2=\frac{2m(E+V_0)}{\hbar^2}.$</p>
+<p>As a result we get</p>
+<p>$$\frac1T=\frac{|A|^2}{|F|^2}=1+\frac14\frac{V^2}{E^2+EV}\sin^2(2k_2a).$$
+Evidently for "arbitrary" $E,K_2$ we get $T\in(0,1)$ and also $T\to 0$ as $E\to 0,$ $T\to\infty$ as $E\to\infty$. But if we want perfect $T=1$ we can fix $\sin(2k_2a)=0,$ i.e. the frequency $k_2$ fits itself perfectly within the well width $2a$.</p>
+<p>More specifically, given that $2k_2a=n\pi,$ we can compute
+$$E+V=\frac{n^2\pi^2\hbar^2}{2m(2a)^2,}$$
+the same as the energy for the $n$th bound state in the inf. square well!</p>
+<p>This was first seen in the real world in the <em>Ramsauer-Townsend effect,</em> where the number of reflections when electrons were fired at a wall of noble gases had unexpected troughs regularly.</p>
+<h2 id="half-domain-scattering">Half-Domain Scattering</h2>
+<p>We consider scattering states with potentials with an infinite wall at $x=0$ and $V=0$ for $x&gt;r$.</p>
+<p>These are instigated by an incoming wave from $x=\infty,$ so $x=e^{-ikx}$ for the usual $k^2=\frac{2mE}{\hbar^2}.$ </p>
+<p>In the case that $V=0$ for all $x&gt;0$ the only resolution to $\Psi(0)=0$ is $\sin(kx),$ so we'll slap $\frac1{2i}$ on everything as convention.</p>
+<p>For general $V$ let the outgoing wave be $e^{ikx+i2\delta}$ for some $\delta(x).$ For $x&gt;r$ we actually need $\delta$ constant. Also $\delta$ must be real because of how probability flux works. Then we can write</p>
+<p>$$\Psi(x)=\frac1{2i}\left(e^{ikx+2i\delta}-e^{-ikx}\right)=e^{i\delta}\sin(kx+\delta).$$</p>
+<h4 id="time-delay">Time Delay</h4>
+<p>If we examine a wavepacket constructed from $g(k)$ then
+$$\Psi_{inc}=\int g(k)(e^{-ikx})(e^{-iE(k)t/\hbar}).$$
+The reflected wavepacket is
+$$\Psi_{ref}=\int g(k)(e^{ikx+2i\delta(k)})(e^{-iE(k)t/\hbar}).$$
+Since $\frac{\partial P}{\partial k}=0$ at the crest, we get
+$$x+2\frac{\partial\delta}{\partial k}-\frac1\hbar\frac{\partial E}{\partial k}t=0$$
+evaluated at $k=k_0.$ Pulling out a $\frac{\partial E}{\partial k}=\frac{\hbar^2k}{m}$ from $\frac{\partial\delta}{\partial k}$ we get
+$$x=\frac{\hbar k_0}{m}(t-2\hbar\delta'(E(k_0))).$$
+As a result the <em>time delay</em> is 
+$$\Delta t=2\hbar\delta'(E(k_0))$$
+(with $\delta$ as a function of $E$ ofc).</p>
+<h4 id="example">Example</h4>
+<p>Consider constant potential for the nonzero region. Then ansatz is $A\sin(k_2x),Be^{i\delta}\sin(kx+\delta)$ piecewise. Notice $\psi(0)=0$ is naturally handled. Solve this for $\delta.$</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

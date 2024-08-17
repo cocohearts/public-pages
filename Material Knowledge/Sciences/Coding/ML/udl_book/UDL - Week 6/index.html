@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>UDL   Week 6 - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#chap-11-residual-networks" class="nav-link">Chap 11: Residual Networks</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#chap-12-transformers" class="nav-link">Chap 12: Transformers !!</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="chap-11-residual-networks">Chap 11: Residual Networks</h2>
+<h3 id="residual-blocks">Residual blocks</h3>
+<p>so convnet is pretty good, and deep networks are pretty good
+but really deep networks have "shattered gradients" aka multiple orders of derivative have high Lipschitz
+so we introduce "residual blocks," aka taking
+$$h_3=f(h_2,\phi)+h_2.$$
+Then after a bunch of composition, the final expression is
+$$h_n=f(h_{n-1})+f(h_{n-2})+\dots+h_1.$$
+In other words, residual networks are actually, more realistically, an ensemble of correlated shallow networks, each of which take different "short" paths through the network.</p>
+<h3 id="batchnorm">Batchnorm</h3>
+<p>Each hidden node activation $h_i$ gets rescaled. Inside of the batch, take the statistical mean and variance, and then rescale so it has mean $\sigma_i$ and variance $\gamma_i$. Then make $\sigma_i,\gamma_i$ additional learned parameters for each node.</p>
+<p>After training and before testing, take statistical parameters across the entire training dataset and "lock them in."</p>
+<p>In theory this helps because it lets us directly control/regularize for mean/variance at nodes that might otherwise be hard to control.</p>
+<h4 id="batchnorm-variants-ghostnorm-layernorm-groupnorm-instancenorm">Batchnorm Variants: Ghostnorm, Layernorm, Groupnorm, Instancenorm</h4>
+<ul>
+<li>Ghostnorm: take some samples from this batch randomly</li>
+<li>Layernorm: go instance by instance, taking samples from this entire layer, as opposed to from the whole batch (better for text/images sometimes)</li>
+<li>Groupnorm: Normalize within groups of channels, as opposed to by layers of channels</li>
+<li>Instancenorm: normalize within each channel separately, taking stats only from pixels in that one channel</li>
+</ul>
+<h3 id="u-nets-hourglass">U-Nets, Hourglass</h3>
+<p>Take the convolutional encoder/decoder from last time, but now make it residual. Specific properties may have been lost through the "compression" in the middle, so when re-upscaling, concatenate the "original image" with the same resolution from the other side before mapping. If only valid convolutions are taken then cropping is necessary.
+Iterate this several times for "stacked hourglass networks".</p>
+<h2 id="chap-12-transformers">Chap 12: Transformers !!</h2>
+<h3 id="premise">Premise</h3>
+<ul>
+<li>Long input sequence of long vectors</li>
+<li>Sequence of vectors out that carry information in some way</li>
+</ul>
+<h3 id="desirable-properties">Desirable Properties</h3>
+<ul>
+<li>Works no matter sequence length</li>
+<li>Inputs can talk to each other/interact with each other/determine each other's "context"</li>
+</ul>
+<h3 id="basic-implementation">Basic Implementation</h3>
+<p>Matrices $\Omega_k,\Omega_q,\Omega_v$ for key, query, value
+1. $\Omega_v$ maps input vectors to their <em>values</em>
+2. $\Omega_q,\Omega_v$ maps input vectors to their <em>key</em> embeddings and <em>query</em> embeddings
+3. Final embedding of input $x_i$ is softmax <em>linear combination</em> of values $v_i$ determined by <em>dot product</em> $k_j\cdot q_i$</p>
+<p>Position can be encoded by adding to the inputs</p>
+<p>In matrix form:
+- $X$ has input as column values
+- Matrices for values, keys, queries being $\Omega_i X$
+- As a reminder: 
+    - $X\colon \mathbb{R}^N\to \mathbb{R}^D$ with $N$ inputs, embedding length $D$
+    - $\Omega_i\colon \mathbb{R}^D\to\mathbb{R}^l$ mapping to key/query vectors with length $l$
+- Attention coeffs are $A=softmax_col(K^TQ)$
+- Final output is $V\cdot A$</p>
+<p>We can do <em>multihead</em> meaning several such transformers are running at once. </p>
+<p>A normal transformer <em>layer</em> is
+![[Pasted image 20240324220323.png]]
+Finally, we train GPT3 using <em>encoder-decoder</em>.
+![[Pasted image 20240324220421.png]]
+We can train GPT3 very cheaply and unsupervised-ly:
+![[Pasted image 20240324220524.png]]
+Anddd that's it.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

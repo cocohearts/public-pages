@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../img/favicon.ico">
+        <title>Recursion+DP - My Docs</title>
+        <link href="../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#recursiondp" class="nav-link">Recursion+DP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#data-structures" class="nav-link">Data Structures</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="recursiondp">Recursion+DP</h1>
+<h3 id="transition">Transition</h3>
+<ul>
+<li>How do I build a state from a previous state?</li>
+<li>What information needs to be preserved? What information can be disposed of?</li>
+<li>How do I "unpeel" it by layers? Iterate?</li>
+</ul>
+<h3 id="backtracking">Backtracking</h3>
+<ul>
+<li>If I want to explore multiple "children" of the current state, how do I return to the parent? how to keep track of the children?</li>
+<li>DFS traversal of the tree, in essence</li>
+</ul>
+<h3 id="memoization">Memoization</h3>
+<ul>
+<li>==What computations are repeated?==</li>
+<li>What's a naive DP idea? How can I ==add info== to make a valid transition?</li>
+</ul>
+<h3 id="specific-tricks">Specific Tricks</h3>
+<ul>
+<li>Permutations can be bitmasked</li>
+<li>Subarray DPs, such as digit substrings, or XORs from big-small index</li>
+<li>Use dx/dy for grid problems</li>
+<li>Utilize spatial locality</li>
+<li>If potential MLE discard DP layers no longer in use</li>
+<li>Almost <em>always</em> write iteratively</li>
+<li>Unless it's tree, in which case write recursively</li>
+</ul>
+<h1 id="data-structures">Data Structures</h1>
+<ul>
+<li>Set, MultiSet are ordered BBST</li>
+<li>Unordered are hash tables</li>
+<li>
+<p>==Cheat with PBDS==, good for sliding window</p>
+</li>
+<li>
+<p>Fenwick Tree: ==last 2^n==, for range queries (not used)</p>
+</li>
+<li>Segment Tree: just fill out to power of 2; consider "lazy Segment" or "Segment of Segment"<ul>
+<li>Remember PURS, RUPF, if needed consult Plat for RURS</li>
+</ul>
+</li>
+<li>
+<p>Use <em>explicit representation</em> (in 1D flattened array) for random access</p>
+</li>
+<li>
+<p>Stack, Queue, Deque: much better constant-time performance than other containers</p>
+</li>
+<li>Priority Queue maintained by Heap, maintaining greater than children</li>
+</ul>
+<h3 id="graph-reps">Graph Reps</h3>
+<ul>
+<li>Adjacency Matrix: weight[i][j]</li>
+<li>Adjacency List: adj[i] lists all neighbors and corresponding weights of i</li>
+<li>Union-Find Disjoint Set: rep. partition of a collection as a forest, root of each tree is representative for set</li>
+<li>Greedy with Dijkstra's or Kruskal's using ==PQ==</li>
+</ul>
+<h3 id="tree-augmented-dfs">Tree Augmented DFS</h3>
+<ul>
+<li>Includes Tree DP and Euler Tour</li>
+<li>Always Root</li>
+<li>Use DP Mindset-what can I memoize? ==Start with naive recursion==</li>
+</ul>
+<h3 id="sqrt-n-divide-and-conquer">$\sqrt n$ Divide and Conquer</h3>
+<ul>
+<li>Range queries: rep. as pairs $(a,b),$ sliding window by semantic order</li>
+<li>Basically Meet in Middle for $\sqrt N$ time</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../js/base.js"></script>
+        <script src="../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

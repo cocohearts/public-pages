@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>8.04.5 Wavefunction as Probability - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>$\require{mhchem}\newcommand{\CC}{\mathbb C} \newcommand{\SN}{\mathcal N} \newcommand{\Ham}{\hat H}\DeclareMathOperator{\IM}{Im}$ As $\Psi$ is a probability we can say at any time $t,$ the whole space $\int |\Psi|^2\,dx=1.$ 
+- This is a nice convention to have, but not necessary; at any time we can just scale by $\mathcal N=\int |\Psi|^2\,dx,\Psi'=\frac1{\sqrt{\mathcal N}}\Psi.$
+- In fact our previous wavefunction for the free particle doesn't work for this reason
+    - We can superimpose non-square-integrable functions and arrive at a square-integrable function
+- In general we would like $\int|\Psi|^2\,dx$ to exist.</p>
+<h4 id="total-amplitude-conservation">Total Amplitude Conservation</h4>
+<p>We need two conditions:</p>
+<blockquote>
+<p>[!FAQ] Two necessary conditions
+It is sufficient for $$\lim_{x\to\infty}\frac{\partial\Psi}{\partial x}&lt;\infty,\qquad \lim_{x\to\infty}\Psi=0.$$</p>
+</blockquote>
+<p>Let $\rho(x,t)=\Psi(x,t)\Psi(x,t)^<em>,$ and let $\SN(t)\equiv\int\rho(x,t)\,dx.$ We want to show $\frac{\partial}{\partial t}\SN=0.$ Equivalently,
+$$\int \frac{\partial\Psi}{\partial t}\Psi^</em>+\frac{\partial\Psi^<em>}{\partial t}\Psi\,dx=0,$$
+but we can use the Schrodinger equation and get
+$$\int \Psi^</em>\cdot-\frac i{\hbar}\Ham\Psi+\Psi\cdot\frac i{\hbar}\Ham\Psi^<em>\,dx=0,$$
+equivalently
+$$\int \Psi^</em>\Ham\Psi\,dx=\int \Psi\Ham\Psi^*\,dx.$$</p>
+<blockquote>
+<p>[!important] Hermitian operator
+In the case that $$\int (\Ham\Psi_1)^<em>\Psi_2\,dx=\int\Psi_1^</em>(\Ham\Psi_2)\,dx,$$ we call $\Ham$ a <em>Hermitian operator.</em></p>
+</blockquote>
+<p>In general a linear operator $T$ will have a conjugate $T^\dagger$ that satisfies the above property, and $T$ is Hermitian if $T=T^\dagger.$</p>
+<h3 id="hamiltonian-is-hermitian">Hamiltonian is Hermitian</h3>
+<p>Expanding the expression
+$$\frac i\hbar\left(\Psi\Ham\Psi^<em>-\Psi^</em>\Ham\Psi\right)=-\frac {i\hbar}{2m}\left(\Psi\nabla^2\Psi^<em>-\Psi^</em>\nabla^2\Psi\right)=-\frac{\hbar}m\nabla\cdot\left[\frac1{2i}\left(\Psi^<em>(\nabla\Psi)-\Psi(\nabla \Psi^</em>)\right)\right].$$
+The conclusion is then
+$$\frac{\partial\rho}{\partial t}+\frac\hbar m\nabla\cdot\text{Im}\left(\Psi^<em>(\nabla\Psi)\right)=0.$$
+Then letting $J=\frac\hbar m \IM(\Psi^</em>(\nabla\Psi))$ we get $\frac{\partial\rho}{\partial t}+\frac{\partial J}{\partial x}=0,$ and so</p>
+<p>$$\frac{\partial \SN}{\partial t}=\int\frac{\partial\rho}{\partial t}\,dx=\int\frac{\partial J}{\partial x}\,dx=\left. \frac\hbar m \IM(\Psi^*(\nabla\Psi))\right|_{-\infty}^{\infty}=0,$$
+on the earlier assumption.</p>
+<blockquote>
+<p>[!important] Probability current
+$J=\frac\hbar m \IM(\Psi^*(\nabla\Psi))$ is the "probability current," meaning that (1) in 1 dimension, $J$ is the ROC of the cumulative probability distribution (2) in 3 dimensions, flux integral of $J$ represents ROC in that region</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>EM</th>
+<th>Quantum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\rho$</td>
+<td>charge density</td>
+<td>probability density</td>
+</tr>
+<tr>
+<td>$Q_V$</td>
+<td>charge in volume</td>
+<td>probability in volume</td>
+</tr>
+<tr>
+<td>$\bf J$</td>
+<td>current flow density</td>
+<td>probability flow density</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>UDL   Week 2 - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#chap-6-gradient-descent-momentum" class="nav-link">Chap 6: Gradient descent, momentum</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#chap-7-backprop" class="nav-link">Chap 7: Backprop</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="chap-6-gradient-descent-momentum">Chap 6: Gradient descent, momentum</h2>
+<p>Ok, we've got normal gradient descent. $\phi :=\phi- \alpha \frac{\partial L}{\partial \phi}.$ But this can be "unstable", so we have some empirical improvements:</p>
+<h4 id="momentum">Momentum</h4>
+<p>Have a $\beta$-rate time decay on the influence of <em>all</em> previous gradient descents, i.e. we move in the direction
+$$m=(1-\beta)\sum_{i=0} \beta^i g_i.$$
+More specifically, $$m_i=(1-\beta)g+\beta m_{i-1}.$$Don't forget the $\alpha$ coefficient.</p>
+<h4 id="nesterov-momentum">Nesterov Momentum</h4>
+<p>Instead of updating by gradient <em>here</em>, let's update by gradient over <em>there</em>.
+$$m_{i+1} = (1-\beta)\left(-\alpha\left. \frac{\partial L}{\partial \phi}\right|<em>{\phi-\alpha m</em>{i}}\right)+\beta m_i.$$
+Basically, correct our momentum by an assumed future position.</p>
+<h4 id="adaptive-momentum-adam">ADAptive Momentum (ADAM)</h4>
+<p>Try moving uniform magnitude in each coordinate; i.e. $\Delta\phi=-\alpha\frac{g}{|g|}.$ We don't like absolute value; instead let's set $v=g^2,$ so $\Delta \phi=-\alpha \frac{g}{\sqrt v}.$ Of course, normalize with $\frac g{\sqrt v+\epsilon}.$ This (Adaptive Gradient) works well, but let's add momentum!</p>
+<p>Let $m$ be the momentum of $g$ i.e. $m=\beta m_{i-1}+(1-\beta)g,$ and $u$ the momentum of $v:=g^2$ i.e. $u=\gamma u_{i-1}+(1-\gamma)g^2.$ Then $\Delta g = -\alpha\frac{m}{\sqrt u+\epsilon}.$ </p>
+<p>Don't forget to "normalize" our truncated infinite geometric series by taking $\tilde m=\frac{m}{1-\beta^t}$ and $\tilde u=\frac u{1-\gamma^t},$ and actually using $\tilde m,\tilde u$ in place of $m,u$. This is because $\gamma$ is usually large.</p>
+<p>And of course, we can mashup ADAM with Nesterov if we want, by taking $g$ from $\phi+\Delta\phi$.</p>
+<h4 id="sgd">SGD</h4>
+<p>Instead of taking gradient with the entire training dataset, we chop training into <em>batches</em> and gradient descent by these. Going through an entire permutation (set of batches) corresponds to one <em>epoch</em>. This can be mashup'd with any of the above.</p>
+<h3 id="intuitional-notes">Intuitional Notes</h3>
+<ul>
+<li>Momentum is a geometric time-average of gradients</li>
+<li>ADAM moves coordinate-wise, mashed up with momentum, scaling for geometric truncation</li>
+<li>Nesterov takes gradient from where you "would" be, like moving double and stepping back</li>
+<li>SGD is "orthogonal" to these descent strategies by adjusting batch</li>
+</ul>
+<h2 id="chap-7-backprop">Chap 7: Backprop</h2>
+<p>Fun part! We'll work with only deep neural nets, of course.</p>
+<p>Assume one input, one output. $K$ layers means $K+1$ sets of linear maps composed with activations (last activation dropped).</p>
+<p>We'll take $h$ for hidden (post-activation) and $f$ for pre-activation from $0-K$.
+<em>One "unit" is from $h\to f$ through linear map, and then to $h$ by activation.</em></p>
+<p>Counterintuitively, by this index notation, <em>the hidden layer comes first</em>.</p>
+<p>Then $h[0]$ is input, $f[k]$ is output, and $$f_l=\beta_l+\Omega_lh_l$$ (where $l\in[0,K]$ is layer).</p>
+<h4 id="total-derivative-chain-rule">Total Derivative Chain Rule</h4>
+<p>The <em>total derivative</em> of $f: \RR^m\to\RR^n$ is the matrix $M:\RR^m\to\RR^n$ corresponding to a "linear approximation". By this logic, it's perfectly clear that
+$$D(f\circ g)=Df\circ Dg.$$</p>
+<h4 id="backprop">Backprop</h4>
+<p>Then using activation function $a$ and our above index notation, we have
+$$
+\begin{align<em>}
+\frac{\partial L}{\partial \beta_i}&amp;=\frac{\partial L}{\partial f_i}\circ\frac{\partial f_i}{\partial \beta_i}=\frac{\partial L}{\partial f_i},\
+\frac{\partial L}{\partial h_i}&amp;=\frac{\partial L}{\partial f_i}\circ\frac{\partial f_i}{\partial h_i}=\frac{\partial L}{\partial f_i}\circ \Omega_i=\Omega_i^T\frac{\partial L}{\partial f_i},\
+\frac{\partial L}{\partial \Omega_i}&amp;=\frac{\partial L}{\partial f_i}\circ\frac{\partial f_i}{\partial \Omega_i}=\frac{\partial L}{\partial f_i} h_i^T.\
+\frac{\partial L}{\partial f_{i-1}}&amp;=\frac{\partial L}{\partial h_{i}}\circ\frac{\partial h_{i}}{\partial f_{i-1}}=\frac{\partial L}{\partial h_{i}}\odot a'(f_{i-1}).
+\end{align</em>}
+$$
+Note the distinction between a linear map from $\RR^n\to\RR$ (linear functional) v.s. the vector whose dot product encodes said functional. This is the source of the transpose. More generally, we are taking <em>inner product coefficients</em> instead of total derivatives.</p>
+<p>And of course, $\frac{\partial L}{\partial f_K}=\frac{\partial (f_K-y)^2}{\partial f_K}=2(f_K-y).$</p>
+<p>If we shorten to only the ones we care about, we get
+$$
+\begin{align<em>}
+\frac{\partial L}{\partial \beta_{i}}&amp;=\left(\Omega_{i+1}^T\frac{\partial L}{\partial \beta_{i+1}}\right)\odot a'(f_i),\
+\frac{\partial L}{\partial \Omega_i}&amp;=\frac{\partial L}{\partial \beta_i} h_i^T.
+\end{align</em>}
+$$
+This also means we can go layer by layer, dropping the values from previous layers, and update weights on each layer iteration.</p>
+<h3 id="intuitional-notes_1">Intuitional Notes</h3>
+<ul>
+<li>Vector calc stuff, total derivative chain rule; note that we're grabbing inner product duals</li>
+<li>Backprop biases first; chain rule:<ul>
+<li>first Hadamard the activation derivative</li>
+<li>then next-layer weights transpose, to "amplify" next-layer bias derivatives</li>
+</ul>
+</li>
+<li>Backprop weights:<ul>
+<li>Literally just $\frac{\partial L}{\partial \beta_i}\otimes h_i$ (remember to match shape)
+$\newcommand{\RR}{\mathbb R}$</li>
+</ul>
+</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>UDL   Week 1 - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#chap-2" class="nav-link">Chap 2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#chap-3" class="nav-link">Chap 3</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#chap-4" class="nav-link">Chap 4</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#chap-5" class="nav-link">Chap 5</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="chap-2">Chap 2</h2>
+<p>Introduce linear regression, least-squares loss
+A "generative model" is $x=f(y,\phi),$ whereas discriminative is $y=f(x,\phi).$ Technicality; but most modern generative models are just very flexible discriminative models.</p>
+<h2 id="chap-3">Chap 3</h2>
+<p>First generalize to multivariate linear regression, $y=\theta_0+\Theta_1\cdot x,$ where $\theta_0$ scalar, $\Theta_1$ matrix.</p>
+<p>Introduce shallow NN. Add a "hidden layer", becoming a vector of ReLU'd linear combinations of $x$, namely $a(\Theta_0+\Theta_1 x)$ with vector $\Theta_0$ and matrix $\Theta_1$.</p>
+<p>In single-variable case we have vector dotted with hidden layer, plus scalar; extending to multivariate we get matrix $\Phi_1$ and vector $\Phi_0$ yielding
+$$y = \Phi_0+{\bf\Phi_1}\cdot a(\Theta_0+{\bf\Theta_1}\cdot x).$$
+Here the vector-to-vector function $a$ does ReLU on each coordinate.</p>
+<h3 id="intuitional-notes">Intuitional Notes</h3>
+<ul>
+<li>Each hidden layer contributes a hyperplane; resulting linear sum is composition of all of these</li>
+<li>Consider model input size $D_i$ hidden size $D$, region count is exp. in $D_i$ but param count is $D\cdot D_i.$ Higher $D$ values result in greater region counts per param count.</li>
+</ul>
+<h3 id="syntax-notes">Syntax Notes</h3>
+<p>Recall that <code>my_nd_array.clip(0.0)</code> literally just works for ReLU.</p>
+<h2 id="chap-4">Chap 4</h2>
+<p>Now we generalize to deep NNs. Layers def'd hidden layers; depth def'd hidden layers+1; width def'd maximal nodes in one layer.</p>
+<p>Then each layer becomes $$a(\beta_i+\Omega_i x).$$ There are depth-many such layers; in a shallow NN there's one layer $\mathbb R \to \mathbb R^D,$ and then another one $\mathbb R^D \to \mathbb R.$</p>
+<p>For example, two shallow $\mathbb R\to\mathbb R$ NNs composed become one $\mathbb R\to\mathbb R^D,$ and then a $\mathbb R^D\to\mathbb R^D$ matrix. This is actually the <em>outer product</em> of the two vectors corresponding to what was previously $\RR^D\to\RR$ followed by $\RR\to\RR^D$.</p>
+<h3 id="intuitional-notes_1">Intuitional Notes</h3>
+<p>Consider $f:[0,1]\to[0,1]$ with four linear pieces from $0$ to $1$ or vice versa. Then self-composing $k$ times yields a function with $4^k$ linear pieces. In this way composing multiple layers creates "self-folding" which can create exponentially many facets; however each "sublayer" is a mirror image of other layers, making the layers related to each other in convoluted/difficult ways.</p>
+<p>In general, we can optimally get $D^K$ linear regions, but then they're entangled annoyingly.</p>
+<h3 id="syntax-notes_1">Syntax Notes</h3>
+<p>The object <code>np.zeros(b,a)</code> creates a mapping $\RR^a\to\RR^b.$ Beware malformed <code>np</code> shapes!</p>
+<h2 id="chap-5">Chap 5</h2>
+<p>So-called "recipe" for loss functions:
+- For your inference domain, pick a distribution represented by parameters $\theta$ outputted by the model
+- For each data point, cost is $-\log(\Pr(y_i\mid \theta))$
+- Finally optimize parameters $\phi$ that yield parameters $\theta$
+- For inference, take prediction that maximizes probability according to $\theta$
+And finally, take negative log everywhere, cuz of course.</p>
+<h3 id="examples">Examples</h3>
+<ul>
+<li>Gaussian for univariate (yields squared-loss); variance can also be an output parameter</li>
+<li>Remap using $\exp$ and divide for multiclass</li>
+<li>Random other distros (beta, poisson, von Mises, exponential/gamma, Plackett-Luce)</li>
+</ul>
+<h3 id="intuitional-notes_2">Intuitional Notes</h3>
+<ul>
+<li>In general we want prob distributions since we're good Bayesians</li>
+<li>We helpfully give structure to our model by <em>describing</em> the distro with these parameters</li>
+<li>Then evaluate based on log-sum-score of our guesses
+$\newcommand{\RR}{\mathbb R}$</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

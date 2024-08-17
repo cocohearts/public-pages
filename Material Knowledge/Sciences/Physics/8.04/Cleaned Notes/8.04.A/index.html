@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>8.04.A - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#fun-with-states" class="nav-link">Fun with States</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#schrodingers" class="nav-link">Schrodinger's</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#manipulating-states" class="nav-link">Manipulating States</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="fun-with-states">Fun with States</h2>
+<p><strong>States</strong> are $\mathbb C$-vectors. </p>
+<h3 id="mach-zehdner-interferometer">Mach-Zehdner interferometer</h3>
+<p>![[Pasted image 20230907105403.png]]</p>
+<p>In this case, top/bottom is a state in $\mathbb{C}^2$. Then suppose we take the matrices</p>
+<p>$$
+\frac{1}{\sqrt{ 2 }}
+\begin{bmatrix}
+1&amp;1\1&amp;-1
+\end{bmatrix},\qquad
+\frac{1}{\sqrt{ 2 }}
+\begin{bmatrix}
+1&amp;-1\1&amp;1
+\end{bmatrix},
+$$
+then their product will be
+$$
+\begin{bmatrix}
+0&amp;1\1&amp;0
+\end{bmatrix}
+$$
+meaning that in this scenario, all the light ends up at detector 0.</p>
+<p>This probabilistic framework resolves the paradox of wave-particle duality and nondeterminism in this setup; a photon is 50/50 either way after the first splitter, but "uncanny action" (actually interference mathematically represented) makes it appear at detector 0 with 100% likelihood.</p>
+<h3 id="e-v-bombs">E-V bombs</h3>
+<p>Suppose we have a bomb that either works or does not work. If it works, the detector blocks light and is activated when light hits it. If it does not work, light passes through the detector.</p>
+<p>Putting the bomb in the bottom bridge side allows us to detect it without setting it off; if it is live and we send a photon it is 50% detector 0/1, and independently 50% top bridge, i.e. 25% chance it goes to detector 1 without detonation.</p>
+<h2 id="schrodingers">Schrodinger's</h2>
+<h3 id="photon-energy">Photon Energy</h3>
+<blockquote>
+<p>[!important] Photonic Physics
+$$
+E=h \nu=h \frac{c}{\lambda},\qquad p=\frac{h}{\lambda}=\frac{h\nu}{c}.
+$$
+By relativity $E^{2}-p^{2}c^{2}=m^{2}c^{4};$ for small $p$ we get $E-mc^{2}=\frac{1}{2}p^{2}m$ as expected. </p>
+</blockquote>
+<p>Recall <em>Lorentz factor</em> $\gamma=\frac{1}{\sqrt{ 1-\frac{v^{2}}{c^{2}} }},$ and that $E=mc^{2}\gamma, p=mv\gamma$ compared to classical.</p>
+<p>The <em>de Broglie</em> wavelength is that of a photon with <em>same momentum</em> i.e. $\lambda_{db}=\frac{h}{p},$ whereas <em>Compton</em> wavelength is that with <em>same energy</em> i.e. $\lambda_{c}=\frac{hc}{E}=\frac{h\gamma}{mc}$.</p>
+<p><em>Compton scattering</em> is when high-energy photons ionize electrons beyond free energy; new wavelength computed using $h\nu_{f}=E_{f}=h\nu-E_{p}$.</p>
+<h3 id="matter-wave-and-schrodingers">Matter wave and Schrodinger's</h3>
+<p>We want our particles to be plane waves $e^{i(k\cdot x+\omega t)}$. Then wavelength $\lambda=\frac{2\pi}{k}=\frac{h}{p}$ and frequency $\nu=\frac{\omega}{2\pi}=\frac{E}{h},$ so $k=\frac{p}{\hbar}$ and $\omega =\frac{E}{\hbar }$.</p>
+<p>Then
+$$
+\Psi=e^{i(\frac{px}{\hbar }-\frac{Et}{\hbar})}.
+$$
+Then $\hat{p}\Psi=\frac{\hbar \partial \Psi}{i\partial x}$ and $\hat E\Psi=\frac{i\hbar\partial \Psi}{\partial t}.$
+Thus,</p>
+<blockquote>
+<p>[!important] Schrodinger Operators
+$$k=\frac{p}{\hbar},\qquad\omega =\frac{E}{\hbar }.$$
+$$
+\hat{p}=\frac{\hbar}{i} \frac{\partial}{\partial x},\qquad \hat{E}=-\frac{\hbar}{i} \frac{\partial}{\partial t}.
+$$</p>
+</blockquote>
+<p>Then $E=KE+V=\frac{p^{2}}{2m}+V$ yields $$\frac{\hat{p}^{2}}{2m}+V=\hat{ E},$$
+specifically</p>
+<blockquote>
+<p>[!important] Schrodinger's Equation
+$$i\hbar \frac{\partial}{\partial t}\Psi=\left( -\frac{\hbar^2}{2m} \nabla ^2+V \right) \Psi.$$
+RHS we call the <em>Hamiltonian</em> $\hat{H}$.</p>
+</blockquote>
+<h2 id="manipulating-states">Manipulating States</h2>
+<h3 id="interpretation-of-states">Interpretation of States</h3>
+<p>$\Psi$ is a norm-able vector determining distribution, i.e. $\int \Psi^{2} \, dx=1$  and PDF of particle is $\Psi^{2}.$ Thus $\mathbb{E}(X)=\int \Psi^{2}X(x) \, dx$. We can define variance in the usual way, $\sigma_{Q}^{2}=\mathbb{E}(Q^{2})-\mathbb{E}(Q)^{2}$.</p>
+<p>Use Schrodinger's to verify that $\mathcal N=\int \Psi^{2} \, dx$ is conserved over $t$.</p>
+<h3 id="probability-flow-j">Probability Flow $J$</h3>
+<p>Define</p>
+<blockquote>
+<p>[!important] Probability Flow
+$$
+J=\frac{\hbar}{m}\text{Im}\left( \Psi^*\nabla \Psi \right),
+$$</p>
+</blockquote>
+<p>then
+$$
+\begin{align<em>}
+\frac{\partial}{\partial t}\mathcal N
+&amp;=\int \frac{\Psi \partial\Psi^</em>}{\partial t}+\frac{\Psi^<em> \partial\Psi}{\partial t} \, dx \
+&amp;= \int  -\nabla \cdot J\, dx  \
+&amp;=0.
+\end{align</em>}
+$$
+In particular, $$\frac{\partial |\Psi|^{2}}{\partial t}+\nabla \cdot J=0.$$
+Thus the <em>probability flow $J$</em> is the ROC of cumulative prob distribution below that point.</p>
+<h3 id="hermitian">Hermitian</h3>
+<p>Operator $\hat{ A}$ is <em>Hermitian</em> if
+$$
+\int \phi^<em> \hat{A} \psi \, dx =\int \psi^</em> \hat{A}\phi \, dx .
+$$
+Clearly $\hat{x}$ is Hermitian. $\hat{p}$ is a little trickier:
+$$
+\begin{align}
+\int \frac{\partial}{\partial x}\left( \phi^<em>\psi \right)  \, dx &amp;=0,\
+\int \psi^</em> i\frac{\partial}{\partial x}\phi \, dx &amp;=-\int \phi i\frac{\partial}{\partial x}\psi^<em> \, dx,\
+\int \psi^</em> \hat{p}\phi \, dx =\frac{\hbar}{i}\int \psi^<em> i\frac{\partial}{\partial x}\phi \, dx &amp;=\frac{\hbar}{i}\int \phi^</em> i\frac{\partial}{\partial x}\psi \, dx=\int \phi^*\hat{p}\psi \, dx .\</p>
+<p>\end{align}
+$$
+Then, given Hermitian $\hat{A},\hat{B},$ we have
+$$
+\begin{align}
+\sigma_{A}\sigma_{B} &amp;\geq \int |A\Psi|^{2} \, dx \int |B\Psi|^{2} \, dx  \
+&amp;\geq \int |A\Psi| |B\Psi| \, dx  \
+&amp;\geq \left| \text{Im}\left( \int (A\Psi)^<em>B\Psi \, dx  \right)  \right|  \
+&amp;=\left| \int \frac{(A\Psi)^</em>B\Psi-(B\Psi)^<em>A\Psi}{2i} \, dx  \right|  \
+&amp;=\left| \frac{\int \Psi^</em>BA\Psi-\Psi^*AB\Psi \, dx }{2} \right|  \
+&amp;= \frac{\left| \left&lt; [A,B] \right&gt;   \right|}{2}.
+\end{align}
+$$
+Recall that $\left&lt; \hat{x},\hat{p} \right&gt; =\frac{\hbar}{i},$ so $\sigma_{x}\sigma_{p}\geq \frac{\hbar}{2},$ and $k=\frac{p}{\hbar}$ so</p>
+<blockquote>
+<p>[!important] Heisenberg Uncertainty
+$$
+\sigma_{x}\sigma_{k}\geq \frac{1}{2}.
+$$</p>
+</blockquote>
+<h3 id="fourier">Fourier</h3>
+<p>In typical Fourier Inversion we have $2\pi i$ in the exponent. In 8.04 we dislike the $2\pi$ so we distribute it:</p>
+<blockquote>
+<p>[!important] Fourier in Coordinate Space
+$$
+\begin{align}
+\Psi(x)&amp;=\frac{1}{\sqrt{ 2\pi }}\int \Phi(x)e^{ikx} \, dk ,\
+\Phi(k)&amp;=\frac{1}{\sqrt{ 2\pi }}\int \Psi(x)e^{-ikx} \, dx .
+\end{align}
+$$
+Here $\Psi$ is the state, and $\Phi$ is the distribution of wavenumbers.</p>
+</blockquote>
+<p>Then recall $k=\frac{p}{\hbar},$ so we can do</p>
+<blockquote>
+<p>[!important] Fourier in Momentum Space
+$$
+\begin{align}
+\Psi(x)&amp;=\frac{1}{\sqrt{ 2\pi \hbar}}\int \Phi(x)e^{ipx/\hbar} \, dp ,\
+\Phi(p)&amp;=\frac{1}{\sqrt{ 2\pi \hbar}}\int \Psi(x)e^{-ipx/\hbar} \, dx .
+\end{align}
+$$
+Here $\Psi$ is the state, and $\Phi$ is the distribution of momentum.</p>
+</blockquote>
+<p>Recall that wavenumber relates to wavelength, which relates to momentum.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

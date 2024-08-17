@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>UDL   Week 10 - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            
+            <li class="nav-item" data-level="2"><a href="#chap-17-vaes" class="nav-link">Chap 17: VAEs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#chap-18-diffusion-models" class="nav-link">Chap 18: Diffusion Models</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>Variational autoencoders have two paradigms: probabilistic and regularization.</p>
+<h3 id="preliminary-kl-divergence">Preliminary: KL divergence</h3>
+<p>From $Q$ to $P$ defined as
+$$
+\begin{align}
+D_{KL}(P \parallel Q) &amp;= \int P(x)\log \left( \frac{P(x)}{Q(x)} \right)  \, dx  \
+&amp;= - \int P(x)\log \left( \frac{Q(x)}{P(x)} \right)  \, dx.
+\end{align}
+$$</p>
+<h2 id="chap-17-vaes">Chap 17: VAEs</h2>
+<h3 id="probabilistic">Probabilistic</h3>
+<p>Latent $z$ drawn from normal Gaussian (prior), and a NN $f[z,\phi]\to \bar{x}$ generates samples, then add another normal Gaussian for noise.</p>
+<p>Then loss is $$
+L(x,\phi)=-\log \left[ Pr(f=x) \right] =-\log \left[ \int Pr(z,x|\phi) \, dz  \right] .$$
+Integral is intractable. Let's make another NN $q[x,\theta]\to\bar{z}$ generating mean and covariance that models the posterior for $z$, and then $$
+\begin{align}
+\log \left(\int Pr(x,z|\phi) \, dz\right)  &amp;=\log \left(  \int q(z|x,\theta) \frac{{Pr(x,z|\phi)}}{q(z|x,\theta)} \, dz  \right) \
+&amp;\geq \int q(z|x,\theta)\log \left(  \frac{{Pr(z)Pr(x|z,\phi)}}{q(z|x,\theta)}\right)  \, dz  \
+&amp;=\int q(z|x,\theta)\log \left( Pr(x|z,\phi) \right)  \, dz + \int q(z|x,\theta) \log \left( \frac{{Pr(z|\phi)}}{q(z|x,\theta)} \right) \, dz  \
+&amp;= \mathbb{E}<em>{q(z|x)}\log(Pr(x|z))-D</em>{KL}\left[ q(z|x,\theta)\lvert  \rvert  Pr(z) \right] .
+\end{align}$$
+The term after Jensen's is called <em>Evidence Lower Bound.</em> Recall that $Pr(z)$ the prior is unit normal.</p>
+<p>Then in this final form, the first term can be approximated with a fixed sample $z,$ and the second term can be explicitly computed (both are known Gaussians).</p>
+<p>For gradient descent, fix a unit normal "source of randomness" $\epsilon$ and then rewrite to deterministic, get sample etc.</p>
+<h3 id="regularization">Regularization</h3>
+<p>Our network is just $$
+x\underset{g=q}{\to}(\bar{z},\sigma(z))\underset{\text{sample}}{\to} z^<em> \underset{f,\phi}{\to} x^{</em>}$$
+The trained $\sigma$ adds noise to our sample. In theory we could just do $x\to z\to x^*,$ but then it would just spit out what we gave in.</p>
+<p>Furthermore the latent variable has been compressed. The final expression in earlier derivation makes sense; if $q(z|x,\theta)$ truly resembles $Pr(z)$ then the first term is exactly what we wanted to compute. This ELBO allows us to integrate over not-quite-the-prior by making us pay for distance from the prior. Hence, we can add hyperparameter $\beta$ as the coefficient of the KL-divergence.</p>
+<p>The placeholder $q(z|x,\theta)$ is not an inverse/discriminator in the conventional sense; it just serves as an implicit compromise mechanism for computing the true negative log likelihood.</p>
+<h2 id="chap-18-diffusion-models">Chap 18: Diffusion Models</h2>
+<p>Now shuffle GAN/VAE/Normalizing, and multiple by 100.</p>
+<p>Given input $x$ we have a <em>diffusion kernel</em> defined: $z_{0}=x,$ $z_{t}=z_{t-1}\sqrt{ 1-\beta_{t} }+\epsilon\sqrt{ \beta }$ for unit normal $\epsilon.$</p>
+<p>Notice that if $\sigma(z_{0})=1$ then by sum-of-squares $\sigma(z_{t})=1,$ so we can infer the distribution for any $t$ as $z_{t}=z_{0}\sqrt{ \prod_{i}\left( 1-\beta_{i} \right) }+\epsilon \sqrt{ 1-  \prod_{i}\left( 1-\beta_{i} \right) }$. Call $\alpha_{t}=\prod_{i}1-\beta_{i}$ so that $z_{t}=z_{0}\sqrt{ \alpha_{t} }+\epsilon \sqrt{ 1-\alpha_{t} }$.</p>
+<p>Eventually, we get unit normal back. Now our goal is to create NNs $f_{t}(z_{t},\phi_{t})$ that represent the mean of the conditional distribution $q(z_{t-1}|z_{t})$. Specifically $f_{T}$ has input (unit normal, $\phi_{T}$) outputting the new mean.</p>
+<p>We apply the same trick as earlier:
+$$
+\begin{align}
+\log \left(  Pr(x=z_{0}) \right)  &amp;=\log \left( \int P(x=z_{0},z_{i}|\phi) \, dz_{i}  \right) \
+&amp;= \log \left( \int q(z_{i}|x) \frac{Pr(x=z_{0},z_{i})}{q(z_{i}|x)} \, dz_{i}  \right)  \
+&amp;\geq \int q(z_{i}|x) \log \left(\frac{Pr(x=z_{0},z_{i})}{q(z_{i}|x)}  \right)  \, dz_{i}  \
+&amp;= \int q(z_{i}|x) \left( \log \left[ Pr(z_{0}=x|z_{1}) \right]  +\sum_{i=2}^{T} \log \left[ \frac{{Pr(z_{i-1}|z_{i})}}{q(z_{i-1}|z_{i},x)} \right]\right) \, dz_{i} \
+&amp;= \mathbb{E}<em>{q(z</em>{1}|x)} \log \left[ Pr(z_{0}=x|z_{1})  \right] - \sum_{i=2}^{T} \mathbb{E}<em>{q(z</em>{i}|x)} D_{KL}\left(q(z_{i-1}|z_{i},x) \parallel Pr(z_{i-1}|z_{i})  \right) .
+\end{align}
+$$
+Once again the terms of the KL-divergence are known normals, so we can express literally.</p>
+<h3 id="implementation">Implementation</h3>
+<p>Now, if we reparameterize by setting $g(z_{i-1}|z_{i},x)$ to find the noise $\epsilon=\frac{{z_{t} -z_{t-1}\sqrt{ 1-\beta_{t} }}}{\sqrt{ \beta }}$, then we get a cute and nice expression. Finally, taking the loss over all evidence we get double sum over evidence and layer.</p>
+<p>Then for batching, just grab a few evidence and a few layer, and go.</p>
+<h4 id="conditional">Conditional</h4>
+<p>Same as VAEs, add a label $c$ and input into every $q=f_{t}.$</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

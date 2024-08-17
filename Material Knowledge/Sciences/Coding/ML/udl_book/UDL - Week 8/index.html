@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
+        <title>UDL   Week 8 - My Docs</title>
+        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../../..">My Docs</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#chap-14-unsupervised-learning" class="nav-link">Chap 14: Unsupervised Learning</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#chap-15-gans" class="nav-link">Chap 15: GANs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="chap-14-unsupervised-learning">Chap 14: Unsupervised Learning</h2>
+<p>![[Pasted image 20240502173833.png]]
+For <em>generative</em> models, we have some parameters that determine how something gets generated. In the case of random gen models, the loss function is likelihood of generating the training data $\sum_{x}-\log(Pr(x_{i}|\phi))$.</p>
+<p>Unsupervised models learn unstructured info, i.e. "latent variables," on unlabelled data.</p>
+<h2 id="chap-15-gans">Chap 15: GANs</h2>
+<h3 id="setup">Setup</h3>
+<p>Simple as it sounds. Generator $g(z_{j},\theta)$ creates a sample given normally drawn $z_{j},$ and then discriminator $f(x,\phi)$ determines $Pr(x\text{ real}).$</p>
+<p>Generator wants its samples to be marked as real; discriminator wants to be correct. Given fixed $\phi,\theta,$ the params $\theta$ move in the direction that maximizes discriminator logscore given random $z_{j}$, while $\phi$ moves in direction that minimizes logscore given generated $x_{j}$.</p>
+<h3 id="difficulty">Difficulty</h3>
+<p>If the discriminator becomes "too smart" or "too stupid" there are vanishing gradients.</p>
+<h4 id="theory">Theory</h4>
+<p>The optimal discriminator says, "$x$ is either real or generated. Then given distributions of real and generated objs, I can determine likelihood of being real: $Pr(\text{real}|x)=\frac{{Pr(x)}}{Pr(x)+Pr(x^{*})}.$</p>
+<p>In particular, the loss $L(\phi)$ can be expressed as Jenson-Shannon divergence $D_{JS}\left[ Pr(x^{<em>})\lvert  \rvert Pr(x) \right].$ 
+Vanishing gradient is due to this divergence behaving poorly, so instead pick </em>Wasserstein earth-mover's distance*, i.e. map probability masses, and integrate total mass-distance. Defined as
+$$
+D[Pr(x),q(x)]=\max_{{f}}\left[ \int Pr(x)f[x] \, dx -\int q(x)f[x] \, dx  \right],
+$$
+where $\lvert \nabla f \rvert\leq 1.$</p>
+<p>Then new loss for the discriminator $$
+L[\phi]=\sum_{j}f[g[z_{j},\theta],\phi]-\sum_{j}f[x_{i},\phi].$$
+Lipschitz constraint guaranteed by clipping weights, or regularization.</p>
+<h3 id="implementation-tricks">Implementation Tricks</h3>
+<h4 id="progressive-growing">Progressive growing</h4>
+<p>GAN generator usually CNN. First train to generate 4x4, and then add more to go to 16x16, etc.</p>
+<h4 id="mini-batch">Mini-batch</h4>
+<p>Create stats across activations e.g. in discriminator, add regularization to force generator to create diversity</p>
+<h4 id="manipulating-latent-variables">Manipulating latent variables</h4>
+<p>Self-evident</p>
+<h4 id="conditional">Conditional</h4>
+<p>Pass a vector into both the generator and discriminator, and give matching conditional vector for real samples in discriminator. For text, vector is transformer embedding.</p>
+<p>Conversely, discriminator can be called to predict attributes, called InfoGAN.</p>
+<h4 id="usual-tricks">Usual tricks</h4>
+<p>Careful regularization, step scheduling, ADAM+SGD</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../../js/base.js"></script>
+        <script src="../../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
