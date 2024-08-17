@@ -1,0 +1,13 @@
+.MathJax,
+.MathJax_Display,
+.MathJax_SVG {
+    color: var(--color-orange);
+}
+
+:root {
+    --color-orange: #e2a44e;
+}
+
+.site-name {
+    color: white !important;
+}

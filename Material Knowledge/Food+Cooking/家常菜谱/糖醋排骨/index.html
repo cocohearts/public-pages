@@ -20,20 +20,17 @@
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
             <link rel="stylesheet" href="../../../../assets/css/main.min.css">
-                <script src="../../../../mathjax-config.js"></script>
+                <link href="../../../../extra.css" rel="stylesheet">
+                <script src="../../../../extra.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
                 <script src="../../../../search/main.js"></script>
 
             
                 
-                    <style>
-                        :root {
-                            --text: white;
-                            --title: white;
-                            --primary: white;
-                            --background: black;
-                        }
-                    </style>
+                     <style>:root {--text: var(--color-white);}</style> 
+                     <style>:root {--title: var(--color-orange);}</style> 
+                     <style>:root {--primary: var(--color-orange);}</style> 
+                     <style>:root {--background: var(--color-black);}</style> 
                 
             
     </head>
@@ -66,7 +63,7 @@
             <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="
-                            nav-link text-gray text-decoration-none" href="../../../..">[Home]</a>
+                            nav-link text-gray text-decoration-none" href="../../../..">[Welcome]</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="
@@ -96,12 +93,12 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="
+                            <a class=" active 
                             nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Food and Cooking]</a>
                             <ul class="dropdown-menu">
                                     <!-- block dropdown-menu -->
     <li>
-        <a href="../../../../糖醋排骨.md" class="dropdown-item text-decoration-none ">糖醋排骨</a>
+        <a href="./" class="dropdown-item text-decoration-none  active ">糖醋排骨</a>
     </li>
 <!-- endblock -->
                             </ul>
@@ -176,6 +173,19 @@
 
             
                     <!-- block preview -->
+        <div class="row row-cols-md-3 text-center pt-md-3" id="component-preview">
+            <div class="col themed-grid-col">
+                <a rel="prev" href="../../../Sciences/Coding/USACO/General%20Thoughts%2C%20Paradigms/" class="nav-link">
+                    <i class="fa fa-arrow-left"></i> Previous
+                </a>
+            </div>
+            <div class="col themed-grid-col"></div>
+            <div class="col themed-grid-col">
+                <a rel="next" class="nav-link disabled">
+                    Next <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
 <!-- endblock -->
             
 
@@ -205,7 +215,7 @@
             <script src="../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
             <script src="../../../../assets/js/bootstrap.bundle.min.js""></script>
             <script src="../../../../assets/js/main.min.js""></script>
-                <script src="../../../../mathjax-config.js" defer></script>
+                <script src="../../../../extra.js" defer></script>
                 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
                 <script src="../../../../search/main.js" defer></script>
 
