@@ -2,7 +2,7 @@ em,
 .MathJax,
 .MathJax_Display,
 .MathJax_SVG {
-    color: var(--color-orange);
+    color: var(--color-orange) !important;
 }
 
 :root {
