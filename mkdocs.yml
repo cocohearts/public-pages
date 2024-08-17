@@ -2,4 +2,10 @@ site_name: My Docs
 
 nav:
   - Home: index.md
-  - ZK Notes: Material Knowledge/Sciences/Coding/Crypto/Proving Systems (Plonky3, Halo2, Circle STARKs, Binius)
+  - Crypto:
+    - ZK Notes: Material Knowledge/Sciences/Coding/Crypto/Proving Systems (Plonky3, Halo2, Circle STARKs, Binius).md
+  - Coding:
+    - Vim Tricks: Material Knowledge/Sciences/Coding/Vim Tricks.md
+    - USACO Notes: Material Knowledge/Sciences/Coding/USACO/General Thoughts, Paradigms.md
+  - Food and Cooking:
+    - 糖醋排骨: 糖醋排骨.md
