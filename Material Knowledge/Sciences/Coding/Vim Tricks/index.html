@@ -7,11 +7,11 @@
         
         
         
-        <link rel="shortcut icon" href="../../../../../../img/favicon.ico">
-        <title>8.04.11 1D Potentials - Alex Zhao's Public Pages</title>
-        <link href="../../../../../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../../../../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../../../../../css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../../../img/favicon.ico">
+        <title>Vim Tricks - Alex Zhao's Public Pages</title>
+        <link href="../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
@@ -20,7 +20,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../../../../../..">Alex Zhao's Public Pages</a>
+                <a class="navbar-brand" href="../../../..">Alex Zhao's Public Pages</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -31,27 +31,27 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="navitem">
-                                <a href="../../../../../.." class="nav-link">Home</a>
+                                <a href="../../../.." class="nav-link">Home</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Crypto <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../../../Coding/Crypto/Proving%20Systems%20%28Plonky3%2C%20Halo2%2C%20Circle%20STARKs%2C%20Binius%29/" class="dropdown-item">ZK Notes</a>
+    <a href="../Crypto/Proving%20Systems%20%28Plonky3%2C%20Halo2%2C%20Circle%20STARKs%2C%20Binius%29/" class="dropdown-item">ZK Notes</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Coding <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../../../Coding/Vim%20Tricks/" class="dropdown-item">Vim Tricks</a>
+    <a href="./" class="dropdown-item active">Vim Tricks</a>
 </li>
                                     
 <li>
-    <a href="../../../../Coding/USACO/General%20Thoughts%2C%20Paradigms/" class="dropdown-item">USACO Notes</a>
+    <a href="../USACO/General%20Thoughts%2C%20Paradigms/" class="dropdown-item">USACO Notes</a>
 </li>
                                 </ul>
                             </li>
@@ -60,7 +60,7 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../../../../../糖醋排骨.md" class="dropdown-item">糖醋排骨</a>
+    <a href="../../../../糖醋排骨.md" class="dropdown-item">糖醋排骨</a>
 </li>
                                 </ul>
                             </li>
@@ -72,6 +72,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Crypto/Proving%20Systems%20%28Plonky3%2C%20Halo2%2C%20Circle%20STARKs%2C%20Binius%29/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../USACO/General%20Thoughts%2C%20Paradigms/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -97,28 +107,54 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<p>Reminder that we're only working with stationary states, i.e. eigenstates of the Hamiltonian. Thus there's no time derivative.
-Our equation is
-$$\psi''+\frac{2m}{\hbar^2}(E-V(x))\psi=0.$$</p>
-<h3 id="properties">Properties</h3>
+<h3 id="already-mastered">Already Mastered</h3>
 <ul>
-<li><strong>No degenerate bound states</strong></li>
-<li><strong>All states are full-real</strong>
-These are a result of being able to solve the above diffEq uniquely given $\lim_{x\to\infty}\psi(x)=0.$</li>
-<li><strong>Energy eigenvalue $E\geq\min_x V(x).$</strong>
-If $E-V(x)&lt;0$ everywhere then $\psi$ will either be always positive + concave up or always neg + concave down. Just find somewhere satisfying $\psi'(x)=0.$</li>
+<li><code>h,l</code> for left, right</li>
+<li><code>j,k</code> for down, up</li>
+<li><code>y,p</code> for copy, paste</li>
+<li>combine as in <code>y3w</code>, use <code>p/P</code></li>
+<li><code>v</code> for visual</li>
+<li><code>o,O</code> for open new line, after, before</li>
+<li><code>i,a</code> obvious</li>
+<li><code>w,b</code> known, capitalize for only whitespace no punc.</li>
+<li><code>.</code> repeat, <code>;</code> next using find character <code>f</code>, <code>,</code> to find previous</li>
+<li><code>&gt;&gt;,&lt;&lt;</code> for indents, pref with N to apply below lines</li>
+<li><code>0,^,$</code> for line movement</li>
+<li>Use <code>/</code> to search, <code>n,N</code> for movement</li>
+<li>Use <code>?</code> to search backwards</li>
+<li><code>i</code> for inner (no whitespace) e.g. <code>diw</code>, <code>a</code> for outer, also can do <code>diW</code> etc.</li>
+<li><code>V</code> for visual by line</li>
+<li><code>e</code> for word end</li>
+<li><code>C,D</code> delete to end; <code>cc,dd</code> delete whole; but <code>Y,yy</code> are equiv.</li>
+<li><code>A</code> for append to end of sentence</li>
+<li><code>t</code> basically <code>fh</code></li>
+<li><code>%</code> to jump to matching <code>({[</code></li>
 </ul>
-<p>If potential is even, we can even specify
-- <strong>Eigenstates must be <em>even</em> or <em>odd</em>.</strong></p>
-<h3 id="slowly-varying-potentials">Slowly varying potentials</h3>
-<p>Letting $E-V=K$ for KE, we get $\psi''=-\frac{2m}{\hbar^2}K=-\frac{p^2}{\hbar^2}\psi$ by some degen semi-classical allusion. Then $\psi\sim\cos\left(\frac{2\pi}{\lambda}x\right),$ the deBroglie wavelength $\lambda=\frac hp$ of $\psi$. </p>
-<p>Superposition of momentum $\pm p$.</p>
-<p>We make the assumption that $\lambda(x)\frac{dV}{dx}\ll V(x).$ Consider classically a ball sliding around on a roller coaster; KE at a point is $E-V$ at that point; with larger KE it's moving faster, and less likely to be found there. Indeed, we find in <em>semiclassical approximation</em> that
-$$\text{Amp}(\psi(x))\sim\sqrt{\lambda(x)}\sim\frac1{\sqrt{p(x)}}.$$
-The semiclassical approximation assumes $\psi$ oscillates a lot before $V$ changes, so we can locally average out the oscillation in $\psi$ (that's quantization for ya).</p>
-<p>You can sketch wavefunctions by analyzing sign of $\psi''$ and intercepts &amp;c.</p>
-<h3 id="shooting-method">Shooting Method</h3>
-<p>In this example, used for even/odd potentials. Our boundary condition is $\Psi(\pm\infty)=0.$ Basically, binary search on possible energies. Begin with $\Psi(0)=1,\Psi'(0)=0$ for even states and $\Psi(0)=0,\Psi'(0)=1$ for odd states.</p></div>
+<h3 id="learning">Learning</h3>
+<ul>
+<li><code>:reg</code> to see list of registers; <code>"1p</code> to paste yank before this, <code>"ayw</code> to yank word to <code>"a</code></li>
+<li><code>ge</code> for back word end</li>
+<li><code>{,[]()}</code> for first new whitespace after last para</li>
+<li><code>(,)</code> for <code>{</code> plus firstline para</li>
+<li><code>gU&lt;&gt;,gu&lt;&gt;,~</code> for case (last toggle)</li>
+<li><code>CTRL-O</code> to old positions, <code>CTRL-I</code> to new ones</li>
+<li><code>CTRL-U</code>, <code>CTRL-D</code></li>
+<li>use <code>q[x]</code> to record macro to key <code>[x]</code></li>
+<li><code>&lt;UP&gt;</code> to try previous searches from search history</li>
+<li><code>m[x]</code> create mark, <code>'[x]</code> to go to mark</li>
+<li><code>J</code> used to join selected lines with space delim</li>
+<li><code>:grep</code> to use grep inside current file</li>
+<li><code>s{char}{char}</code> v-sneak, can use op, in Obs just <code>cl</code></li>
+<li><code>]]</code> next <code>{</code> in first column; <code>[[</code> next <code>}</code> in first column</li>
+<li><code>[(</code> for previous unmatched <code>(</code> and <code>[)</code> for next unmatched <code>)</code>; aka. previous/next in this "scope"</li>
+<li><code>cs{sel}([</code> make a selection, replace surrounding <code>(</code> with <code>[</code></li>
+<li>similarly <code>ds</code>, or <code>ys</code> to add</li>
+</ul>
+<h3 id="wtf">WTF</h3>
+<ul>
+<li><code>&lt;CTRL-W&gt; S/V</code> to split (horizontal line) or (vertical line)</li>
+<li><code>&lt;CTRL-W&gt; h/j/k/l</code> to move windows</li>
+</ul></div>
             </div>
         </div>
 
@@ -126,14 +162,14 @@ The semiclassical approximation assumes $\psi$ oscillates a lot before $V$ chang
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="../../../../../../js/jquery-3.6.0.min.js"></script>
-        <script src="../../../../../../js/bootstrap.min.js"></script>
+        <script src="../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../js/bootstrap.min.js"></script>
         <script>
-            var base_url = "../../../../../..",
+            var base_url = "../../../..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../../../../../../js/base.js"></script>
-        <script src="../../../../../../search/main.js"></script>
+        <script src="../../../../js/base.js"></script>
+        <script src="../../../../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

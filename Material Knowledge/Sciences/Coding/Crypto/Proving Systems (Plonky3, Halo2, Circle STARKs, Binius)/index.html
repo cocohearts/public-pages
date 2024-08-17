@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../../../../img/favicon.ico">
+        <title>ZK Notes - Alex Zhao's Public Pages</title>
+        <link href="../../../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../../../..">Alex Zhao's Public Pages</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Crypto <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">ZK Notes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Coding <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Vim%20Tricks/" class="dropdown-item">Vim Tricks</a>
+</li>
+                                    
+<li>
+    <a href="../../USACO/General%20Thoughts%2C%20Paradigms/" class="dropdown-item">USACO Notes</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Food and Cooking <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../../../糖醋排骨.md" class="dropdown-item">糖醋排骨</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../../../.." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../Vim%20Tricks/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#plonky3" class="nav-link">Plonky3</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#fri-and-rs-codewords" class="nav-link">FRI and RS codewords</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#constants-for-security" class="nav-link">Constants for Security</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#plonky3-logup" class="nav-link">Plonky3 LogUp</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#binius" class="nav-link">Binius</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#circle-starks" class="nav-link">Circle STARKs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#halo2-and-kzg" class="nav-link">Halo2 and KZG</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="plonky3">Plonky3</h1>
+<h4 id="ali-setup">ALI setup</h4>
+<p>Programs are represented as a matrix of numbers that satisfy low-degree polynomial <em>constraints</em> on adjacent rows.</p>
+<p>The height of the matrix must be a power of 2: $h=2^k$. Take the base field $F$ and an <em>evaluation domain</em> $L$, which is a multiplicative subgroup of order $h$. Then each column is encoded as a polynomial $C_{i}(\omega^{j})$, the $i$th item in the $j$th row. (Power of 2 is good because it makes FFT easier.) We commit to each column by Merkle hashing its evaluation over $L$.</p>
+<p>In particular, constraints $Q(x_{i},y_{i})$ [where $x_{i}$ is the current row, $y_{i}$ is the next row] are represented as $$\forall x \in L \colon Q(C_{i}(x),C_{i}(\omega \cdot x))=0.$$
+Let $H_{i}$ be the polynomial with roots that $Q_{i}$ must vanish on, let $H$ be the polynomial with all roots of L, and $s_{i}=\frac{H}{H_{i}}$. Now we want to show $H_{i}|Q_i,$ or instead $H | Q_{i}s_{i}$.</p>
+<h4 id="quotient-polynomial-definition">Quotient polynomial definition</h4>
+<p>Instead of proving this for each constraint one at a time, the verifier stitches all the constraints together using $\theta \in F_{ext}.$ $F_{ext}$ is a low-degree extension of $F$, with order $|F|^{d}$. For default <code>plonky3</code> the field $F=\mathbb F_{15\cdot{2}^{27}+1}$ and $d=4$ (quartic field extension), yielding 128-bit security.</p>
+<p>Stitching is just
+$$
+R(x)=\sum_{i} \theta^{i}Q_{i}(C_{j})\cdot s_{i}(C_{j}).
+$$
+Then we want to show
+$$
+Q(x)=\frac{R(x)}{H(x)}
+$$
+exists.</p>
+<p>Let <code>log_blowup=2</code>, meaning we blow up $L$ by 4, so $L_{b}$ is now a multiplicative subgroup of order $4h$. Then interpolate the degree-$h$ polynomials into $L_{b}$ to create a $4h$-long vector, and Merkle hash it, and the quotient $Q$.</p>
+<h4 id="pcs">PCS</h4>
+<p>Now apply FRI to the Merkle hash of $Q$ to prove it's low degree.</p>
+<p>Finally, prove $Q$ is actually the quotient we want by opening the quotient $Q$ (actually represented as 2 polynomials with same length as $C$) and all the columns $C$ at $\zeta$ from $F_{ext}$. Verify that $Q(\zeta)H(\zeta)=R(\zeta)$.</p>
+<p>Prove the opening by supplying $V=C(\zeta)$ and directly running FRI on the rational function $Q'=\frac{{C(x)-V}}{x-\zeta}$. </p>
+<p>Finally, note that we could have directly run FRI on the original quotient polynomial but that would require opening every column for every FRI query.</p>
+<p>Using ALI we committed to the quotient $Q$ and queried it before running FRI (saving lots of openings). Using DEEP we proved FRI on $Q$ by evaluating at $\zeta$, an extension element and running FRI on $Q'$. This saved lots of rounds of FRI.</p>
+<h3 id="batch-pcs-footnote">Batch-PCS Footnote</h3>
+<p>For multi-STARK Plonky3 (multiple traces with interactions between them), we can <em>batch-PC</em> by doing a "rolling commitment". Pad the polynomials to degrees power of 2, and add new polynomials at every FRI round. Add them as late as possible, so to minimize the total number of "folds". Additional randomness needs to be generated at every round to stitch the new polynomials together.</p>
+<h3 id="evaluation-domain-footnote">Evaluation Domain Footnote</h3>
+<p>Note that if the evaluation is over $L$ then the prover would need to symbolically compute the quotient by dividing through all the coefficients. This sucks because expanding, adding etc. is expensive.</p>
+<p>Instead it's easier to evaluate each component of the quotient for a set of values where the divisor doesn't vanish, so the Merkle commit is actually to the evaluations of the polynomial over the coset.</p>
+<p>We now have this distinction between the <em>interpolation domain</em>, $L$, and the <em>evaluation domain</em>, $\gamma L.$</p>
+<h3 id="deep-ali-reasoning">DEEP-ALI Reasoning</h3>
+<p>Note that we could have evaluated the quotient $Q=\frac{R}{H}$ at every step of FRI (by opening all the extended column commitments, evaluating directly etc.) instead of committing to this Merkle query and checking that. The reason we don't do this is because we'd have to do <em>lots of Merkle openings</em> at each step of the FRI, probably opening every column at every step. We'd rather put everything into a single Merkle hash and then have a much simpler quotient that we check directly.</p>
+<h2 id="fri-and-rs-codewords">FRI and RS codewords</h2>
+<p>A linear space of codewords is a linear subspace where no two distinct elements have many terms in common. It is known that the codewords resulting from evaluating low-degree polynomials over any evaluation domain is "maximally distance separated" i.e. has the lowest maximum number of collisions (degree $d$ has at most $d$ collisions). Thus in the literature, "Reed-Solomon codeword" and "low-degree polynomial" are used interchangably.</p>
+<h3 id="protocol">Protocol</h3>
+<h4 id="commit">COMMIT</h4>
+<ul>
+<li>Verifier sends random $\gamma\in \mathbb{F}$</li>
+<li>Prover takes current polynomial $P(y)=P_{0}(y^{2})+yP_{1}(y^{2})$ and returns Merkle hash of $P_{0}+\gamma P_{1}$ over a half-sized domain.</li>
+</ul>
+<h4 id="query">QUERY</h4>
+<ul>
+<li>Verifier does checks by asking for $P_{i}(s ^{2^{i}})$ and finally opening the very last $P_{i}$ at all points to check it's constant. This is called a "colinearity check".</li>
+<li>Does this for multiple values of $s$</li>
+</ul>
+<p>Finally, check that $Q(\zeta)H(\zeta)=R(\zeta)$ for some $\zeta \in \mathbb{F}<em>{ext}$. The polynomials $H$ and $R$ are easy to evaluate, we evaluate $Q$ by taking $V=Q(\zeta)$ and $Q</em>{2}=\frac{{Q(x)-V}}{x-\zeta}$. For $Q_{2}$ we don't need a new Merkle hash, just query the Merkle hash for $Q$ over the same $L$. Simply run FRI directly on $Q_{2}=\frac{{Q(x)-V}}{x-\zeta}$ by opening $Q$ for each query.</p>
+<h3 id="soundness">Soundness</h3>
+<p>First analyze FRI soundness.</p>
+<p>Assuming the prover Merkle hashes honestly, FRI proves that the vector has at least $\sqrt{ \rho }$ shared coefficients with some codeword.</p>
+<p>A blackbox theorem (Reed-Solomon correlated agreement) that says in a random combination over $\mathbb{F}$ with a certain probabilistic error the maximum distance is preserved. When we do the degree splitting the distance of one of the halves must be at least that of the original vector. Then if the final result is all constant then the original distance was also small.</p>
+<p>Now we consider the probability prover lied on some hashes. If the original vector was $\delta$ far from RS-codeword, then it must make a total of $L\delta$ "corrections". Each round of the query phase is akin to a random "FFT merkle check". Then soundness error goes to $(1-\delta)^{t}$.</p>
+<p>Here's the black box for completeness:</p>
+<blockquote>
+<p>Take the evaluation domains $L^i$. In each round $i$, if we have $l$ function evaluations, then the FRI random $\gamma$ combination preserves distance $\delta$ with probability</p>
+<p>$$\varepsilon = \left( \frac{(m+0.5)^{2}}{6 \rho^{1.5}}\cdot \frac{{L^{i}}}{\mathbb{F}}+\frac{{2m+1}}{\rho^{0.5}}\frac{L^{0}}{\mathbb{F}} \right) \cdot l.$$
+The error over all rounds is then
+$$\frac{(m+0.5)^{2}}{3\rho^{1.5}} \frac{{L^{0}}}{\mathbb{F}}+\frac{{2m+1}}{\rho^{0.5}} \frac{{L^{0}}}{\mathbb{F}}\cdot 2k.$$</p>
+</blockquote>
+<h2 id="constants-for-security">Constants for Security</h2>
+<p>For default <code>plonky3</code> the field $F=\mathbb F_{15\cdot{2}^{27}+1}$ and $d=4$ (quartic field extension), yielding 128-bit security. The rules of thumb provided by EthStark documentation say
+- hash function needs 256bits
+- field needs $2^{128}$ bits (addressed)
+- Every colinearity check gets $\log_{2}\rho^{-1}$ bits of security. For <code>log_blowup=2</code> we get $\rho=\frac{1}{4}$ so we need 64 colinearity checks.
+For plonky3 default we use $m=3$ i.e. $\delta \leq 1- \sqrt{ \rho }\left( 1+\frac{1}{2m} \right) = \frac{5}{12}$.</p>
+<p>For plonky3 quotient degree is $2^{k}\leq 8$ so commit error is
+$$
+\left(  116 \frac{2}{3}\right) \frac{L^{0}}{\mathbb{F}}.
+$$
+Given that $\mathbb{F}=2^{31}$ and $L^{0}=4h$ we get a maximum trace height of $2^{20}=1048576$.</p>
+<h1 id="plonky3-logup">Plonky3 LogUp</h1>
+<p>Implements a Lookup table with log derivatives—aka. sum of inverse linear terms.
+Multiset equality can be determined by computing
+$$
+\sum_{i} \frac{m_{i}}{X-a_{i}}.
+$$
+How this is implemented is by evaluating this function at $\zeta\in \mathbb{F}<em>{ext}$. During trace generation, the Fiat-Shamir hash of the rest of the trace is taken. Columns are combined with a random power linear combination of $\alpha$ starting at $1$, and then different bus indices are combined with random power linear combination of $\beta$ (so bus 1 send/receive, bus 2 send/receive etc.). Then $\zeta$ is computed during trace generation and used to generate and constrain the evaluations of $\frac{m</em>{i}}{X-a_{i}}$ and the partial sum, with coefficient of $1$ for send and $-1$ for receive.</p>
+<p>Total sum should be 0 in $\mathbb{F}_{ext}$, hence the debugger showing four field elements upon failure, at least one of which is nonzero.</p>
+<p>With multiple rounds of committing/proving/hashing/providing randomness, the AIR is generalized to a RAP, which stands for <em>something</em>.</p>
+<h1 id="binius">Binius</h1>
+<p>Smaller fields are better. More FFT and parallel recursion with less CPU looping is better. How about a special small field composed of a tower binary construction, where field addition becomes 32-bit XOR. Makes massively parallel Poseidon hashes possible.</p>
+<h1 id="circle-starks">Circle STARKs</h1>
+<p>Try Mersenne31 ($2^{31}-1$ prime field) except we pick the set of points $x,y$ satisfying $x^{2}+y^{2}=1$. It's like we're doing unit norm complex numbers, but mod $p$.</p>
+<h1 id="halo2-and-kzg">Halo2 and KZG</h1>
+<p>oh idk ive no fucking clue</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../../../../js/jquery-3.6.0.min.js"></script>
+        <script src="../../../../../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "../../../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../../../js/base.js"></script>
+        <script src="../../../../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
