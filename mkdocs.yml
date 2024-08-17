@@ -1,21 +1,26 @@
 site_name: Alex Zhao's Public Pages
 
 nav:
-  - Home: index.md
+  - Welcome: index.md
   - Crypto:
     - ZK Notes: Material Knowledge/Sciences/Coding/Crypto/Proving Systems (Plonky3, Halo2, Circle STARKs, Binius).md
   - Coding:
     - Vim Tricks: Material Knowledge/Sciences/Coding/Vim Tricks.md
     - USACO Notes: Material Knowledge/Sciences/Coding/USACO/General Thoughts, Paradigms.md
   - Food and Cooking:
-    - 糖醋排骨: 糖醋排骨.md
+    - 糖醋排骨: Material Knowledge/Food+Cooking/家常菜谱/糖醋排骨.md
 
 extra_javascript:
-  - mathjax-config.js
+  - extra.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - extra.css
 
 theme:
   name: simple-blog
-  theme_style: dark
   colors:
     primary: orange
+    background: black
+    text: white
+    title: orange
