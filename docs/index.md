@@ -1,4 +1,4 @@
-# Welcome to Alex's Public Pages
+# Welcome
 
 All raw files available on [Github](https://github.com/cocohearts/public-pages). These files are a hand-picked subset of my personal Obsidian vault.
 
