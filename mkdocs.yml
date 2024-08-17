@@ -24,4 +24,4 @@ theme:
     background: black
     text: white
     title: orange
-  favicon: favicon.ico
+  favicon: assets/favicon.ico
