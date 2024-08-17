@@ -16,6 +16,6 @@ extra_javascript:
 
 theme:
   name: simple-blog
-  theme-style: dark
+  theme_style: dark
   colors:
     primary: orange
