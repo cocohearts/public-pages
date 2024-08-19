@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const siteNameElements = document.querySelectorAll('.site-name');
     siteNameElements.forEach(function (element) {
         const link = document.createElement('a');
-        link.href = '/public-pages';
+        link.href = '/public-pages/Public%20Pages/homepage/';
         link.innerHTML = element.innerHTML;
         link.style.textDecoration = 'none'; // Remove underline
         element.innerHTML = '';
