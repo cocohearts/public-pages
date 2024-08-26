@@ -266,14 +266,15 @@ $$</p>
 <h3 id="fourier">Fourier</h3>
 <p>In typical Fourier Inversion we have $2\pi i$ in the exponent. In 8.04 we dislike the $2\pi$ so we distribute it:</p>
 <blockquote>
-<p>[!important] Fourier in Coordinate Space
+<p>[!important] Fourier in Wavenumber Space
 $$
 \begin{align}
 \Psi(x)&amp;=\frac{1}{\sqrt{ 2\pi }}\int \Phi(x)e^{ikx} \, dk ,\
 \Phi(k)&amp;=\frac{1}{\sqrt{ 2\pi }}\int \Psi(x)e^{-ikx} \, dx .
 \end{align}
 $$
-Here $\Psi$ is the state, and $\Phi$ is the distribution of wavenumbers.</p>
+Here $\Psi$ is the state, and $\Phi$ is the distribution of wavenumbers.
+   This is because $\Psi(x)$ is composed of $e^{ipx/\hbar}$ with magnitudes $\tilde{\Phi}(p)$.</p>
 </blockquote>
 <p>Then recall $k=\frac{p}{\hbar},$ so we can do</p>
 <blockquote>
