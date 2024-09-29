@@ -109,3 +109,9 @@ Smaller fields are better. More FFT and parallel recursion with less CPU looping
 Try Mersenne31 ($2^{31}-1$ prime field) except we pick the set of points $x,y$ satisfying $x^{2}+y^{2}=1$. It's like we're doing unit norm complex numbers, but mod $p$.
 # Halo2 and KZG
 oh idk ive no fucking clue
+
+sike so KZG is pairings, it's just a PCS
+Groth16 uses KZG-like stuff
+Halo2 uses $(a+b\cdot c+d)s=0$ selector gates $s$, plus some copy gates $c$. Then there are various custom gates such as create new variable, multiply two other variables, do this addition, etc. that build on top of this primitive.
+
+Don't forget the distinction between proving system, frontend, compilation, etc.
