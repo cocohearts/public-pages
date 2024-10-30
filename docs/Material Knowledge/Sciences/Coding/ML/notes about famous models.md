@@ -1,4 +1,19 @@
-mostly from achyuta's recommended reading, for oct 24 SF trip
+### CNNs
+CNN is sliding window matrix convolution (indices backwards), fit the kernel "inside" the input
+in_channel * out_channel * kernel_size ** 2
+other args are dilation (whether it "reaches far"), stride (it "moves fast"), padding
+
+ConvTranspose2D is the opposite; consider conv1D from $\mathbb{R}^{m}\to \mathbb{R}^{m-k},$ then this is the transpose matrix
+kernel goes "outside" the input; replace every cell with kernel * cell, then attach kernel multiple relative to cell
+![[Pasted image 20241029133757.png]]
+usually have U-net structure, with width halving, channel doubling, using kernel size 4, stride 2, padding 1. Previous side length $n$ becomes $\frac{n+2*p-k}{s}+1=\frac{n}{2}.$
+### VAEs
+Want inputs to give gaussians. Specifically, we ask for
+- encoder $f(x)$ to generate mean $\mu$ variance $\sigma$ (usually covariance) to sample latent from
+- decoder $g(z)$ takes noised latent and creates image
+From discretizing the conditional integral on latent $z$ and sampling, we can use ELBO approximation to bound by sum of representation loss and KL divergence. The $\beta$-VAE adds a $\beta$ term to the KL divergence.
+
+Recall the parametrization trick, where we draw random $\epsilon \sim \mathcal N(0,1)^{l}.$ Then our e2e network for this "playthrough" is $(f_{\mu}(x)+\epsilon f_{\sigma}(x))$ and our loss is $\lVert g(f_{\mu}(x)+\epsilon f_{\sigma}(x))-x \rVert + KL.$
 ### Mamba
 SSMs, classically $h'(t)=Ah+Bx, y=Ch$ are basically RNNs. The "latent/hidden" variable is what serves up the magic. By this formulation, expanding shows that it's performing a global convolution $y_{t}=\sum_{i}(CA^{t-i}B)x_{i}.$ This convolution is "linearly time invariant," cannot really perform selection.
 
@@ -13,5 +28,4 @@ For Mamba specifically the $B,C$ are generated as linear functions of $x,$ $\Del
 ![[Pasted image 20241018231118.png]]
 ![[Pasted image 20241018231303.png]]
 ![[Pasted image 20241018231149.png]]
-
 In usual autoregressive style we compute all of $y,$ mask the appropriate parts, logit cross entropy.
