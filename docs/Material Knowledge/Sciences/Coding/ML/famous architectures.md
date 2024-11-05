@@ -45,13 +45,29 @@ SSMs, classically $h'(t)=Ah+Bx, y=Ch$ are basically RNNs. The "latent/hidden" va
 
 Existing SSM strategies are able to select or ignore tokens based on their content using $H_{3},$ but we want selective context learning.
 
-We have $A,B,C$ depend on the input $x$. Specifically we have fixed $A,$ learn $B,C$ from the input $x,$ discretize $A,B$ using input-specific $\Delta$  then apply SSM.
+We have $A,B,C$ depend on the input $x$. Specifically we have fixed $A,$ learn $B,C$ from the input $x,$ discretize $A,B$ using input-specific $\Delta$  then apply SSM. Switching from the differentiable version of SSM, $\Delta$ indicates how long to hold onto the current signal for.
 
-Assuming single-dimension $x_{t},$ we have $h_{t}=\bar{A}h_{t-1}+\bar{B}x_{t}, y_{t}=Ch_{t}$ where $h_{t}\in \mathbb{R}^{N},$ $\bar{A}\in \mathbb{R}^{N\times N}, \bar{B}\in \mathbb{R}^{N\times 1},C\in \mathbb{R}^{1\times N}.$ Keep in mind that $\bar{A}$ is diagonalized so is expressed in $N$ values.
+Then at train-time, when expanding the whole thing we can write as a masked convolution of input yielding output. Can directly backprop on this. $A$ can be initialized according to HiPPPO (some matrix that has good properties).
 
-For Mamba specifically the $B,C$ are generated as linear functions of $x,$ $\Delta=\tau_{\Delta}(P+s_{\Delta}(x))$ where $s_{\Delta}$ is linear, etc.
+Basically, we independently determine the importance $B$, effect on output $C$, and time to hold $\Delta$ as linear maps of input $x$.
+
+Assuming single-dimension $x_{t},$ we have $h_{t}=\bar{A}h_{t-1}+\bar{B}x_{t}, y_{t}=Ch_{t}$ where $h_{t}\in \mathbb{R}^{N},$ $\bar{A}\in \mathbb{R}^{N\times N}, \bar{B}\in \mathbb{R}^{N\times 1},C\in \mathbb{R}^{1\times N}.$ Keep in mind that $\bar{A}$ is diagonalized so is expressed in $N$ values, we call this "structured".
+
+For Mamba specifically the $B,C$ are generated as linear functions of $x,$ $\Delta=\tau_{\Delta}(P+s_{\Delta}(x))$ where $s_{\Delta}$ is linear mapping to $\mathbb{R}^{1}$ broadcast to dimension $D$, $\tau_{\Delta}$ is softplus $\ln ({1+e^{x}})$.
 ![[Pasted image 20241018231105.png]]
+In the below algorithm, $D$ is `block_expand` times dimension of resid. stream (dimension after Mb inLP), $N$ is SSM hidden state size. Finally note that SSM is applied independently over each of the $D$ channels, and hidden state has dimension $DN$ i.e. it's like D-many SSMs stitched together.
+
+Also the convolution is over all tokens, in the dimension direction $L$. At inference time we cache the last `conv_kernel` many inputs to compute the next one.
 ![[Pasted image 20241018231118.png]]
 ![[Pasted image 20241018231303.png]]
 ![[Pasted image 20241018231149.png]]
-In usual autoregressive style we compute all of $y,$ mask the appropriate parts, logit cross entropy.
+![[Pasted image 20241104160141.png]]
+#### Training details for Mamba
+![[Pasted image 20241104141804.png]]
+Used
+- gradient clip 1.0
+- weight decay 0.1
+- linear lr warmup with cosine decay to 1e-5
+- RMSNorm
+- AdamW with $\beta=(.9, .95)$
+![[Pasted image 20241104154434.png]]
