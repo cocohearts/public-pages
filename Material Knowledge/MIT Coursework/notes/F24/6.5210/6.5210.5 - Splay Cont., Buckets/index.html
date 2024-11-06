@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+    <head>
+                <title>6.5210.5   Splay Cont., Buckets - Alex Zhao's Public Pages</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../../../assets/favicon.ico">
+            
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                        <script>hljs.initHighlightingOnLoad();</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../../../assets/css/main.min.css">
+                <link href="../../../../../../extra.css" rel="stylesheet">
+                <script src="../../../../../../extra.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+                <script src="../../../../../../search/main.js"></script>
+
+            
+                
+                     <style>:root {--text: var(--color-white);}</style> 
+                     <style>:root {--title: var(--color-orange);}</style> 
+                     <style>:root {--primary: var(--color-orange);}</style> 
+                     <style>:root {--background: var(--color-black);}</style> 
+                
+            
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Alex Zhao's Public Pages</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../../../Public%20Pages/homepage/">[Welcome]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Crypto]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Sciences/Coding/Crypto/Proving%20Systems%20%28Plonky3%2C%20Halo2%2C%20Circle%20STARKs%2C%20Binius%29/" class="dropdown-item text-decoration-none ">ZK Notes</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Coding]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Sciences/Coding/Vim%20Tricks/" class="dropdown-item text-decoration-none ">Vim Tricks</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Sciences/Coding/USACO/General%20Thoughts%2C%20Paradigms/" class="dropdown-item text-decoration-none ">USACO Notes</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Food and Cooking]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Food%2BCooking/%E5%AE%B6%E5%B8%B8%E8%8F%9C%E8%B0%B1/%E7%B3%96%E9%86%8B%E6%8E%92%E9%AA%A8/" class="dropdown-item text-decoration-none ">糖醋排骨</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+                    <!-- block content -->
+<section class="container post">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">6.5210.5   Splay Cont., Buckets</h1>
+            
+        </header>
+        <p><h2 id="splay-trees">Splay Trees</h2>
+<ul>
+<li>Insert: insert at leaf then splay</li>
+<li>Delete: delete as normal then splay parent</li>
+<li>Split: find $x$, splay, take subtree</li>
+<li>Merge of majorizing trees: Splay $\max(T_{1}),$ attach $T_{2}$ as right subtree
+We can abstract <code>insert</code> and <code>delete</code> as combination of split and merge.</li>
+</ul>
+<blockquote>
+<p>[!warning]
+Splays are asymptotically "paid for" by potential, but inserts/deletes aren't accounted for. Recall to analyze $\Delta \phi$ on inserts.</p>
+</blockquote>
+<h3 id="potential-issues">Potential issues</h3>
+<ul>
+<li>amortized</li>
+<li>changes on reads
+We can try to "only splay on really long searches" or "stop splaying" according to "statically optimal word assignment".</li>
+</ul>
+<h2 id="buckets-finite-bit-items-ints">Buckets (finite-bit items [ints])</h2>
+<p>Let's do Dijkstra's, but for integer length edges. For a reminder, the algorithm is
+- priority queue of nodes
+- pop-min
+- decrease-key for neighbors
+- repeat</p>
+<p>Suppose max edge length is small.</p>
+<h3 id="dials">Dial's</h3>
+<p>We want a big priority queue. However, we have assumption of high collisions, so we can have a priority queue of equivalence classes. Each class has same distance from source. Classes can be represented cheaply as flat arrays, linked list, etc.</p>
+<p>If we address by mod $C+1$ distance from source, we maintain a $C+1$-length array of LL buckets, which have a total of $m$ insertions/deletions. So storage is ok for now. This yields <em>Dial's algorithm</em> with runtime $O(m+nC)$.</p>
+<p>Now consider tower of empty bit indicators, also called <em>summary structures</em>. </p>
+<p>We could populate these immediately, which would also take a lot of space, or ... we could do things <em>lazily</em>.
+1. Keep our tower of summary structures.
+2. Only one path of buckets from "root" to "address" is maintained
+3. Each node ever exists in one bucket
+4. When we go down a new "path" we create new buckets, and prune its "sibling" (which we will never process again)
+Each bucket is a collection of items, represented by LL. Keep an auxiliary pointing from each node <code>id</code> to its pointer, so removal from bucket is easy and hence decrease-key is <code>remove</code> and <code>insert</code>.</p></p>
+    </article>
+</section>
+<!-- endblock -->
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script>var base_url = '../../../../../..';</script>
+            <script src="../../../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../../../assets/js/main.min.js""></script>
+                <script src="../../../../../../extra.js" defer></script>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+                <script src="../../../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+    <head>
+                <title>6.7960.8   Transformers - Alex Zhao's Public Pages</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../../../assets/favicon.ico">
+            
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                        <script>hljs.initHighlightingOnLoad();</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../../../assets/css/main.min.css">
+                <link href="../../../../../../extra.css" rel="stylesheet">
+                <script src="../../../../../../extra.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+                <script src="../../../../../../search/main.js"></script>
+
+            
+                
+                     <style>:root {--text: var(--color-white);}</style> 
+                     <style>:root {--title: var(--color-orange);}</style> 
+                     <style>:root {--primary: var(--color-orange);}</style> 
+                     <style>:root {--background: var(--color-black);}</style> 
+                
+            
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Alex Zhao's Public Pages</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../../../Public%20Pages/homepage/">[Welcome]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Crypto]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Sciences/Coding/Crypto/Proving%20Systems%20%28Plonky3%2C%20Halo2%2C%20Circle%20STARKs%2C%20Binius%29/" class="dropdown-item text-decoration-none ">ZK Notes</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Coding]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Sciences/Coding/Vim%20Tricks/" class="dropdown-item text-decoration-none ">Vim Tricks</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Sciences/Coding/USACO/General%20Thoughts%2C%20Paradigms/" class="dropdown-item text-decoration-none ">USACO Notes</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Food and Cooking]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Food%2BCooking/%E5%AE%B6%E5%B8%B8%E8%8F%9C%E8%B0%B1/%E7%B3%96%E9%86%8B%E6%8E%92%E9%AA%A8/" class="dropdown-item text-decoration-none ">糖醋排骨</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+                    <!-- block content -->
+<section class="container post">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">6.7960.8   Transformers</h1>
+            
+        </header>
+        <p><blockquote>
+<p>[!warning] Issue
+We want to get some <em>sparse, global</em> index. E.g.:
+- MLP that doesn't look at everything
+- CNN that looks at stuff across the image
+How can we achieve this? Variable <em>attention</em>.</p>
+</blockquote>
+<h2 id="idea-1-tokens">Idea #1: Tokens</h2>
+<p>First, we redefine a <em>token</em> as a bundle of vectorized data.</p>
+<blockquote>
+<p>[!important] Token Intuition
+A vector of scalars that describe information about one <em>single</em> object (e.g. blob of audio or patch of pixels).</p>
+</blockquote>
+<p>At the input layer, we cut our data (images, text, sound) into pieces and map each piece into a token using a "domain expert". But then tokens can be combined in this transformer system.</p>
+<h3 id="structure">Structure</h3>
+<p>Similar to a fully connected GNN, we want all of our tokens to talk to each other, so:
+- first <code>AGGREGATE</code> (linear combination of tokens using <em>attention</em>)
+- then <code>NORM</code> (layernorm or wtv.. why is it the right thing to do ??)
+- finally <code>UPDATE</code> (some learned MLP or other "token-wise nonlinearity" applied to each <em>token</em>)</p>
+<h2 id="idea-2-attention">Idea #2: Attention</h2>
+<p>We don't know which tokens we actually <em>care about</em>. We use a query-key-value system to figure out which tokens we care about.</p>
+<blockquote>
+<p>[!important] Query-Key-Value
+- One single <em>Query</em> vector corresponds to "what's the question"? Dotted with the
+- <em>Key</em> vector generated from each token, determines all the <em>similarity</em> values, encoded in a vector $s$. The $s$ values are used to take a weighted average of
+- <em>Value</em> vectors, which after summed give us the final output token.</p>
+</blockquote>
+<h3 id="self-attention">Self-Attention</h3>
+<p>One particular strategy is to have our query come from the input tokens.</p>
+<blockquote>
+<p>[!important] Self-Attention
+- Learn <em>$W_{q},W_{k},W_{v}$</em> which returns query, key, and value for each token
+- Get all queries, all keys, all values by <em>just three matmuls</em> (since all tokens are stacked row-wise in matrix $T_{in}$)
+- Attention matrix $A$ obtained by
+  - <em>Attention</em> (pairwise dots between keys and queries)
+  - <em>Normalization</em> (division then softmax)</p>
+</blockquote>
+<p>Now have covered three linear layers: MLP, CNN, Self Attn.</p>
+<h3 id="extra-tricks">Extra Tricks</h3>
+<p>Skip connections, multi-head self atten (parallelizing). Hardware loves matmuls. Autoregressive token prediction/log likelihood loss for prediction models.</p>
+<h2 id="idea-3-positional-encoding">Idea #3: Positional Encoding</h2>
+<p>Various ways to do, e.g. learned or hardcoded, but we can do Fourier basis:
+$$\sin(x), \sin\left( \frac{x}{B} \right),\sin\left( \frac{x}{B^{2}} \right),\dots$$
+Domain expertise is crucial here: human engineers apply inductive bias here.</p></p>
+    </article>
+</section>
+<!-- endblock -->
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script>var base_url = '../../../../../..';</script>
+            <script src="../../../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../../../assets/js/main.min.js""></script>
+                <script src="../../../../../../extra.js" defer></script>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+                <script src="../../../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>
