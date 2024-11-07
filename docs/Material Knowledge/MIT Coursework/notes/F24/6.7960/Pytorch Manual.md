@@ -10,6 +10,13 @@ In order of increasing complexity:
 - `nn.Sequential` (just pass in static modules, not iterable)
 - `nn.ModuleList([modules])` to track all submodules (variable length)
 - list submodules as attributes and evaluate directly in `.forward()` (non-linear computation)
+- if we have random numbers include them as `nn.Parameter()` so `.backward()` knows to track
+In training loop:
+- `optim.zero_grad()`
+- `loss.backward()`
+- `optim.step()`
+In validation:
+- use `with model.inference_mode():`
 ### tooling
 - einops/einsum
 - WandB (weights and biases) cloud logging
