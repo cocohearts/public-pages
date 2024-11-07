@@ -160,7 +160,14 @@ Often will have a <code>dim</code> or <code>out=</code> argument</p>
 <p>In order of increasing complexity:
 - <code>nn.Sequential</code> (just pass in static modules, not iterable)
 - <code>nn.ModuleList([modules])</code> to track all submodules (variable length)
-- list submodules as attributes and evaluate directly in <code>.forward()</code> (non-linear computation)</p>
+- list submodules as attributes and evaluate directly in <code>.forward()</code> (non-linear computation)
+- if we have random numbers include them as <code>nn.Parameter()</code> so <code>.backward()</code> knows to track
+In training loop:
+- <code>optim.zero_grad()</code>
+- <code>loss.backward()</code>
+- <code>optim.step()</code>
+In validation:
+- use <code>with model.inference_mode():</code></p>
 <h3 id="tooling">tooling</h3>
 <ul>
 <li>einops/einsum</li>
