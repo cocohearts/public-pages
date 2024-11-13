@@ -21,3 +21,6 @@ In validation:
 - einops/einsum
 - WandB (weights and biases) cloud logging
 - backprop, computational graph, etc.
+### reminders
+- .to(device)
+- use modules to break stuff down
