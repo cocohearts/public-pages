@@ -12,6 +12,17 @@ Diffusion model: condition on text embedding at every step, each step is U-net t
 	- Cross attention: at multiple steps in each U-net we break image into patches, conv/linear each patch into a query, and then cross-attention with values, keys generated from text
 	- Then we get attention values, get our weighted values, conv some more then add back into corresponding patch latent and continue U-net
 Then we have VQA; image tokens, then text tokens, and pass into autoregressive to get output answer.
+Also, don't forget flow matching. CNF is faster than diffusion, at each step it returns $v^{\tau}$ which tells you where each point moves, condition output $v^{\tau}$ on input with usual conditioning techniques. Here $\tau \in[0,1],$ so that $p_{0}$ is noise (starting distrib) and $p_{1}$ is target distrb.
+Then just move the unit Gaussian and you get output
+"flow matching" is when our loss is $\lVert v^{\tau}_{\theta}-u^{\tau} \rVert$ for some $u$ that we derive.
+
+pi0 paper
+big VLM model, stack an action expert onto it
+inference architecture:
+- feed language tokens, image, joint positions, current action latents into model
+- robot tokens use action expert weights, image/text use vlm weights
+- output the $v^{\tau}$ that's used for flow matching
+![[Pasted image 20241114010511.png]]
 
 Here's a causal-attention-transformer-based image gen cookbook:
 ![[Gen Models 3 (dragged) 1.pdf]]
