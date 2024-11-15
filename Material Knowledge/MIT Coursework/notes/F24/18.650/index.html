@@ -71,7 +71,7 @@
                             <ul class="dropdown-menu">
                                     <!-- block dropdown-menu -->
     <li>
-        <a href="../../../../Sciences/Coding/Crypto/Proving%20Systems%20%28Plonky3%2C%20Halo2%2C%20Circle%20STARKs%2C%20Binius%29/" class="dropdown-item text-decoration-none ">ZK Notes</a>
+        <a href="../../../../../Material Knowledge/Sciences/Coding/Crypto/Proving Systems (Plonky3, Halo2, Circle STARKs, Binius).md" class="dropdown-item text-decoration-none ">ZK Notes</a>
     </li>
 <!-- endblock -->
                             </ul>
@@ -149,7 +149,75 @@
                 <h1 class=" title" id="component-title">18.650</h1>
             
         </header>
-        <p></p>
+        <p><p>General idea: given samples from a distribution, we want to answer questions about the underlying distribution/predict the future.</p>
+<p>Process goes:
+- data, assumptions -&gt; model -&gt; predictions, declarations of uncertainty</p>
+<p>Notes on moments:
+- Variance is $\mathbb{E}[X^{2}]-\mathbb{E}[X]^{2},$ adds linearly over independent variables
+- Covariance is $\mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y],$ is 0 for indep. variables
+- Covariance matrix $\Sigma$ satisfies $\Sigma_{ij}=\text{Covar}[X_{i},X_{j}],$ note that it is symmetric
+- Can also think of $\Sigma$ as the expected value of the outer product of random vector $X$ with itself
+- Hence $\Sigma^{-1/2}X$ is unit normal, since its outer product is $\Sigma^{-1/2}X X^{T}\Sigma^{-1/2}$  whose expected value is $I$</p>
+<h3 id="clt">CLT</h3>
+<p>If $X_{i}$ drawn from distribution with average $\mu$ and std $\sigma$ then the $n$th average $\bar{X}$ has mean $\mu$ and std $\frac{\sigma}{\sqrt{ n }}.$ We call the constant $\sigma$ the "asymptotic std".</p>
+<p>The Fisher information of a </p>
+<p>If the sample averages for $X$ converge to mean $\mu$ and asymptotic std $\sigma$ then the sample averages for $g(X)$ converge to mean $g(\mu)$ and asymptotic std $g'(\mu)\sigma.$
+This makes sense since as we grab more samples the density clusters around $\mu$ so we only care about the "stretching" behavior of $g$ local to $\mu.$ If $g$ spreads things out by a factor of $2$ then our linear unit, std., also stretches out by 2.</p>
+<h2 id="estimators">Estimators</h2>
+<h3 id="mle-fisher">MLE, Fisher</h3>
+<p>Given data, we have a model $\mathbb{P}_{\theta}$ parametrized by a (usually finite) list of constants $\theta$. Given data we map it to an estimator $\hat{\theta}$ that can be judged from being
+- <em>biased</em> (if its EV is different from true)
+- has <em>se</em> (the std from true value)
+- <em>consistent</em> (if it converges to true value in probability as we take many samples)
+- <em>asymptotically normal</em> if as $n$ goes to infty it converges to being normal around true value with variance $\propto \,n^{-1/2}$.</p>
+<p>We get an MLE estimator for all parameters by plugging in likelihood of drawing all of our data from the pdf formula, and maximizing log likelihood (take a derivative). It is asymptotically normal, consistent, and asymptotically efficient.</p>
+<p>Note that true value maximizes <em>population log likelihood</em> i.e. log likelihood over the population, because log likelihood is really just KL divergence from true distribution to our proposed distribution. The sample MLE maximizes <em>sample log likelihood</em>.</p>
+<h4 id="fisher-info">Fisher info</h4>
+<p>Given a model $f_{\theta}$ and a particular value for $\theta,$ the Fisher information is
+$$
+I(\theta):=\mathbb{E}<em>{\theta}[-\nabla^{2}</em>{\theta}\log f_{\theta}(X)]=\mathbb{V}<em>{\theta}[\nabla \log f</em>{\theta}(X)],
+$$
+when drawing a random $X$ from the distribution $f_{\theta}$.</p>
+<p>To check the second equality, note that
+$$
+-\nabla^{2}\log f_{\theta}=-\nabla\frac{{\nabla f_{\theta}}}{f_{\theta}}=-\frac{{\nabla^{2}f_{\theta}f_{\theta}-(\nabla f_{\theta}^{2})}}{f_{\theta}^{2}}=\left( \frac{{\nabla f_{\theta}}}{f_{\theta}} \right) ^{2} - \frac{{\nabla^{2}f_{\theta}}}{f_{\theta}}.
+$$
+But then $\mathbb{E}\left( \frac{{\nabla g}}{f_{\theta}} \right)=\int \nabla g=0,$ so $\mathbb{E}[-\nabla^{2}\log f_{\theta}]=\mathbb{V}[\nabla \log f_{\theta}].$</p>
+<p>Key claim: asymptotic std of the MLE estimator is $I(\theta^{*})^{-1}.$</p>
+<p>Proof:
+Taylor expand
+$$
+0=l_{n}'(\theta)\approx l_{n}'(\theta^{<em>})+l''_{n}(\theta^{</em>})(\hat{\theta}-\theta^{<em>}),
+$$
+so that
+$$
+\sqrt{ n }(\hat{\theta}-\theta^</em>)=-\frac{{\sqrt{ n }\overline{\partial_{\theta}  \log f_{\theta}{(X_{i})|_{\theta ^<em>}} } }}{\overline{\partial^{2}<em>{\theta}\log f</em>{\theta}(X_{i})|_{\theta^</em>}}}.
+$$
+The numerator has expected value $0$ since $l'(\theta^<em>)=0,$ and variance equal to $I(\theta^</em>).$ The denominator converges to its mean value, also equal to $I(\theta^<em>).$ Hence the quotient has mean $0$ and variance $I(\theta^</em>)^{-1}.$</p>
+<h3 id="method-of-moments">Method of Moments</h3>
+<p>Given $k$ real parameters $\theta$ that we want to solve for, we plug in for the first $k$ moments of our model $f_{\theta}(X).$ Then we can express the $i$th moment in terms of our $k$ parameters, and we solve the resulting $k$ equations.</p>
+<p>Remark: we could take higher order moments, but they would yield higher variance answers, since higher moments "swing around" more.</p>
+<h3 id="em-algo">EM Algo</h3>
+<p>We sometimes have a mixture of gaussians. If we determine which Gaussian each data sample is from, we can do normal MLE in order, first by estimating $\mu,\sigma$ for each Gaussian and then balancing $p_{i}.$</p>
+<p>However if we don't know, we need to assign a probability distribution of which Gaussian each element is in. Then the log likelihood for a given datapoint is $\sum_{i}p_{i}l_{i}(X),$ where $p_{i}$ is the likelihood of belonging to the $i$th Gaussian.</p>
+<p>Bring in the EM-algorithm. On the <em>Expectation step</em> we weight the odds of $p_{i}$ by comparing odds according to the current $\mu_{i},\sigma_{i}.$ On the <em>Maximization step</em> we calculate the $\mu_{i},\sigma_{i}$ exactly using MLE.</p>
+<h3 id="bootstrap">Bootstrap</h3>
+<p>We want to get variance on our estimator, but the underlying pdf is intractable. Instead, we "repeat the experiment" by taking <em>bootstrap samples</em> from our existing samples <em>with replacement</em>. For each sample we compute our estimator, then we create a histogram of drawn estimators from which we can compute variance, confidence intervals, etc. We can do normal confidence interval by taking std and assuming distribution is normal, or we can take <em>percentile confidence interval</em> which just takes quartiles using our histogram. Finally we can take <em>pivotal confidence interval</em> $\left( 2\hat{\theta}<em>{0}-q</em>{\frac{\alpha}{2}}, 2\hat{\theta}<em>{0}-q</em>{1-\frac{\alpha}{2}}  \right)$ because we want true to lie within a certain range of our estimate, not vice versa (??) so we flip the interval around $\hat{\theta_{0}}.$</p>
+<p>Optimally we do all $n^{n}$ samplings but this is not actually feasible.</p>
+<h2 id="testing">Testing</h2>
+<p>Have null hypothesis, which we take to be status quo. Assume null hypothesis, what is the likelihood of seeing given data? Call that $p$-value, determines the level of our test. Type 1 error is false positive, Type 2 error is false negative.</p>
+<h3 id="wald-test">Wald test</h3>
+<p>Asymptotically normal estimator $\hat{\theta},$ we return positive iff outside percentile confidence interval.</p>
+<h3 id="chi-squared">Chi-squared</h3>
+<p>Define $\chi_{k}^{2}=\sum_{i.i.d.}^{k}Z_{i}^{2},$ where $Z_{i}\sim \mathcal N(0,1).$ Then given drawn samples $X_{i}$ and null hypothesis pmf, we can count real and expected occurrences of each outcome. Then the value
+$$
+T=\sum_{i}\frac{{(O_{i}-E_{i})^{2}}}{E_{i}}
+$$
+follows a $\chi_{k-1}^{2}$ distribution.</p>
+<h3 id="things-to-rem">Things to Rem.</h3>
+<p>Within 1 std: 68%
+Within 2 std: 95%
+Within 3 std: 99.7%</p></p>
     </article>
 </section>
 <!-- endblock -->
