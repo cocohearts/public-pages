@@ -214,10 +214,92 @@ $$
 T=\sum_{i}\frac{{(O_{i}-E_{i})^{2}}}{E_{i}}
 $$
 follows a $\chi_{k-1}^{2}$ distribution.</p>
+<p>Proof: Let our samples $X_{i}$ be represented as one-hot encodings in our pmf. Then null hypothesis is that
+$$
+\Sigma=\begin{bmatrix}
+p_{1}(1-p_{1})&amp;-p_{1}p_{2}&amp;-p_{1}p_{3} \
+-p_{2}p_{1}&amp;p_{2}(1-p_{2})&amp;-p_{2}p_{3} \
+-p_{3}p_{1}&amp;-p_{3}p_{2}&amp;-p_{3}(1-p_{3})
+\end{bmatrix}
+=
+-\vec{p}\otimes \vec{p}+diag(\vec{p}).
+$$
+Let's remove the last row/column to get $\hat{\Sigma}$. Then letting $\hat{p}$ denote the truncated probability vector, notably
+$$
+\hat{\Sigma} ^{-1}=diag(\hat{p}^{-1})+\frac{1}{p_{k}}\begin{bmatrix}
+1 &amp; \dots&amp;1 \
+\vdots &amp;\ddots &amp;\vdots\
+1 &amp; \dots&amp;1 \
+\end{bmatrix}
+$$
+To check this, off diagonal dot products $M_{ij}$ of $\hat{\Sigma}\hat{\Sigma}^{-1}$ become $-p_{i}+\frac{1}{}$</p>
+<h3 id="kl-and-ks-tests">KL and KS Tests</h3>
+<p>Given iid samples from a fixed pdf, we can use Kolmogorov-Smirnov. We can generate an <em>empirical CDF</em> generated from uniform over our samples. The sup of the difference between our empirical CDF and the real CDF is distributed according to the KS distribution, dependent on $n$ but not dependent on the distribution!</p>
+<p>In the case that it's a Gaussian whose $\mu$ and $\sigma$ we derive from the sample, we need to use the Kolmogorov Lilliefors test, which requires a smaller distance to reject the null (because the Gaussian is already fitted to the data).</p>
+<h3 id="permutation-multiple-hypothesis">Permutation, Multiple Hypothesis</h3>
+<p>Are two samples from the same distribution? Bootstrap-style, mix them up and take a histogram of the difference in sample means. If the difference in means of our two samples are too far OOD then reject.</p>
+<p>For multiple hypothesis, we can take a naive union bound over all our hypothesis, dividing the $p$-value for each test by the number of tests (Bonferroni).</p>
+<p>Alternatively if they're guaranteed to be independent, the Benjamini-Hochberg method sorts the $p$-values in order, and taking the biggest one that lies below $\frac{\alpha}{m}i$ (where $i$ is the index of $p$-value) keeps (#false positives)/(#positives) below $\alpha$ in expectation.</p>
+<h3 id="student-t">Student-t</h3>
+<p>Smarter version of Wald's. It compensates for not knowing the std $\alpha$. Specifically $\sqrt{ n }(\bar{X}<em>{n}-\mu)\hat{\sigma}\sim t</em>{n-1}$ for $n-1$ DOF.</p>
 <h3 id="things-to-rem">Things to Rem.</h3>
 <p>Within 1 std: 68%
 Within 2 std: 95%
-Within 3 std: 99.7%</p></p>
+Within 3 std: 99.7%</p>
+<h3 id="distributions">Distributions</h3>
+<p><em>Beta</em>: $p(x)=\frac{1}{K}x^{a-1}(1-x)^{b-1}$ for $Beta(a,b).$ Expected value $\frac{a}{a+b}.$</p>
+<h2 id="bayesian">Bayesian</h2>
+<p>We have a prior distribution on parameters $\theta.$
+After seeing data we adjust the distribution based on a conditional. The net effect is that the posterior is the likelihood of seeing this data, weighted by the prior:
+$$
+f(\theta|X_{i})\propto f_{\theta}(X_{i})\cdot f(\theta).
+$$
+If we start with uniform over $\mathbb{R}$ or some interval $[a,b]$ then this is equivalent to MLE.</p>
+<h3 id="estimators_1">Estimators</h3>
+<p>Bayes estimator is just the mean of our posterior, i.e. mean <em>a posteriori</em>. MAP, or maximum a posteriori, is the mode of our posterior.</p>
+<h3 id="aside-robustness">Aside: Robustness</h3>
+<p>An estimator is <em>robust</em> if it stays bounded when an adversary changes some amount of it. For instance median is robust with breakdown point $\frac{1}{2}.$ We can arbitrarily make an estimator more robust by dropping the top and bottom percentiles.</p>
+<p>More robust estimators do MLE assuming that $\epsilon$ of our samples have been contaminated by an adversary $q$. We can also try omitting samples, i.e. calculate MLE by maximizing $l_{n}$ over all possible omission sets, and then maximize $\theta$ to get a double max:
+$$
+\hat{\theta}={\arg\max}<em>{\theta}\max</em>{|C|=m}l_{n}(\theta,X_{i}\backslash C).
+$$</p>
+<h2 id="regression">Regression</h2>
+<h3 id="linear-regression">Linear Regression</h3>
+<p>Given vectors $X_{i}$ we want to map to scalars $Y_{i}.$ We assume our distribution is $f(X)=\mathcal N(X\beta ^{T}, \mathbf{1}).$ Then MLE just wants us to minimize least-squares distance between $X\beta$ and $Y,$ where we now take the matrix $X$ and vector $Y.$ Here the rows of $X$ are the vectors $X_{i}.$</p>
+<p>We can take gradients to solve the minimization problem
+$$
+L=\left( X\beta-Y \right) \cdot \left( X\beta-Y \right) = \beta^{T}X^{T}X\beta-2Y^{T}X\beta.
+$$
+Then
+$$
+\nabla_{\beta} L=2X^{T}X\beta - 2Y^{T}X,
+$$
+so
+$$
+\beta=(X^{T}X)^{-1}X^{T}Y.
+$$
+Now note that our "closest solution" $X\beta=X(X^{T}X)^{-1}X^{T}Y$ is in fact the result of projecting $Y$ down to $\text{colspace}(X).$ Clearly the output of
+$$P=X(X^{T}X)^{-1}X^{T}$$
+is in $\text{colspace}(X),$ and since $P^{2}=P^{T}=P$ we get $P(I-P)^{T}=0$ and so projections onto $\text{colspace}(X)$ are in fact normal.</p>
+<h4 id="variance-on-linear-regression">Variance on Linear Regression</h4>
+<p>Suppose our (independent) $Y$ have (diagonalized) variance $\sigma^{2}.$ Then we can model $Y=X\beta^*+\epsilon$ where $\epsilon\sim\mathcal N(0,\sigma).$ Plugging back into our expression for $\beta$ we get that
+$$Var(\beta)=\sigma^{2}((X^{T}X)^{-1}X^{T})((X^{T}X)^{-1}X^{T})^{T}=\sigma^{2}(X^{T}X)^{-1}.$$
+Note that $\sigma^{2}$ commutes because it's diagonalized. As an operational note we often use $\sigma^{2}=\frac{{\lVert Y-X\beta \rVert^{2}}}{n-k}$ as our error estimate.</p>
+<h3 id="logistic-regression">Logistic Regression</h3>
+<p>We want to predict a binary, or more generally a multiclass, i.e. what is the likelihood $Y$ will happen given $X$? This is very machine-learning style! We get $\sigma(x^{T}\beta)$ as our model, where $x^{T}\beta$ outputs a bunch of logits. We can then do softmax to get our probabilities, and perform MLE on the matrix.</p>
+<p>Statisticians will insist we conserve degrees of freedom, so our softmax just sets $l_{0}=0$ and only predicts the latter $m-1$ logits. Note that this is consistent with using sigmoid for binary classification.</p>
+<h2 id="overfitting">Overfitting</h2>
+<h3 id="r-squared">R squared</h3>
+<p>The $R^{2}$ score is
+$$
+R^{2}(S)=1-\frac{{\lVert Y-X\beta(S) \rVert ^{2}}}{\lVert Y-\bar{Y}\mathbb 1 \rVert^{2} }.
+$$
+The denom is squared distance from $Y$ to the line spanned by $\mathbb{1},$ (also equals $Var(Y)$), i.e. performance if we make our model just the mean. It becomes negative when the $X$ features predict worse than the mean.</p>
+<h3 id="feature-selection">Feature selection</h3>
+<p>Generally adding more features to input data $X$ will allow model to fit better (e.g. project closer, eventually memorize data) but this is bad. We can pick features that increase $R^{2}$ the fastest, but don't include all to avoid overfit. Can do beam search and look for some plateau.</p>
+<p>We can also measure overfitting using information. 
+- Akaike info: $l_{n}(\hat{\beta}(S))-|S|$
+- Bayesian info: $l_{n}(\hat{\beta}(S))-\frac{{\log n}}{2}|S|$</p></p>
     </article>
 </section>
 <!-- endblock -->
