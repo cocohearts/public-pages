@@ -149,7 +149,52 @@
                 <h1 class=" title" id="component-title">2.678</h1>
             
         </header>
-        <p></p>
+        <p><ul>
+<li>Resistors, voltage/current Kirchoff's laws</li>
+<li>Battery, ground, voltage vs. current</li>
+</ul>
+<h2 id="important-components">Important Components</h2>
+<ul>
+<li>Diode<ul>
+<li>Silicon diode: .7 volts</li>
+<li>Germanium diode: .3 volts</li>
+<li>LED: 2-3 volts</li>
+<li>Current only goes forwards, acts as fixed voltage drop when passes through, open wire when none</li>
+</ul>
+</li>
+<li>Capacitor<ul>
+<li>Used in signal processing; acts as closed wire for "high-frequency" signals (cancel out), open wire for "low-frequency" signals</li>
+<li>If placed in series with the load, becomes high-pass filter (only high frequency passes, low cancelled out)</li>
+<li>If placed in parallel, becomes low-pass filter (only low frequency passes, high goes to ground)</li>
+</ul>
+</li>
+<li>BJT - Bipolar Junction Transistor<ul>
+<li>Base, Emitter, Collector</li>
+<li>Base acts as "control", collector current must be fixed $\approx70$ multiple of base current, exits through emitter</li>
+<li>Enables "op-amps" (draws power source, amplifies difference between +/-) which uses BJT, voltage splitter<ul>
+<li>resistors at base, collector to control voltage/current ratios</li>
+<li>voltage drop across collector resistor is fixed product of voltage drop across base resistor</li>
+<li>take output voltage after collector resistor, before the transistor—is a clipped inverted multiple of input voltage</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MOSFET - Metal Oxide Semiconductor Field Effect Transistor<ul>
+<li>when voltage passes through metal gate, turns on the semiconductor</li>
+<li>p-mosfet connects source to drain when gate is above source</li>
+<li>n-mosfet connects source to drain when gate is below source</li>
+</ul>
+</li>
+<li>Motors<ul>
+<li>when two magnets aren't aligned, there is some force pushing them together</li>
+<li>brush magnets have four electromagnet coils each at 90 degs</li>
+<li>current flows through brushes attached to the axle</li>
+<li>as the axle spins it activates the coil normal to the axle magnet</li>
+<li>ideal model:<h2 id="-calculates-a-constant-from-torque-voltage-and-angular-velocity">- calculates a constant from torque, voltage, and angular velocity</h2>
+</li>
+</ul>
+</li>
+</ul></p>
     </article>
 </section>
 <!-- endblock -->
