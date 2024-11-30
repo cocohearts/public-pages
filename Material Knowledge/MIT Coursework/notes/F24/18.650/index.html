@@ -279,7 +279,7 @@ $$
 $$
 Now note that our "closest solution" $X\beta=X(X^{T}X)^{-1}X^{T}Y$ is in fact the result of projecting $Y$ down to $\text{colspace}(X).$ Clearly the output of
 $$P=X(X^{T}X)^{-1}X^{T}$$
-is in $\text{colspace}(X),$ and since $P^{2}=P^{T}=P$ we get $P(I-P)^{T}=0$ and so projections onto $\text{colspace}(X)$ are in fact normal.</p>
+is in $\text{colspace}(X),$ and since $P^{2}=P^{T}=P$ we get $P(I-P)^{T}=0$ and so projections onto $\text{colspace}(X)$ are in fact normal. Define $\mathbb{X}$ as the matrix with $X_{i}^{\dagger}$ as rows.</p>
 <h4 id="variance-on-linear-regression">Variance on Linear Regression</h4>
 <p>Suppose our (independent) $Y$ have (diagonalized) variance $\sigma^{2}.$ Then we can model $Y=X\beta^*+\epsilon$ where $\epsilon\sim\mathcal N(0,\sigma).$ Plugging back into our expression for $\beta$ we get that
 $$Var(\beta)=\sigma^{2}((X^{T}X)^{-1}X^{T})((X^{T}X)^{-1}X^{T})^{T}=\sigma^{2}(X^{T}X)^{-1}.$$
