@@ -171,12 +171,15 @@
 <li><code>A</code> for append to end of sentence</li>
 <li><code>t</code> basically <code>fh</code></li>
 <li><code>%</code> to jump to matching <code>({[</code></li>
+<li><code>:reg</code> to see list of registers; <code>"1p</code> to paste yank before this, <code>"ayw</code> to yank word to <code>"a</code></li>
+<li><code>J</code> used to join selected lines with space delim</li>
+<li><code>cs{sel}([</code> make a selection, replace surrounding <code>(</code> with <code>[</code></li>
+<li>similarly <code>ds</code>, or <code>ys</code> to add</li>
 </ul>
 <h3 id="learning">Learning</h3>
 <ul>
-<li><code>:reg</code> to see list of registers; <code>"1p</code> to paste yank before this, <code>"ayw</code> to yank word to <code>"a</code></li>
 <li><code>ge</code> for back word end</li>
-<li><code>{,[]()}</code> for first new whitespace after last para</li>
+<li><code>{,[(</code> for first new whitespace after last para</li>
 <li><code>(,)</code> for <code>{</code> plus firstline para</li>
 <li><code>gU&lt;&gt;,gu&lt;&gt;,~</code> for case (last toggle)</li>
 <li><code>CTRL-O</code> to old positions, <code>CTRL-I</code> to new ones</li>
@@ -184,18 +187,20 @@
 <li>use <code>q[x]</code> to record macro to key <code>[x]</code></li>
 <li><code>&lt;UP&gt;</code> to try previous searches from search history</li>
 <li><code>m[x]</code> create mark, <code>'[x]</code> to go to mark</li>
-<li><code>J</code> used to join selected lines with space delim</li>
 <li><code>:grep</code> to use grep inside current file</li>
 <li><code>s{char}{char}</code> v-sneak, can use op, in Obs just <code>cl</code></li>
 <li><code>]]</code> next <code>{</code> in first column; <code>[[</code> next <code>}</code> in first column</li>
 <li><code>[(</code> for previous unmatched <code>(</code> and <code>[)</code> for next unmatched <code>)</code>; aka. previous/next in this "scope"</li>
-<li><code>cs{sel}([</code> make a selection, replace surrounding <code>(</code> with <code>[</code></li>
-<li>similarly <code>ds</code>, or <code>ys</code> to add</li>
+<li><code>&lt;CTRL-O&gt;</code> for one-bullet hybrid Insert-Normal mode</li>
+<li><code>&lt;CTRL-R&gt;</code> for paste from register in Insert mode (use with ctrl-o <code>:reg</code>)</li>
+<li>replace mode with <code>R</code></li>
 </ul>
 <h3 id="wtf">WTF</h3>
 <ul>
 <li><code>&lt;CTRL-W&gt; S/V</code> to split (horizontal line) or (vertical line)</li>
 <li><code>&lt;CTRL-W&gt; h/j/k/l</code> to move windows</li>
+<li><code>&lt;CTRL-A&gt;</code> to inc. next number</li>
+<li><code>&lt;CTRL-X&gt;</code> to dec. next number</li>
 </ul></p>
     </article>
 </section>
