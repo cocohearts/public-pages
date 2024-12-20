@@ -158,11 +158,18 @@
 - Covariance matrix $\Sigma$ satisfies $\Sigma_{ij}=\text{Covar}[X_{i},X_{j}],$ note that it is symmetric
 - Can also think of $\Sigma$ as the expected value of the outer product of random vector $X$ with itself
 - Hence $\Sigma^{-1/2}X$ is unit normal, since its outer product is $\Sigma^{-1/2}X X^{T}\Sigma^{-1/2}$  whose expected value is $I$</p>
+<h2 id="distributions">Distributions</h2>
+<p>Poisson—limit of Binomial: $\frac{{\lambda^{k}e^{\lambda}}}{k!}$
+Multivariate Gaussian—invert the covariance: $\frac{1}{\sqrt{ (2\pi)^{k}\det(\Sigma) }} \exp((x-\mu)^{\dagger}\Sigma ^{-1}(x-\mu)).$
+Beta—likelihood for Bernoulli parameter: $\text{Norm}\left[ x^{a}(1-x)^{b} \right]:x \in [0,1]$
+Gamma—
+Student-t—fat version of Gaussian used when fitting model with unknown true variance, using sample variance
+Chi-squared—with $n$ degrees of freedom is sum of $n$ independent unit normal squared</p>
 <h3 id="clt">CLT</h3>
 <p>If $X_{i}$ drawn from distribution with average $\mu$ and std $\sigma$ then the $n$th average $\bar{X}$ has mean $\mu$ and std $\frac{\sigma}{\sqrt{ n }}.$ We call the constant $\sigma$ the "asymptotic std".</p>
 <p>If the sample averages for $X$ converge to mean $\mu$ and asymptotic std $\sigma$ then the sample averages for $g(X)$ converge to mean $g(\mu)$ and asymptotic std $g'(\mu)\sigma.$
 This makes sense since as we grab more samples the density clusters around $\mu$ so we only care about the "stretching" behavior of $g$ local to $\mu.$ If $g$ spreads things out by a factor of $2$ then our linear unit, std., also stretches out by 2.</p>
-<h2 id="estimators">Estimators</h2>
+<h2 id="parametric-estimation">Parametric Estimation</h2>
 <h3 id="mle-fisher">MLE, Fisher</h3>
 <p>Given data, we have a model $\mathbb{P}_{\theta}$ parametrized by a (usually finite) list of constants $\theta$. Given data we map it to an estimator $\hat{\theta}$ that can be judged from being
 - <em>biased</em> (if its EV is different from true)
@@ -203,8 +210,21 @@ The numerator has expected value $0$ since $l'(\theta^<em>)=0,$ and variance equ
 <h3 id="bootstrap">Bootstrap</h3>
 <p>We want to get variance on our estimator, but the underlying pdf is intractable. Instead, we "repeat the experiment" by taking <em>bootstrap samples</em> from our existing samples <em>with replacement</em>. For each sample we compute our estimator, then we create a histogram of drawn estimators from which we can compute variance, confidence intervals, etc. We can do normal confidence interval by taking std and assuming distribution is normal, or we can take <em>percentile confidence interval</em> which just takes quartiles using our histogram. Finally we can take <em>pivotal confidence interval</em> $\left( 2\hat{\theta}<em>{0}-q</em>{\frac{\alpha}{2}}, 2\hat{\theta}<em>{0}-q</em>{1-\frac{\alpha}{2}}  \right)$ because we want true to lie within a certain range of our estimate, not vice versa (??) so we flip the interval around $\hat{\theta_{0}}.$</p>
 <p>Optimally we do all $n^{n}$ samplings but this is not actually feasible.</p>
+<h2 id="nonparametric-estimation">Nonparametric Estimation</h2>
+<p>Goal: estimating curves/distributions without setting an ansatz and solving.</p>
+<p>Generally we have some true distribution $g$ generating noisy samples $X$ which we fit to an estimator $X_{i}\to \hat{g}.$ Then (taking expectations over samples, for conf. interval purposes)
+- <em>bias</em> is how far estimator mean is from truth, for some input $x$
+- <em>variance</em> is variance of estimator from its own mean
+- <em>mean squared error</em> is actual optimization point, MSE of estimator from ground truth
+Note that $MSE(\hat{g},x)=b_{\hat{g}}^{2}(x)+v_{\hat{g}}(x).$ We define $R(\hat{g},g)=\int MSE(\hat{g},x)\,dx$ as error over the entire input. Also called mean integral squared error.</p>
+<p>For optimization purposes we want to check the MISE, reduces to $\int g(x)\hat{g}(x)\,dx=\mathbb{E}_{x\sim g} \int \hat{g}(x).$ Since $\hat{g}$ depends on chosen $x$ we just split train/test, textbook suggests to run all of the $n-1 / 1$ train-test splits.</p>
+<p>Can estimate using
+- histograms (box samples and make uniform in each box) called <em>Regressogram</em>
+- kernel density estimators (put a blob on each sample, fix variance to $h^{2}$ with reparameterization, mean over samples) called <em>Nadaraya-Watson</em></p>
+<p>If we want to do regression we have a distribution over pairs $X,Y.$ Can apply either technique—would be taking kernels in $X\oplus Y$ and taking probabilities over fixed $X$.</p>
 <h2 id="testing">Testing</h2>
 <p>Have null hypothesis, which we take to be status quo. Assume null hypothesis, what is the likelihood of seeing given data? Call that $p$-value, determines the level of our test. Type 1 error is false positive, Type 2 error is false negative.</p>
+<p>The "power" of a test is likelihood of rejecting null, defined by $\beta(\theta).$ If $H_{0}: \theta=\theta_{0},$ then likelihood of type 1 (rejecting when shouldn't reject) is $\beta(\theta_{0}).$</p>
 <h3 id="wald-test">Wald test</h3>
 <p>Asymptotically normal estimator $\hat{\theta},$ we return positive iff outside percentile confidence interval.</p>
 <h3 id="chi-squared">Chi-squared</h3>
@@ -245,7 +265,7 @@ To check this, off diagonal dot products $M_{ij}$ of $\hat{\Sigma}\hat{\Sigma}^{
 <p>Within 1 std: 68%
 Within 2 std: 95%
 Within 3 std: 99.7%</p>
-<h3 id="distributions">Distributions</h3>
+<h3 id="distributions_1">Distributions</h3>
 <p><em>Beta</em>: $p(x)=\frac{1}{K}x^{a-1}(1-x)^{b-1}$ for $Beta(a,b).$ Expected value $\frac{a}{a+b}.$</p>
 <h2 id="bayesian">Bayesian</h2>
 <p>We have a prior distribution on parameters $\theta.$
@@ -254,7 +274,7 @@ $$
 f(\theta|X_{i})\propto f_{\theta}(X_{i})\cdot f(\theta).
 $$
 If we start with uniform over $\mathbb{R}$ or some interval $[a,b]$ then this is equivalent to MLE.</p>
-<h3 id="estimators_1">Estimators</h3>
+<h3 id="estimators">Estimators</h3>
 <p>Bayes estimator is just the mean of our posterior, i.e. mean <em>a posteriori</em>. MAP, or maximum a posteriori, is the mode of our posterior.</p>
 <h3 id="aside-robustness">Aside: Robustness</h3>
 <p>An estimator is <em>robust</em> if it stays bounded when an adversary changes some amount of it. For instance median is robust with breakdown point $\frac{1}{2}.$ We can arbitrarily make an estimator more robust by dropping the top and bottom percentiles.</p>
@@ -287,7 +307,6 @@ Note that $\sigma^{2}$ commutes because it's diagonalized. As an operational not
 <h3 id="logistic-regression">Logistic Regression</h3>
 <p>We want to predict a binary, or more generally a multiclass, i.e. what is the likelihood $Y$ will happen given $X$? This is very machine-learning style! We get $\sigma(x^{T}\beta)$ as our model, where $x^{T}\beta$ outputs a bunch of logits. We can then do softmax to get our probabilities, and perform MLE on the matrix.</p>
 <p>Statisticians will insist we conserve degrees of freedom, so our softmax just sets $l_{0}=0$ and only predicts the latter $m-1$ logits. Note that this is consistent with using sigmoid for binary classification.</p>
-<h2 id="overfitting">Overfitting</h2>
 <h3 id="r-squared">R squared</h3>
 <p>The $R^{2}$ score is
 $$
@@ -298,7 +317,38 @@ The denom is squared distance from $Y$ to the line spanned by $\mathbb{1},$ (als
 <p>Generally adding more features to input data $X$ will allow model to fit better (e.g. project closer, eventually memorize data) but this is bad. We can pick features that increase $R^{2}$ the fastest, but don't include all to avoid overfit. Can do beam search and look for some plateau.</p>
 <p>We can also measure overfitting using information. 
 - Akaike info: $l_{n}(\hat{\beta}(S))-|S|$
-- Bayesian info: $l_{n}(\hat{\beta}(S))-\frac{{\log n}}{2}|S|$</p></p>
+- Bayesian info: $l_{n}(\hat{\beta}(S))-\frac{{\log n}}{2}|S|$</p>
+<h2 id="confounding-setups">Confounding Setups</h2>
+<h3 id="survivalcensoring">Survival/Censoring</h3>
+<p>Sometimes we want to collect samples $T_{i}$ but they get "cut off" arbitrarily at $C_{i}$, independent of the statistic. How to estimate the cdf?</p>
+<p>Derive a "harm" estimator $h(t):=\Pr(T_{i}=t\mid T_{i}\geq t)$. Then we can directly count these from taking all $C_{i}&gt;t$ and computing
+$$
+\frac{{# T_{i}=t}}{# C_{i}, T_{i} \geq t}.
+$$
+Then $\Pr(T_{i}&gt; t)=\prod_{i\leq t} (1-h(t)).$</p>
+<h3 id="randomized-controlled-trials">Randomized Controlled Trials</h3>
+<p>We have people $i$ with treatment applied or unapplied $X_{i}$ and reward distribution $C_{X}$ for each person. Aim: general effect of application
+$$\theta=\mathbb{E}[C_{1}] - \mathbb{E}[C_{0}].$$
+However for each sample we only get to see $C_{X},$ so if we just make $X$ independent of the "person" (since $C_{i}$ is dependent on the person) then we get
+$$
+\theta=\alpha:=\mathbb{E}[C_{1}\mid X=1] - \mathbb{E}[C_{0}\mid X=0].
+$$</p>
+<h3 id="surveys">Surveys</h3>
+<p>We want to know $T:=\sum_{i}Y_{i}$ over the entire body, but can only grab $\sum_{i\in S}Y_{i}$ for some random $S$. Then the Horvitz-Thompson estimator is
+$$
+T^{HT}:=\mathbb{E}\left[ \sum_{i\in S} \frac{Y_{i}}{\pi(i)} \right]=\sum_{i} \frac{Y_{i}}{\pi(i)}\Pr(i\in S)=\sum_{i}Y_{i}.
+$$
+Can evaluate the variance in theory using $\pi_{ij},$ then apply Horvitz-Thompson on this by dividing by $\pi_{ij}$ again.</p>
+<h3 id="classification">Classification</h3>
+<p>Given inputs $X$ want to classify into labels $Y\in \left{ 0,1 \right}.$ We find a "Bayes estimator"
+$$
+h:=\arg\max_{h} \Pr[Y \neq h(X)].
+$$
+Equivalently, $h=1$ if $r(x):=\mathbb{E}(Y|X=x)\geq \frac{1}{2}$. Can also do if $\frac{\Pr(X=x|Y=1)}{\Pr(X=x|Y=0)} \geq \frac{{\Pr(Y=0)}}{\Pr(Y=1)},$ hence called Bayes.</p>
+<p>In high dimensions naive KDE isn't great, so can either
+- naively partition input dimensions into independent subsets
+- assume $X|Y=i$ are Gaussian, obtain a quadratic classifier
+Can also classify by mean of $k$ nearest neighbors, can be represented using KDE (look at "effective range" of each node).</p></p>
     </article>
 </section>
 <!-- endblock -->
