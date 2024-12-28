@@ -97,7 +97,7 @@
 <!-- endblock -->
                                     <!-- block dropdown-menu -->
     <li>
-        <a href="../../../../../Material Knowledge/Sciences/ML/ML papers to read.md" class="dropdown-item text-decoration-none ">ML papers</a>
+        <a href="../../ML%20papers%20to%20read/" class="dropdown-item text-decoration-none ">ML papers</a>
     </li>
 <!-- endblock -->
                             </ul>
@@ -184,7 +184,20 @@ so that the two values start at $0,1$ then become $001, 011$, then $001001011, 0
 <p>Make mirror moves for White using the knight at <code>h1</code>. We have hence arrived at a construction for a "forced history" $P$ that doesn't violate 3rep.</p>
 <h2 id="using-forced-history-to-generate-sequence">Using forced history to generate sequence</h2>
 <p>Now we have a target forced history $P$. Now the goal is to design an algorithm yielding a sequence $Q$, along with "timestamps" $r_{i},$ such that the prefix of timestamps $[0,r_{i}]$ of $Q$ permits the suffix $[-i, 0]$ of $P,$ but permits no other suffixes of length $i$.</p>
-<h2 id="proving-correctness">Proving correctness</h2></p>
+<p>At any timestep $-(i-1)$ the only diff from the current game state is the position of the knights on <code>a8</code> and <code>h1</code>. The <code>a8</code> knight can be on <code>b6</code> or <code>d5</code> and the <code>h1</code> knight can be on <code>g3</code> or <code>e4</code>.</p>
+<p>We wish to prohibit all moves at timestep $-i$ other than the one we have prescribed. Either:
+- the rook that is free to move takes its one possible action
+- the king whose turn it is to move takes its one possible action
+- the other knight who has never moved takes its one possible action
+We prohibit these in turn. Let the sequence developed so far be $s,$ defined by all actions in $[-(i-1),r_{i-1}].$ For each of the above three possible actions:
+- let the action be $A$ (in the "forward" time direction, e.g. <code>Raa7</code>.)
+- Pick another "irrelevant" reversible action. Either the "other knight" action or the king action is always available, call that $B$.
+- let $s'$ be the sequence of moves formed by$$ ss ^{-1}A ^{-1}Ass ^{-1}A ^{-1}Ass ^{-1}A ^{-1}BB ^{-1}A. $$
+- Note that $s'$ still has $s$ as a prefix, so take $s'[len(s):]$ and append that to $Q.$ Let the other color mirror.
+- Intuition: note that prepending the action $A$ creates a 3rep of the subsequence $Ass ^{-1}A,$ but because of the $BB ^{-1}$ at the end there is no violation of 3rep using only the subsequence (at first inspection, more details later).
+Do this for every timestamp $i$, for both Black and White, for every "off-script past action" available to the current player. This generates an infinite sequence $Q$, and it is apparent from construction that there are no proof games. As argued earlier, any proof game must come "onto" the forced history, and at that point would create a 3rep violation.</p>
+<h2 id="proving-correctness">Proving correctness</h2>
+<p>It remains to show that a finite proof game exists for any finite prefix of $Q$.</p></p>
     </article>
 </section>
 <!-- endblock -->
@@ -200,7 +213,7 @@ so that the two values start at $0,1$ then become $001, 011$, then $001001011, 0
             </div>
             <div class="col themed-grid-col"></div>
             <div class="col themed-grid-col">
-                <a rel="next" href="../../../../Food%2BCooking/%E5%AE%B6%E5%B8%B8%E8%8F%9C%E8%B0%B1/%E7%B3%96%E9%86%8B%E6%8E%92%E9%AA%A8/" class="nav-link">
+                <a rel="next" href="../../ML%20papers%20to%20read/" class="nav-link">
                     Next <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
