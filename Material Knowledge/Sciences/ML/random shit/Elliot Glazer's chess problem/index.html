@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-                <title>Nysrg 7 7 - Alex Zhao's Public Pages</title>
+                <title>Glazer's Chess Problem - Alex Zhao's Public Pages</title>
 
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,22 +77,22 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="
+                            <a class=" active 
                             nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Coding]</a>
                             <ul class="dropdown-menu">
                                     <!-- block dropdown-menu -->
     <li>
-        <a href="../../Vim%20Tricks/" class="dropdown-item text-decoration-none ">Vim Tricks</a>
+        <a href="../../../Coding/Vim%20Tricks/" class="dropdown-item text-decoration-none ">Vim Tricks</a>
     </li>
 <!-- endblock -->
                                     <!-- block dropdown-menu -->
     <li>
-        <a href="../../USACO/General%20Thoughts%2C%20Paradigms/" class="dropdown-item text-decoration-none ">USACO Notes</a>
+        <a href="../../../Coding/USACO/General%20Thoughts%2C%20Paradigms/" class="dropdown-item text-decoration-none ">USACO Notes</a>
     </li>
 <!-- endblock -->
                                     <!-- block dropdown-menu -->
     <li>
-        <a href="../../../ML/random%20shit/Elliot%20Glazer%27s%20chess%20problem/" class="dropdown-item text-decoration-none ">Glazer's Chess Problem</a>
+        <a href="./" class="dropdown-item text-decoration-none  active ">Glazer's Chess Problem</a>
     </li>
 <!-- endblock -->
                             </ul>
@@ -151,12 +151,35 @@
     <article>
         <header>
             
-                <h1 class=" title" id="component-title">Nysrg 7 7</h1>
+                <h1 class=" title" id="component-title">Glazer's Chess Problem</h1>
             
         </header>
-        <p><p>Okay, just finished reading Redis version 1.3.6 with ekzhang's NYSRG. Some of the things that I learned are... This person put an entire database, socket, query, protocol, all in basically a single 9000 C file with a bunch of internalizers. So, there's a picture of the server that will probably be placed here. But, basically it just has all the pieces that you need just put together, wrapped together. So, it supports virtual memory, so you can swap from memory onto disk. It supports flushing memory onto disk. It supports what's called RDB, Redis Database. So, it will just copy everything to disk periodically. It holds the entire database in memory, which is kind of weird. I suppose that's what makes it kind of easy slash small in the sense that it can be stored entirely in a 9000-line C file because everything is just kind of done in memory. Also, relative to its 2010 launch, it had the innovation of supporting lists, sets, large datasets. I guess this time reading code, I learned about paying attention to structs and paying attention to config files and comments. The comments in the config files can kind of direct your attention as to what to pay attention to. In particular, when trying to dissect large libraries, the important thing is to figure out which structs and methods are important and then frame your intuition around those structs. Create a mental model that frames around some key elements and then fill in details one at a time when reading other methods.</p>
-<p>file:///Users/alex-zhao/Coding/assorted/redis/doc/README.html
-![[Pasted image 20240707205010.png]]</p></p>
+        <p><h2 id="useful-properties-of-current-game-state">Useful properties of current game state</h2>
+<p>Black and White can play in such a way that at any point in the sequence, any available move is reversible. In particular, Black can choose to move their knight between a8, b6, d5 only and avoid breaking 3rep draw rule (see below). Under this setup, at any point in the sequence the only pieces Black could move are the king, either knight (unable to reach any White pieces if White plays mirror) and the rook, all of which are reversible moves.</p>
+<h2 id="setup-and-intuition">Setup and intuition</h2>
+<p>We construct an infinite "forced history" $P$ using a binary sequence that satisfies the 3rep rule, constructed below. We then construct the post-sequence $Q$ recursively. Denote the $i$th move before the current game state as $-i$. When processing the $i$th step of $P$ (move $-i$), we append to $Q$ in such a way that making any <em>other</em> move at time $-i$ would result in a 3rep violation, but the intended move is ok.</p>
+<p>Because the forced history never goes to the initial game state, any proof game must "hop onto" the forced history, and by construction there is a 3rep violation starting from that timestep (since moving backwards it is "stepping off of" the forced history). However, for any finite prefix of $Q$, some finite suffix $[-N,0]$ of the forced history $P$ is valid with that prefix, so we only need to make some fixed progression of moves to get to timestep $-N$ to generate a valid proof game.</p>
+<h2 id="bit-sequence-construction">Bit sequence construction</h2>
+<p>First we recursively construct an infinite sequence of bits that is "fine" under the 3rep draw rule.</p>
+<p>Start with $A=0$ and $B=1$. Repeatedly replace
+$$
+A,B:=AAB,ABB
+$$
+so that the two values start at $0,1$ then become $001, 011$, then $001001011, 001011011$ etc.</p>
+<p>Note that at timestep $i$ the new value of $A$ contains the previous value of $A$ as its prefix. Hence we can define the limit of $A$ to be our infinite sequence. We claim no subsequence of this limiting sequence $S$ breaks the 3rep rule.</p>
+<p>Breaking the infinite sequence into chunks of length 3, the boundary of each chunk is the only place where $1$ becomes $0$. Hence given any slice with length at least $3$ there exists such a boundary $10$, and hence we can uniquely determine the starting index of that slice modulo $3$.</p>
+<p>Suppose some subsequence $s$ breaks the 3rep rule. Since $s$ is finite, we can say it is a subset of $A_{t}$ for some $t.$</p>
+<p>Clearly the subunit with length $\frac{|s|}{3}$ cannot have length 1, and by inspection cannot have length 2. Suppose it has length at least 3. Then we claim the three slices must have the same starting indices modulo $3,$ i.e. we have $3\mid s.$</p>
+<p>Suppose the starting index is not divisible by $3,$ i.e. it doesn't "begin" on a block. Note that since the slice has length divisible by $3,$ it must cover one chunk on one side by 2 (wlog right side), and one chunk on the other side by 1.</p>
+<p>Note that knowing the middle number in any chunk suffices to inform us what the other digits in that chunk are, since first digit of every chunk is $0$, and last digit of every chunk is $1$. Hence if we simply shift all three slices one index to the right, they will still all be equal, but they will also be aligned with the chunks.</p>
+<p>Now replace every occurrence of $001$ with $0$ and every occurrence of $011$ with $1$ (equivalently remove all occurrences of $10$). Then the slices decrease in size by $3,$ and they become slices in $A_{t-1}$ that break the 3-rule. Induction immediately finishes to prove our claim.</p>
+<h2 id="translating-binary-sequence-bits-into-forced-history-chess">Translating binary sequence (bits) into forced history (chess)</h2>
+<p>Here we define the sequence $P$ (imagine moving backwards in time, from current game state). The only piece that moves will be the knight at <code>a8</code>, and it only ever travels between <code>a8</code>, <code>b6</code>, and <code>d5</code>.</p>
+<p>First move to <code>b6</code>. Then follow the infinite sequence constructed above. A $0$ corresponds to <code>b6-&gt;a8-&gt;b6</code> and a $1$ corresponds to <code>b6-&gt;d5-&gt;b6</code>. Similarly to above, if there are any 3rep violations we can easily align them to these 2-move chunks, and then translate back into binary-space, and arrive at a contradiction.</p>
+<p>Make mirror moves for White using the knight at <code>h1</code>. We have hence arrived at a construction for a "forced history" $P$ that doesn't violate 3rep.</p>
+<h2 id="using-forced-history-to-generate-sequence">Using forced history to generate sequence</h2>
+<p>Now we have a target forced history $P$. Now the goal is to design an algorithm yielding a sequence $Q$, along with "timestamps" $r_{i},$ such that the prefix of timestamps $[0,r_{i}]$ of $Q$ permits the suffix $[-i, 0]$ of $P,$ but permits no other suffixes of length $i$.</p>
+<h2 id="proving-correctness">Proving correctness</h2></p>
     </article>
 </section>
 <!-- endblock -->
@@ -164,6 +187,19 @@
 
             
                     <!-- block preview -->
+        <div class="row row-cols-md-3 text-center pt-md-3" id="component-preview">
+            <div class="col themed-grid-col">
+                <a rel="prev" href="../../../Coding/USACO/General%20Thoughts%2C%20Paradigms/" class="nav-link">
+                    <i class="fa fa-arrow-left"></i> Previous
+                </a>
+            </div>
+            <div class="col themed-grid-col"></div>
+            <div class="col themed-grid-col">
+                <a rel="next" href="../../../../Food%2BCooking/%E5%AE%B6%E5%B8%B8%E8%8F%9C%E8%B0%B1/%E7%B3%96%E9%86%8B%E6%8E%92%E9%AA%A8/" class="nav-link">
+                    Next <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
 <!-- endblock -->
             
 
