@@ -38,15 +38,25 @@ Now we have a target forced history $P$. Now the goal is to design an algorithm 
 At any timestep $-(i-1)$ the only diff from the current game state is the position of the knights on `a8` and `h1`. The `a8` knight can be on `b6` or `d5` and the `h1` knight can be on `g3` or `e4`.
 
 We wish to prohibit all moves at timestep $-i$ other than the one we have prescribed. Either:
+
 - the rook that is free to move takes its one possible action
+
 - the king whose turn it is to move takes its one possible action
+
 - the other knight who has never moved takes its one possible action
+
 We prohibit these in turn. Let the sequence developed so far be $s,$ defined by all actions in $[-(i-1),r_{i-1}].$ For each of the above three possible actions:
+
 - let the action be $A$ (in the "forward" time direction, e.g. `Raa7`.)
+
 - Pick another "irrelevant" reversible action. Either the "other knight" action or the king action is always available, call that $B$.
+
 - let $s'$ be the sequence of moves formed by$$ ss ^{-1}A ^{-1}Ass ^{-1}A ^{-1}Ass ^{-1}A ^{-1}BB ^{-1}A. $$
+
 - Note that $s'$ still has $s$ as a prefix, so take $s'[len(s):]$ and append that to $Q.$ Let the other color mirror.
+
 - Intuition: note that prepending the action $A$ creates a 3rep of the subsequence $Ass ^{-1}A,$ but because of the $BB ^{-1}$ at the end there is no violation of 3rep using only the subsequence (at first inspection, more details later).
+
 Do this for every timestamp $i$, for both Black and White, for every "off-script past action" available to the current player. This generates an infinite sequence $Q$, and it is apparent from construction that there are no proof games. As argued earlier, any proof game must come "onto" the forced history, and at that point would create a 3rep violation.
 ## Proving correctness
 It remains to show that a finite proof game exists for any finite prefix of $Q$.
