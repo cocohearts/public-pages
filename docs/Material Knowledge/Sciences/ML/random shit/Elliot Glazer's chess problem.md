@@ -1,5 +1,17 @@
 ## Useful properties of current game state
+There exists an infinite sequence of proof steps such that at any point in this sequence, all available moves for the current player are reversible. 
+
 Black and White can play in such a way that at any point in the sequence, any available move is reversible. In particular, Black can choose to move their knight between a8, b6, d5 only and avoid breaking 3rep draw rule (see below). Under this setup, at any point in the sequence the only pieces Black could move are the king, either knight (unable to reach any White pieces if White plays mirror) and the rook, all of which are reversible moves.
+
+As a remark, we claim this is a necessary condition for such a sequence to exist. What follows for this remark is not entirely rigorous, but the main idea is here.
+
+Any proof game is valid for only finitely many prefixes of the sequence, otherwise the entire sequence is valid with that proof game. However, each of the infinitely many prefixes is valid with some proof game. Thus, for any $N$ there are infinitely many proof games that are valid with the first $N$ moves of the sequence.
+
+From any board state there are finitely many possible previous moves. Construct the tree whose root is the given board state, and where the children of each node are all possible previous board states, assuming the follow-up is the path to root and 3rep is not violated. Then for any $N$ there exist nodes of arbitrary depth such that the corresponding proof "suffix" plus the first $N$ moves of the sequence is valid.
+
+Suppose this condition is not satisfied, i.e. beyond some fixed depth $D$ in this tree we are forced to make an irreversible move $M$. If $M$ is irreversible, it cannot be replayed, i.e. it cannot occur again in the sequence. Hence $M$ serves as a "separator" between all preceding and succeeding moves; because $M$ cannot be replayed it cannot occur in a 3rep violation, so for any proof game and any sequence prefix, we can consider the moves before $M$ and after $M$ separately.
+
+Hence of the finitely many proof game suffixes with length $D,$ at least one of them is valid with infinitely many sequence prefixes, i.e. is valid with the entire sequence. Since we are guaranteed to have an irreversible move after length $D$ suffix, all "subsequent" moves (moving backwards in time) are irrelevant, so (almost) any finite progression from initial board state to $-D$ state will work with the entire sequence, which is a contradiction.
 ## Setup and intuition
 We construct an infinite "forced history" $P$ using a binary sequence that satisfies the 3rep rule, constructed below. We then construct the post-sequence $Q$ recursively. Denote the $i$th move before the current game state as $-i$. When processing the $i$th step of $P$ (move $-i$), we append to $Q$ in such a way that making any *other* move at time $-i$ would result in a 3rep violation, but the intended move is ok.
 
@@ -59,4 +71,4 @@ We prohibit these in turn. Let the sequence developed so far be $s,$ defined by 
 
 Do this for every timestamp $i$, for both Black and White, for every "off-script past action" available to the current player. This generates an infinite sequence $Q$, and it is apparent from construction that there are no proof games. As argued earlier, any proof game must come "onto" the forced history, and at that point would create a 3rep violation.
 ## Proving correctness
-It remains to show that a finite proof game exists for any finite prefix of $Q$.
+It remains to show that a finite proof game exists for any finite prefix of $Q$. Equivalently we show that the bidirectional infinite sequence $P$ followed by $Q$ contains no 3rep violations. If this holds, then for any prefix $Q$ of length $N$ we take a $P$-suffix of length approximately $3N$ so that  then move a rook and move a pawn.
