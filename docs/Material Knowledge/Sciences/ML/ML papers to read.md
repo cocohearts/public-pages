@@ -59,6 +59,10 @@ add to [[famous architectures]]
 	- streamingllm analyzed attention magnitudes, found that "leftover" attention would be dumped into "attention sinks" in the softmax which would then be ignored
 	- added initial tokens back to inference, perplexity fixed (compared to sliding window)
 - [ ] [speculative decoding](https://arxiv.org/pdf/2211.17192)
+- [ ] [yarn](https://arxiv.org/pdf/2309.00071)
+	- uses RoPE (instead of adding pos. embedding, multiply by $D/2$ complex numbers with AP magnitude)
+	- pretrain on 10K context/RoPE, then interpolate arguments of complex numbers in pos. embedding carefully
+	- preserve higher frequency numbers and move lower 
 - [ ] [lolcats](https://arxiv.org/pdf/2410.10254)
 ## interp
 - [ ] [automated circuit discovery](https://papers.nips.cc/paper_files/paper/2023/file/34e1dbe95d34d7ebaf99b9bcaeb5b2be-Paper-Conference.pdf)
