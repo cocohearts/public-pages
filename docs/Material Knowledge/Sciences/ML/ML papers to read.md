@@ -1,3 +1,10 @@
+sana, again
+openvla
+pizero source sent by ge
+moviegen
+video transformer arch
+flows, euler flow, etc. read flux codebase
+https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf
 Large Memory Layers with Product Keys
 https://arxiv.org/pdf/1907.05242
 Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs
@@ -64,6 +71,8 @@ add to [[famous architectures]]
 	- pretrain on 10K context/RoPE, then interpolate arguments of complex numbers in pos. embedding carefully
 	- preserve higher frequency numbers and move lower 
 - [ ] [lolcats](https://arxiv.org/pdf/2410.10254)
+- [ ] deepseek v3
+	- MTP, Yarn, "long-winded and overly reflective" R1 with system prompt during SFT for transfer, carefully load balanced MoE
 ## interp
 - [ ] [automated circuit discovery](https://papers.nips.cc/paper_files/paper/2023/file/34e1dbe95d34d7ebaf99b9bcaeb5b2be-Paper-Conference.pdf)
 - [ ] [path patching](https://arxiv.org/pdf/2304.05969)
