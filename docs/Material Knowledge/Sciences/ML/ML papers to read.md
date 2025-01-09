@@ -2,9 +2,12 @@ sana, again
 openvla
 pizero source sent by ge
 moviegen
+[prime](https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f)
 video transformer arch
 flows, euler flow, etc. read flux codebase
+flow-dpm
 https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf
+olmo
 Large Memory Layers with Product Keys
 https://arxiv.org/pdf/1907.05242
 Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs
@@ -172,7 +175,7 @@ add to [[famous architectures]]
 	- add nonlinearity with 1x1 convs along channel and 3x3 conv along channel, token index and GLU
 	- no positional encoding! rely on 3x3 conv for implicit positional info
 	- bit quantization, triton cuda shit, for faster inference
-	- [ ] some Flow-DPM math ⏫ 📅 2025-01-05
+	- [ ] some Flow-DPM math ⏫ 📅 2025-01-09
 - [x] [wav2vec](https://arxiv.org/pdf/2006.11477)
 	- architecture: 6-deep convnet for latent representation (stride 20ms, receptive field 25ms at 16k hz), then quantize using product codebook w linear projection (gumbel softmax to get $V\times G$ logits for codebook), causal transformer on latents to get context representation
 	- train by masking some latents with learned mask token, cosine similarity for cross-entropy loss between "real" masked quantized latent and several distractors
