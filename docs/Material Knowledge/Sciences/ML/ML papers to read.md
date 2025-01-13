@@ -7,8 +7,33 @@ moviegen
 video transformer arch
 flows, euler flow, etc. read flux codebase
 flow-dpm
-https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf
-olmo
+
+- [x] [Nvidia Cosmos 2](https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf)
+	- AE:
+	- start with Haar 3D wavelet in time/space to downsample spatially
+	- alternating factorized resblock and factorized attention with downsampling
+	- ends at latent dimension 16 for continuous (diffusion) and 6 for discrete (autoregressive)
+	- every video token is predicted autoregressively after flattening in sequence, use finite scalar quantization to quantize to total 64K vocab size
+	- because attention is used on "every layer" context length is only 34 frames-quite sad lmao
+	- use 8x16x16 compression for autoregressive and 8x8x8 for diffusion
+	- autoregressive: hybrid 3D RoPE with absolute embeddings per head for each token, cross attention from text prompt (NOT concat, think abt why)
+	- diffusion: typical DiT, patchify using 1x2x2 and project/flatten, then text CA plus adaLN from time
+	- like suno, best is to use autoregressive to generate discrete tokens, then use "diffusion decoder"—condition on autoregressive tokens and regenerate continuous latents using diffusion
+- [x] [olmo](https://arxiv.org/pdf/2501.00656)
+	- training curriculum with general text/fineweb-edu, then text for specific tasks to push benchmark scores
+	- stability tricks: Z-score regularization, gradient clipping, KV-norm, RMSnorm, no biases, model soups, careful model init, low lr (1e-8), post-norm, weight decay, dropout
+- [x] ditto
+	- can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs
+- [ ] [Stable Diffusion audio codec](https://arxiv.org/pdf/2411.19842) (400-700 bps!!)
+	- patch ViT style, 300 ish
+	- blocks of strided conv followed by lots of transformers (sliding attention, 128 tokens)
+	- FSQ—bottleneck into even lower dim, and then quantize each dim -> one token
+	- either learn N scalars to snap to, or parametrize (they use floor tanh)
+	- quantizer-dropout occasionally
+- [ ] Suno encoder
+	- 
+- [ ] grok 1
+- [ ] PRIME
 Large Memory Layers with Product Keys
 https://arxiv.org/pdf/1907.05242
 Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs
@@ -176,7 +201,7 @@ add to [[famous architectures]]
 	- add nonlinearity with 1x1 convs along channel and 3x3 conv along channel, token index and GLU
 	- no positional encoding! rely on 3x3 conv for implicit positional info
 	- bit quantization, triton cuda shit, for faster inference
-	- [ ] some Flow-DPM math ⏫ 📅 2025-01-09
+	- [ ] some Flow-DPM math ⏫ 📅 2025-01-12
 - [x] [wav2vec](https://arxiv.org/pdf/2006.11477)
 	- architecture: 6-deep convnet for latent representation (stride 20ms, receptive field 25ms at 16k hz), then quantize using product codebook w linear projection (gumbel softmax to get $V\times G$ logits for codebook), causal transformer on latents to get context representation
 	- train by masking some latents with learned mask token, cosine similarity for cross-entropy loss between "real" masked quantized latent and several distractors
