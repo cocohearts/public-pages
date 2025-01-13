@@ -161,9 +161,44 @@ moviegen
 <a href="https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f">prime</a>
 video transformer arch
 flows, euler flow, etc. read flux codebase
-flow-dpm
-https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf
-olmo
+flow-dpm</p>
+<ul>
+<li>[x] <a href="https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf">Nvidia Cosmos 2</a><ul>
+<li>AE:</li>
+<li>start with Haar 3D wavelet in time/space to downsample spatially</li>
+<li>alternating factorized resblock and factorized attention with downsampling</li>
+<li>ends at latent dimension 16 for continuous (diffusion) and 6 for discrete (autoregressive)</li>
+<li>every video token is predicted autoregressively after flattening in sequence, use finite scalar quantization to quantize to total 64K vocab size</li>
+<li>because attention is used on "every layer" context length is only 34 frames-quite sad lmao</li>
+<li>use 8x16x16 compression for autoregressive and 8x8x8 for diffusion</li>
+<li>autoregressive: hybrid 3D RoPE with absolute embeddings per head for each token, cross attention from text prompt (NOT concat, think abt why)</li>
+<li>diffusion: typical DiT, patchify using 1x2x2 and project/flatten, then text CA plus adaLN from time</li>
+<li>like suno, best is to use autoregressive to generate discrete tokens, then use "diffusion decoder"—condition on autoregressive tokens and regenerate continuous latents using diffusion</li>
+</ul>
+</li>
+<li>[x] <a href="https://arxiv.org/pdf/2501.00656">olmo</a><ul>
+<li>training curriculum with general text/fineweb-edu, then text for specific tasks to push benchmark scores</li>
+<li>stability tricks: Z-score regularization, gradient clipping, KV-norm, RMSnorm, no biases, model soups, careful model init, low lr (1e-8), post-norm, weight decay, dropout</li>
+</ul>
+</li>
+<li>[x] ditto<ul>
+<li>can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs</li>
+</ul>
+</li>
+<li>[ ] <a href="https://arxiv.org/pdf/2411.19842">Stable Diffusion audio codec</a> (400-700 bps!!)<ul>
+<li>patch ViT style, 300 ish</li>
+<li>blocks of strided conv followed by lots of transformers (sliding attention, 128 tokens)</li>
+<li>FSQ—bottleneck into even lower dim, and then quantize each dim -&gt; one token</li>
+<li>either learn N scalars to snap to, or parametrize (they use floor tanh)</li>
+<li>quantizer-dropout occasionally</li>
+</ul>
+</li>
+<li>[ ] Suno encoder<ul>
+<li></li>
+</ul>
+</li>
+<li>[ ] grok 1</li>
+<li>[ ] PRIME
 Large Memory Layers with Product Keys
 https://arxiv.org/pdf/1907.05242
 Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs
@@ -181,7 +216,8 @@ https://arxiv.org/pdf/2303.13506
 Gradient Routing (s/o Jacob)
 https://arxiv.org/pdf/2410.04332
 Binlear MLPs for Interp
-https://openreview.net/pdf?id=gI0kPklUKS</p>
+https://openreview.net/pdf?id=gI0kPklUKS</li>
+</ul>
 <p>Not really AI:
 Anatomy of a Bit: Information in a Time Series Observation
 https://arxiv.org/pdf/1105.2988
@@ -376,7 +412,7 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models</p>
 <li>add nonlinearity with 1x1 convs along channel and 3x3 conv along channel, token index and GLU</li>
 <li>no positional encoding! rely on 3x3 conv for implicit positional info</li>
 <li>bit quantization, triton cuda shit, for faster inference</li>
-<li>[ ] some Flow-DPM math ⏫ 📅 2025-01-09</li>
+<li>[ ] some Flow-DPM math ⏫ 📅 2025-01-12</li>
 </ul>
 </li>
 <li>[x] <a href="https://arxiv.org/pdf/2006.11477">wav2vec</a><ul>
