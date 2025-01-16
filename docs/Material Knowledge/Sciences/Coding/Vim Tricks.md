@@ -23,14 +23,14 @@
 - `J` used to join selected lines with space delim
 - `cs{sel}([` make a selection, replace surrounding `(` with `[`
 - similarly `ds`, or `ys` to add
+- `CTRL-O` to old positions, `CTRL-I` to new ones
+- `CTRL-U`, `CTRL-D`
 ### Learning
 -  `ge` for back word end
 - `{,[(` for first new whitespace after last para
 - `(,)` for `{` plus firstline para
 - `gU<>,gu<>,~` for case (last toggle)
-- `CTRL-O` to old positions, `CTRL-I` to new ones
-- `CTRL-U`, `CTRL-D`
-- use `q[x]` to record macro to key `[x]`
+- use `q[x]` to record macro to key `[x]`, use with `@[x]`
 - `<UP>` to try previous searches from search history
 - `m[x]` create mark, `'[x]` to go to mark
 - `:grep` to use grep inside current file

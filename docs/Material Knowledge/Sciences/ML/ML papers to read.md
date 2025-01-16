@@ -8,6 +8,12 @@ video transformer arch
 flows, euler flow, etc. read flux codebase
 flow-dpm
 
+pixtral
+mooondream
+gpipe
+megatron
+fsdp
+grok 1
 - [x] [Nvidia Cosmos 2](https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf)
 	- AE:
 	- start with Haar 3D wavelet in time/space to downsample spatially
