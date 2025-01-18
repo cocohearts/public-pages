@@ -7,6 +7,7 @@ moviegen
 video transformer arch
 flows, euler flow, etc. read flux codebase
 flow-dpm
+titans from gr
 
 pixtral
 mooondream
