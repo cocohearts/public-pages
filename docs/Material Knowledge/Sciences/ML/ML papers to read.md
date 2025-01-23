@@ -15,12 +15,15 @@ gpipe
 megatron
 fsdp
 grok 1
+- [x] meta visual tokenizers
+	- opposing the conv/attention interleave strategy used by cosmos/SD, try full send single conv with 8x16x16 stride=kernel (aka patching) into ~1k feature dim, then full ViT with 3D RoPE/SwiGLU, then bottleneck
+	- works well, however performance does *not* scale with encoder/decoder size
 - [x] [MAE](https://arxiv.org/abs/2111.06377)
 	- Make AE modeling a masked task by masking some of the patches
 	- feed into encoder (with pos embeddings) without mask tokens, feed into decoder with mask tokens, allows huge speedup
 	- downstream ViT task still great, AE learns to encode global "semantic properties" cuz of masking task
 - [ ] [Hiera](https://arxiv.org/pdf/2306.00989)
-	- 
+	- took an existing ViT where the adapter uses 
 - [x] [Nvidia Cosmos 2](https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf)
 	- AE:
 	- start with Haar 3D wavelet in time/space to downsample spatially
@@ -214,7 +217,7 @@ add to [[famous architectures]]
 	- add nonlinearity with 1x1 convs along channel and 3x3 conv along channel, token index and GLU
 	- no positional encoding! rely on 3x3 conv for implicit positional info
 	- bit quantization, triton cuda shit, for faster inference
-	- [ ] some Flow-DPM math ⏫ 📅 2025-01-20
+	- [ ] some Flow-DPM math ⏫ 📅 2025-01-22
 - [x] [wav2vec](https://arxiv.org/pdf/2006.11477)
 	- architecture: 6-deep convnet for latent representation (stride 20ms, receptive field 25ms at 16k hz), then quantize using product codebook w linear projection (gumbel softmax to get $V\times G$ logits for codebook), causal transformer on latents to get context representation
 	- train by masking some latents with learned mask token, cosine similarity for cross-entropy loss between "real" masked quantized latent and several distractors
