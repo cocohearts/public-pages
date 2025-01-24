@@ -15,15 +15,18 @@ gpipe
 megatron
 fsdp
 grok 1
-- [x] meta visual tokenizers
+- [x] [meta visual tokenizers](https://arxiv.org/pdf/2501.09755)
 	- opposing the conv/attention interleave strategy used by cosmos/SD, try full send single conv with 8x16x16 stride=kernel (aka patching) into ~1k feature dim, then full ViT with 3D RoPE/SwiGLU, then bottleneck
 	- works well, however performance does *not* scale with encoder/decoder size
 - [x] [MAE](https://arxiv.org/abs/2111.06377)
 	- Make AE modeling a masked task by masking some of the patches
 	- feed into encoder (with pos embeddings) without mask tokens, feed into decoder with mask tokens, allows huge speedup
 	- downstream ViT task still great, AE learns to encode global "semantic properties" cuz of masking task
-- [ ] [Hiera](https://arxiv.org/pdf/2306.00989)
-	- took an existing ViT where the adapter uses 
+- [x] [Hiera](https://arxiv.org/pdf/2306.00989)
+	- develops a new fully-transformer based vit encoder/decoder for classification/segmentation tasks on image/video
+	- on each downsize, instead of using strided conv, use Q-pooled attention, similar to cross attention but Q terms get pooled via maxpool
+	- masked loss, mask tokens don't get fed into the encoder only the decoder (they get "filled in")
+	- use local window attention at lower resolutions, then global later on
 - [x] [Nvidia Cosmos 2](https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf)
 	- AE:
 	- start with Haar 3D wavelet in time/space to downsample spatially
@@ -186,7 +189,8 @@ add to [[famous architectures]]
 - [ ] [papers](https://arxiv.org/abs/2305.03486) from [william brandon](https://arxiv.org/abs/2206.00364)
 ## sci of dl
 - [ ] [scaling via data manifolds](https://arxiv.org/abs/2004.10802)
-- [ ] [low rank](https://arxiv.org/abs/2106.09685)
+- [x] [low rank](https://arxiv.org/abs/2106.09685)
+	- can update matrix weights using low rank factorizations of matrices
 - [x] [modular duality](https://arxiv.org/pdf/2410.21265) by bernstein
 	- two angles for motivation:
 	1. gradients are not same type as weights, they are linear functionals on the weights i.e. $\Delta \mathcal{L}=g^{T}w.$ Hence we should update by the result of some "duality map" applied to the gradient.
