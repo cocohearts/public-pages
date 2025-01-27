@@ -15,6 +15,10 @@ gpipe
 megatron
 fsdp
 grok 1
+- [x] [hymba](https://arxiv.org/pdf/2411.13676)
+	- combine SSM and transformer *side by side* as opposed to in sequence, has good "synergy" because of opposing behaviors
+	- Transformers arch with LN, LinUp, split SSM/Attn, LinDown, (+), LN, FFN, (+)
+	- (N-3)/2 SWA Hymba blocks on each side of global attention
 - [x] [meta visual tokenizers](https://arxiv.org/pdf/2501.09755)
 	- opposing the conv/attention interleave strategy used by cosmos/SD, try full send single conv with 8x16x16 stride=kernel (aka patching) into ~1k feature dim, then full ViT with 3D RoPE/SwiGLU, then bottleneck
 	- works well, however performance does *not* scale with encoder/decoder size
@@ -221,7 +225,7 @@ add to [[famous architectures]]
 	- add nonlinearity with 1x1 convs along channel and 3x3 conv along channel, token index and GLU
 	- no positional encoding! rely on 3x3 conv for implicit positional info
 	- bit quantization, triton cuda shit, for faster inference
-	- [ ] some Flow-DPM math ⏫ 📅 2025-01-24
+	- [ ] some Flow-DPM math ⏫ 📅 2025-01-28
 - [x] [wav2vec](https://arxiv.org/pdf/2006.11477)
 	- architecture: 6-deep convnet for latent representation (stride 20ms, receptive field 25ms at 16k hz), then quantize using product codebook w linear projection (gumbel softmax to get $V\times G$ logits for codebook), causal transformer on latents to get context representation
 	- train by masking some latents with learned mask token, cosine similarity for cross-entropy loss between "real" masked quantized latent and several distractors
