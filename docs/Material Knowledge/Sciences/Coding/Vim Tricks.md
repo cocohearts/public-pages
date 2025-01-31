@@ -19,24 +19,29 @@
 - `A` for append to end of sentence
 - `t` basically `fh`
 - `%` to jump to matching `({[`
-### Learning
 - `:reg` to see list of registers; `"1p` to paste yank before this, `"ayw` to yank word to `"a`
--  `ge` for back word end
-- `{,[]()}` for first new whitespace after last para
-- `(,)` for `{` plus firstline para
-- `gU<>,gu<>,~` for case (last toggle)
+- `J` used to join selected lines with space delim
+- `cs{sel}([` make a selection, replace surrounding `(` with `[`
+- similarly `ds`, or `ys` to add
 - `CTRL-O` to old positions, `CTRL-I` to new ones
 - `CTRL-U`, `CTRL-D`
-- use `q[x]` to record macro to key `[x]`
+### Learning
+-  `ge` for back word end
+- `{,[(` for first new whitespace after last para
+- `(,)` for `{` plus firstline para
+- `gU<>,gu<>,~` for case (last toggle)
+- use `q[x]` to record macro to key `[x]`, use with `@[x]`
 - `<UP>` to try previous searches from search history
 - `m[x]` create mark, `'[x]` to go to mark
-- `J` used to join selected lines with space delim
 - `:grep` to use grep inside current file
 - `s{char}{char}` v-sneak, can use op, in Obs just `cl`
 - `]]` next `{` in first column; `[[` next `}` in first column
 - `[(` for previous unmatched `(` and `[)` for next unmatched `)`; aka. previous/next in this "scope"
-- `cs{sel}([` make a selection, replace surrounding `(` with `[`
-- similarly `ds`, or `ys` to add
+- `<CTRL-O>` for one-bullet hybrid Insert-Normal mode
+- `<CTRL-R>` for paste from register in Insert mode (use with ctrl-o `:reg`)
+- replace mode with `R`
 ### WTF
 - `<CTRL-W> S/V` to split (horizontal line) or (vertical line)
 - `<CTRL-W> h/j/k/l` to move windows
+- `<CTRL-A>` to inc. next number
+- `<CTRL-X>` to dec. next number

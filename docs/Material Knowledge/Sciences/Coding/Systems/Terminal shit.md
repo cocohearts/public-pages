@@ -1,0 +1,7 @@
+- `ps aux | grep __`
+- `pkill` has a bunch of options
+	- `-f` for final
+	- `-x` for command
+	- `-9` for "must die"
+	- `-u` for user
+- 

@@ -1,6 +1,0 @@
-- a non-protein-coding gene makes an RNA that can "fold"
-- This small RNA can:
-	- inhibit translation on mRNA
-	- degrade mRNA
-	- form chromatins
-- Noted study: lin-4, lin-14
