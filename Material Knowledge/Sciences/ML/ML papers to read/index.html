@@ -161,44 +161,20 @@ moviegen
 <a href="https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f">prime</a>
 video transformer arch
 flows, euler flow, etc. read flux codebase
-flow-dpm</p>
-<ul>
-<li>[x] <a href="https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf">Nvidia Cosmos 2</a><ul>
-<li>AE:</li>
-<li>start with Haar 3D wavelet in time/space to downsample spatially</li>
-<li>alternating factorized resblock and factorized attention with downsampling</li>
-<li>ends at latent dimension 16 for continuous (diffusion) and 6 for discrete (autoregressive)</li>
-<li>every video token is predicted autoregressively after flattening in sequence, use finite scalar quantization to quantize to total 64K vocab size</li>
-<li>because attention is used on "every layer" context length is only 34 frames-quite sad lmao</li>
-<li>use 8x16x16 compression for autoregressive and 8x8x8 for diffusion</li>
-<li>autoregressive: hybrid 3D RoPE with absolute embeddings per head for each token, cross attention from text prompt (NOT concat, think abt why)</li>
-<li>diffusion: typical DiT, patchify using 1x2x2 and project/flatten, then text CA plus adaLN from time</li>
-<li>like suno, best is to use autoregressive to generate discrete tokens, then use "diffusion decoder"—condition on autoregressive tokens and regenerate continuous latents using diffusion</li>
-</ul>
-</li>
-<li>[x] <a href="https://arxiv.org/pdf/2501.00656">olmo</a><ul>
-<li>training curriculum with general text/fineweb-edu, then text for specific tasks to push benchmark scores</li>
-<li>stability tricks: Z-score regularization, gradient clipping, KV-norm, RMSnorm, no biases, model soups, careful model init, low lr (1e-8), post-norm, weight decay, dropout</li>
-</ul>
-</li>
-<li>[x] ditto<ul>
-<li>can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs</li>
-</ul>
-</li>
-<li>[ ] <a href="https://arxiv.org/pdf/2411.19842">Stable Diffusion audio codec</a> (400-700 bps!!)<ul>
-<li>patch ViT style, 300 ish</li>
-<li>blocks of strided conv followed by lots of transformers (sliding attention, 128 tokens)</li>
-<li>FSQ—bottleneck into even lower dim, and then quantize each dim -&gt; one token</li>
-<li>either learn N scalars to snap to, or parametrize (they use floor tanh)</li>
-<li>quantizer-dropout occasionally</li>
-</ul>
-</li>
-<li>[ ] Suno encoder<ul>
-<li></li>
-</ul>
-</li>
-<li>[ ] grok 1</li>
-<li>[ ] PRIME
+flow-dpm
+titans from gr</p>
+<p><a href="https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f">prime</a>
+<a href="https://arxiv.org/pdf/2501.00656">olmo</a>
+<a href="https://arxiv.org/abs/2501.01005">flashinfer</a>
+srush tensor puzzles
+<a href="https://github.com/facebookresearch/lingua">meta lingua</a>
+deepseek paper again
+learn triton
+<a href="https://maharshi.bearblog.dev/optimizing-softmax-cuda/">triton softmax</a>
+srush triton puzzles
+read math in <a href="https://probml.github.io/pml-book/toc1.pdf">prob ml</a>
+- [x] ditto
+    - can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs
 Large Memory Layers with Product Keys
 https://arxiv.org/pdf/1907.05242
 Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs
@@ -216,8 +192,7 @@ https://arxiv.org/pdf/2303.13506
 Gradient Routing (s/o Jacob)
 https://arxiv.org/pdf/2410.04332
 Binlear MLPs for Interp
-https://openreview.net/pdf?id=gI0kPklUKS</li>
-</ul>
+https://openreview.net/pdf?id=gI0kPklUKS</p>
 <p>Not really AI:
 Anatomy of a Bit: Information in a Time Series Observation
 https://arxiv.org/pdf/1105.2988
@@ -233,9 +208,24 @@ awesome ML tools
 https://github.com/srush/awesome-machine-learning
 awesome discrete diffusion
 https://github.com/kuleshov-group/awesome-discrete-diffusion-models</p>
-<p>add to [[famous architectures]]</p>
-<h2 id="sysinference-optimization">sys/inference optimization</h2>
+<h2 id="sysinference-optimization-large-text-models">sys/inference optimization, large text models</h2>
 <ul>
+<li>[ ] PRIME</li>
+<li>[ ] grok 1</li>
+<li>[ ] siglip</li>
+<li>[x] <a href="https://arxiv.org/abs/2205.14135">flashattention</a><ul>
+<li>want to focus on minimizing i/o writes to and from gpu vram</li>
+<li>the goal is to do chunked attention QV muls in the cache close to the gpu</li>
+<li>make multiple passes over the output, each time updating by adjusting softmax denom and adding new term</li>
+<li>obv. keep running log of the softmax denom and have to re-read on every block</li>
+<li>prefetch/kernel fuse as desired</li>
+</ul>
+</li>
+<li>[x] <a href="https://arxiv.org/pdf/2501.00656">olmo</a><ul>
+<li>training curriculum with general text/fineweb-edu, then text for specific tasks to push benchmark scores</li>
+<li>stability tricks: Z-score regularization, gradient clipping, KV-norm, RMSnorm, no biases, model soups, careful model init, low lr (1e-8), post-norm, weight decay, dropout</li>
+</ul>
+</li>
 <li>what i learned from william brandon:<ul>
 <li>nvidia gpus have two caches, L2 and L1</li>
 <li>each streaming multiprocessor has its own L1 physically colocated with the SM</li>
@@ -254,8 +244,9 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models</p>
 </li>
 <li>[ ] ray python dist package</li>
 <li>[ ] deepspeed</li>
+<li>[ ] megatron</li>
 <li>[ ] <a href="https://arxiv.org/abs/2411.19722">jetformer</a></li>
-<li>[ ] ddp, fsdp</li>
+<li>[ ] ddp, fsdp, megatron, gpipe</li>
 <li>[ ] <a href="https://people.freebsd.org/~lstewart/articles/cpumemory.pdf">what to knwo about cpu memory</a></li>
 <li>[ ] flexattention</li>
 <li>[x] streamingllm, linformer<ul>
@@ -274,6 +265,12 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models</p>
 <li>[ ] <a href="https://arxiv.org/pdf/2410.10254">lolcats</a></li>
 <li>[ ] deepseek v3<ul>
 <li>MTP, Yarn, "long-winded and overly reflective" R1 with system prompt during SFT for transfer, carefully load balanced MoE</li>
+</ul>
+</li>
+<li>[x] <a href="https://arxiv.org/pdf/2411.13676">hymba</a><ul>
+<li>combine SSM and transformer <em>side by side</em> as opposed to in sequence, has good "synergy" because of opposing behaviors</li>
+<li>Transformers arch with LN, LinUp, split SSM/Attn, LinDown, (+), LN, FFN, (+)</li>
+<li>(N-3)/2 SWA Hymba blocks on each side of global attention</li>
 </ul>
 </li>
 </ul>
@@ -343,19 +340,34 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models</p>
 <h2 id="rl-agentsautomation">rl agents/automation</h2>
 <ul>
 <li>[ ] <a href="https://arxiv.org/abs/2408.06292">sakana</a></li>
+<li>[ ] <a href="https://diffusion-policy.cs.columbia.edu/">diffusion policy</a><ul>
+<li>use diffusion to denoise action latents that guide some agent in rl</li>
+<li>for whatever reason diffusion is rlly good lol idk</li>
+</ul>
+</li>
 </ul>
 <h2 id="roboticsrl">robotics/rl</h2>
 <ul>
 <li>[ ] <a href="https://arxiv.org/abs/2410.23208">kinetix rl physics lib</a></li>
 <li>[ ] <a href="https://mobile-aloha.github.io/resources/mobile-aloha.pdf">aloha robotics</a></li>
 <li>[ ] <a href="https://arxiv.org/abs/2406.09246">openvla</a></li>
-<li>[ ] <a href="https://spinningup.openai.com/en/latest/algorithms/ppo.html">ppo</a></li>
+<li>[x] <a href="https://spinningup.openai.com/en/latest/algorithms/ppo.html">ppo</a><ul>
+<li>want your policy to change but not by too much</li>
+<li>use advantage weighted log likelihood updates, but clip the upside to some $\epsilon$ makes it a lot more stable</li>
+</ul>
+</li>
+<li>[ ] <a href="https://arxiv.org/pdf/2402.03300">grpo/deepseekmath</a><ul>
+<li>data mix using iterative pipeline</li>
+<li>word n-gram neural model, averages all n-gram embeddings and mlp classification</li>
+<li>collect dataset, do grpo on DeepSeekCoder</li>
+<li>unified rl perspective: all algos can be described in terms of space parameterization, reward signal parametrization, policy gradient coefficient, GRPO just uses rule </li>
+</ul>
+</li>
 <li>[ ] <a href="https://github.com/mbreuss/diffusion-literature-for-robotics?tab=readme-ov-file#Diffusion-in-Robotics">diffusion for robotics</a></li>
 <li>[x] pi's <a href="https://www.physicalintelligence.company/download/pi0.pdf">new paper</a> (read ??)</li>
 <li>[x] <a href="https://arxiv.org/html/2410.11758v1">action latents</a></li>
 <li>[ ] <a href="https://people.eecs.berkeley.edu/~svlevine/">sergey levine</a> from berkeley has takes</li>
 <li>[ ] some yilun du papers: original <a href="https://arxiv.org/abs/1903.08689">EBM</a>, his <a href="https://yilundu.github.io/thesis.pdf">thesis</a>, his <a href="https://yilundu.github.io/research_statement.pdf">research statement</a></li>
-<li>[ ] </li>
 </ul>
 <h2 id="diffusion">diffusion</h2>
 <ul>
@@ -369,7 +381,10 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models</p>
 <h2 id="sci-of-dl">sci of dl</h2>
 <ul>
 <li>[ ] <a href="https://arxiv.org/abs/2004.10802">scaling via data manifolds</a></li>
-<li>[ ] <a href="https://arxiv.org/abs/2106.09685">low rank</a></li>
+<li>[x] <a href="https://arxiv.org/abs/2106.09685">low rank</a><ul>
+<li>can update matrix weights using low rank factorizations of matrices</li>
+</ul>
+</li>
 <li>[x] <a href="https://arxiv.org/pdf/2410.21265">modular duality</a> by bernstein<ul>
 <li>two angles for motivation:</li>
 <li>gradients are not same type as weights, they are linear functionals on the weights i.e. $\Delta \mathcal{L}=g^{T}w.$ Hence we should update by the result of some "duality map" applied to the gradient.</li>
@@ -389,6 +404,57 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models</p>
 </ul>
 <h2 id="audioimagevideo-specific">audio/image/video specific</h2>
 <ul>
+<li>in audio "conv subsampling" is just decreasing spatial resolution with convs</li>
+<li>[x] <a href="https://arxiv.org/pdf/2005.08100">conformer</a><ul>
+<li>FFM, MHA, Conv, FFM</li>
+<li>Conv is actually kinda MLP, with linear up channel (pointwise), activation, norm, conv, activatoin, linear down</li>
+</ul>
+</li>
+<li>[x] moondream<ul>
+<li>uses image patches with crops of fixed sizes, vit, recombine crops to get image embedding</li>
+<li>image adapter, prompt prefix, text tokens</li>
+<li></li>
+</ul>
+</li>
+<li>[ ] pixtral (vlm)</li>
+<li>[x] <a href="https://arxiv.org/pdf/2411.19842">Stable Diffusion audio codec</a> (400-700 bps!!)<ul>
+<li>patch ViT style, 300 ish</li>
+<li>blocks of strided conv followed by lots of transformers (sliding attention, 128 tokens)</li>
+<li>fully scalar quantization—bottleneck into even lower dim, and then quantize each dim -&gt; one token</li>
+<li>either learn N scalars to snap to, or parametrize (they use floor tanh)</li>
+<li>quantizer-dropout occasionally</li>
+</ul>
+</li>
+<li>[x] <a href="https://arxiv.org/pdf/2306.00989">Hiera</a><ul>
+<li>develops a new fully-transformer based vit encoder/decoder for classification/segmentation tasks on image/video</li>
+<li>on each downsize, instead of using strided conv, use Q-pooled attention, similar to cross attention but Q terms get pooled via maxpool</li>
+<li>masked loss, mask tokens don't get fed into the encoder only the decoder (they get "filled in")</li>
+<li>use local window attention at lower resolutions, then global later on</li>
+</ul>
+</li>
+<li>[x] <a href="https://d1qx31qr3h6wln.cloudfront.net/publications/NVIDIA%20Cosmos_2.pdf">Nvidia Cosmos 2</a> AE and generative<ul>
+<li>start with Haar 3D wavelet in time/space to downsample spatially</li>
+<li>alternating factorized resblock and factorized attention with downsampling</li>
+<li>ends at latent dimension 16 for continuous (diffusion) and 6 for discrete (autoregressive)</li>
+<li>every video token is predicted autoregressively after flattening in sequence, use finite scalar quantization to quantize to total 64K vocab size</li>
+<li>because attention is used on "every layer" context length is only 34 frames-quite sad lmao</li>
+<li>use 8x16x16 compression for autoregressive and 8x8x8 for diffusion</li>
+<li>autoregressive: hybrid 3D RoPE with absolute embeddings per head for each token, cross attention from text prompt (NOT concat, think abt why)</li>
+<li>diffusion: typical DiT, patchify using 1x2x2 and project/flatten, then text CA plus adaLN from time</li>
+<li>like suno, best is to use autoregressive to generate discrete tokens, then use "diffusion decoder"—condition on autoregressive tokens and regenerate continuous latents using diffusion</li>
+</ul>
+</li>
+<li>[x] <a href="https://arxiv.org/abs/2111.06377">MAE</a><ul>
+<li>Make AE modeling a masked task by masking some of the patches</li>
+<li>feed into encoder (with pos embeddings) without mask tokens, feed into decoder with mask tokens, allows huge speedup</li>
+<li>downstream ViT task still great, AE learns to encode global "semantic properties" cuz of masking task</li>
+</ul>
+</li>
+<li>[x] <a href="https://arxiv.org/pdf/2501.09755">meta visual tokenizers</a><ul>
+<li>opposing the conv/attention interleave strategy used by cosmos/SD, try full send single conv with 8x16x16 stride=kernel (aka patching) into ~1k feature dim, then full ViT with 3D RoPE/SwiGLU, then bottleneck</li>
+<li>works well, however performance does <em>not</em> scale with encoder/decoder size (why???)</li>
+</ul>
+</li>
 <li>[x] <a href="https://arxiv.org/pdf/2212.09748">original dit</a><ul>
 <li>u-nets are great but let's try transformers instead</li>
 <li>standard latent diffusion, break latent into $p\times p$ patches (use $p=2$)</li>
@@ -412,7 +478,7 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models</p>
 <li>add nonlinearity with 1x1 convs along channel and 3x3 conv along channel, token index and GLU</li>
 <li>no positional encoding! rely on 3x3 conv for implicit positional info</li>
 <li>bit quantization, triton cuda shit, for faster inference</li>
-<li>[ ] some Flow-DPM math ⏫ 📅 2025-01-12</li>
+<li>[ ] some Flow-DPM math ⏫ 📅 2025-01-30</li>
 </ul>
 </li>
 <li>[x] <a href="https://arxiv.org/pdf/2006.11477">wav2vec</a><ul>
@@ -431,6 +497,29 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models</p>
 </ul>
 </li>
 <li>[ ] seq-2-seq (in comparison to wave2vec)</li>
+<li>[ ] <a href="https://arxiv.org/pdf/2406.02560v3">non-spiky ctc loss</a><ul>
+<li>basically, it's easy to just say blank by default, want to keep blank</li>
+<li>use <em>priors</em> that prefer unigram i.e. non-blank</li>
+<li>so that probability for seeing given character is divided by prior probability to incentivize picking unigrams more often</li>
+</ul>
+</li>
+<li>[x] <a href="https://www.cs.toronto.edu/~graves/icml_2006.pdf">ctc loss</a><ul>
+<li>CTC probability is sum over <em>all</em> alignments of getting the desired output, because this is subset of all possible labellings of all things this is guaranteed $\leq 1$</li>
+<li>use DP to compute sum of probabilities of all alignments ending at given target sequence index, for given frame</li>
+<li>introduce blank token and merging adjacent equal tokens to get "skips"</li>
+</ul>
+</li>
+<li>[ ] <a href="https://arxiv.org/pdf/2106.07447">HuBERT</a><ul>
+<li>cnn encoder ofc (it's 2021)</li>
+<li>idea: masked loss training on quantized targets</li>
+<li>but what are the targets? a: really degenerate bootstrapped middle activation<ul>
+<li>start with random quantization with some linear map</li>
+<li>do the best you can, then use middle layer of transformer as representation, k-means cluster</li>
+<li>try again</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>[ ] <a href="https://tracks-to-4d.github.io/">tracks-to-4d</a></li>
 <li>[ ] <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Huang_Not_All_Image_Regions_Matter_Masked_Vector_Quantization_for_Autoregressive_CVPR_2023_paper.pdf">mqvae</a></li>
 </ul>
