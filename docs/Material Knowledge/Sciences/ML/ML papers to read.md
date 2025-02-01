@@ -250,7 +250,7 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models
 	- add nonlinearity with 1x1 convs along channel and 3x3 conv along channel, token index and GLU
 	- no positional encoding! rely on 3x3 conv for implicit positional info
 	- bit quantization, triton cuda shit, for faster inference
-	- [ ] some Flow-DPM math ⏫ 📅 2025-01-30
+	- [ ] some Flow-DPM math ⏫ 📅 2025-01-31
 - [x] [wav2vec](https://arxiv.org/pdf/2006.11477)
 	- architecture: 6-deep convnet for latent representation (stride 20ms, receptive field 25ms at 16k hz), then quantize using product codebook w linear projection (gumbel softmax to get $V\times G$ logits for codebook), causal transformer on latents to get context representation
 	- train by masking some latents with learned mask token, cosine similarity for cross-entropy loss between "real" masked quantized latent and several distractors
