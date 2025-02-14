@@ -8,7 +8,7 @@ video transformer arch
 flows, euler flow, etc. read flux codebase
 flow-dpm
 titans from gr
-boyuan diffusion papers
+boyuan diffusion papers (done)
 
 [prime](https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f)
 [olmo](https://arxiv.org/pdf/2501.00656)
