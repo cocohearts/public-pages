@@ -1,3 +1,4 @@
+https://huggingface.co/spaces/nanotron/ultrascale-playbook
 https://arxiv.org/pdf/2412.15287
 sana, again
 openvla
