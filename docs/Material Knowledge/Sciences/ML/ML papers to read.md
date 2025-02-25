@@ -1,3 +1,6 @@
+https://github.com/MoonshotAI/Moonlight/blob/master/Moonlight.pdf
+https://arcinstitute.org/news/blog/evo2
+https://arxiv.org/pdf/2502.09609
 https://huggingface.co/spaces/nanotron/ultrascale-playbook
 https://arxiv.org/pdf/2412.15287
 sana, again
