@@ -1,7 +1,7 @@
 <!doctype html>
 <html data-bs-theme="">
     <head>
-                <title>6.7800 Pset 1 - Alex Zhao's Public Pages</title>
+                <title>FHE by GSW - Alex Zhao's Public Pages</title>
 
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -152,66 +152,53 @@
     <article>
         <header>
             
-                <h1 class=" title" id="component-title">6.7800 Pset 1</h1>
+                <h1 class=" title" id="component-title">FHE by GSW</h1>
             
         </header>
-        <p><h2 id="problem-11">Problem 1.1</h2>
-<h3 id="a">(a)</h3>
-<h4 id="i">(i)</h4>
-<p>The probability that $s=s_{0}$ is
+        <p><p>Key idea: consider set $S$ of matrices that have $v$ as an eigenvector. Then there's a natural surjective homomorphism from $S$ to $\mathbb{R}$ defined by $Mv=f(M)v.$ Then we can add, multiply matrices in $S$ and add, multiply corresponding reals.</p>
+<p>We'll use <em>LEARNING WITH ERRORS</em>.</p>
+<blockquote>
+<p><em>Learning with Errors</em>
+Given some assumptions on parameters of tall matrix $M$ and secret $s,$ we can't distinguish between $Ms+e$ for some small-norm noise $e$ and a uniform random vector $u.$</p>
+</blockquote>
+<p>Since it's easy to determine eigenvectors of any $M,$ we don't want to reveal secret key. Instead we'll add some noise on top.</p>
+<h2 id="dims">Dims</h2>
+<p>$$
+C \in \mathbb{Z}<em>{q}^{l \times(n+1)}
 $$
-p_{s}(s_{0})=\sum_{x_{0}=0}^{s_{0}}p_{x}(x_{0})p_{y}(s_{0}-x_{0})=\sum_{x_{0}=0}^{s_{0}}p^{2}(1-p)^{s_{0}}=(s_{0}+1)p^{2}(1-p)^{s_{0}}.
 $$
-The graph of $p(s)$ limits to 0, starts at $p^{2},$ but initially doesn't fall off as quickly as $p(x)$ or $p(y)$.</p>
-<h4 id="ii">(ii)</h4>
-<p>As computed above, any pair of $x,y$ summing to a given $s_{0}$ is equally probably (occurring with likelihood $p^{2}(1-p)^{s_{0}}$) so it's uniform over $0,1,\dots,s_{0}.$</p>
-<h4 id="iii">(iii)</h4>
-<p>The average of uniform over $0,1,\dots,s_{0}$ is $\frac{s}{2}.$</p>
-<h4 id="iv">(iv)</h4>
-<p>This is exactly equal to half of the random variable $s$ so this PMF hits all $\frac{n}{2}$ for nonnegative integers $n$ with probability $(n+1)p^{2}(1-p)^{n}.$</p>
-<h1 id="problem-12">Problem 1.2</h1>
-<h3 id="a_1">(a)</h3>
-<p>Integrate over all possibilities for $x,y$. Namely
+h: \mathbb{Z}</em>{q}^{l \cdot(n+1)} \to \mathbb{Z}_{q}^{l \times(n+1)\cdot \log q}
+$$</p>
+<h2 id="protocol">Protocol</h2>
+<p>Given secret key $s$ constructed by stacking $-s'$ on top of $1,$ take $B = \left( A | As'+e \right)$ for some random $B$ so that $Bs=-As'+(As'+e)=e.$ Then $B$ is "almost" a null matrix for the secret $s.$ Then encrypt a bit $\mu$ using
 $$
+C=B+\mu \cdot G
+$$
+where $G$ is the "inverse" operation of the binary decomposition function $h,$ i.e. $h(C)\cdot G=C.$ Then $G$ is a block-diagonal matrix where each block is a column vector of powers of $2.$ Then $G\cdot s=B\cdot s+\mu  G\cdot s=e+\mu Gs.$</p>
+<p>We decrypt by computing $v=C\cdot s,$ and if $\mu$ is zero then we expect to get noise out (small norm); if $\mu$ is one, then if we use large dimension, we expect one coordinate to have large norm with high probability.</p>
+<h2 id="evaluation">Evaluation</h2>
+<p>Addition is easy; we just add the two ciphertexts (matrices) together.</p>
+<p>Multiplication is harder; we define it by doing $h(C_{1})\cdot C_{2}.$ Specifically we have to set $l=(n+1)\log q$ so that $h(C_{1})$ is square. Then</p>
+<p>$$
 \begin{align<em>}
-\iint_{x^{2}+y^{2}\leq \sigma^{2}} \frac{1}{2\pi\sigma^{2}} e^{-(x^{2}+y^{2})/2\sigma^{2}}\,dxdy
-&amp;= \iint_{r\leq\sigma} \frac{1}{2\pi\sigma^{2}}e^{-r^{2}/2\sigma^{2}}r\,dr d\theta\
-&amp;= \frac{1}{2\pi\sigma^{2}}\cdot 2\pi \cdot \int_{0}^{\sigma}re^{-r^{2}/2\sigma^{2}}\,dr\
-&amp;=\frac{1}{\sigma^{2}} \cdot \left. -\sigma^{2}e^{-r^{2}/2\sigma^{2}} \right|_{0}^{\sigma }\
-&amp;= 1-e^{-1/2}.
+h(C_{1})\cdot C_{2}\cdot s
+&amp;=h(C_{1})\cdot(e_{2}+\mu_{2} Gs)\
+&amp;=h(C_{1})e_{2}+\mu_{2}h(C_{1}) Gs\
+&amp;= \mu_{2} C_{1}s + h(C_{1})e_{2}\
+&amp;= \mu_{1}\mu_{2}s+(\mu_{2}e_{1}+h(C_{1})e_{2}).
 \end{align</em>}
-$$</p>
-<h3 id="b">(b)</h3>
-<p>The two likelihoods—that $x\geq_{}0$ and $y\geq 0$—are independent, so we get $\frac{1}{4}.$</p>
-<h3 id="c">(c)</h3>
-<p>Since the two likelihoods are independent (by rotational symmetry) we get the same answer as that from part (a), i.e. $1-e^{-1/2}.$</p>
-<h3 id="d">(d)</h3>
-<p>We take the differential $dxdy=r dr d\theta.$ Since $p_{r,\Theta}(r,\Theta) dr d\theta=p(x,y)\,dxdy$ we get $p_{r,\Theta}=p(x,y)r.$ Then $p(x,y)=\frac{1}{2\pi\sigma^{2}} e^{-r^{2}/2\sigma^{2}}$ so $p_{r,\Theta}=\frac{r}{2\pi\sigma^{2}} e^{-r^{2}/2\sigma^{2}}.$</p>
-<p>By symmetry, since the joint is independent of $\Theta,$ we get $p_{\Theta}=\frac{1}{2\pi}.$</p>
-<p>Finally, the marginal in $r$ is the joint multiplied by $2\pi$ i.e. $p_{r}=\frac{r}{\sigma^{2}} e^{-r^{2}/2\sigma^{2}}.$</p>
-<h1 id="problem-13">Problem 1.3</h1>
-<h3 id="a_2">(a)</h3>
-<p>The decision rule is based on the likelihood ratio. Likelihood for $H_{0}$ is $\frac{{\mathbb 1_{[-1,1]}(y)}}{2}\cdot \frac{1}{\sqrt{ \frac{\pi}{2} }}e^{-2z^{2}}$ and for $H_{1}$ is $\frac{{\mathbb 1_{[-2,2]}(y)}}{4}\cdot \frac{1}{\sqrt{ \frac{\pi}{2} }}e^{-2(z-1)^{2}}.$ The ratio is then
 $$
-\frac{p(H_{0}|y,z)}{p(H_{1}|y,z)}= \frac{{2\mathbb 1_{[-1,1]}(y)}}{\mathbb 1_{{[-2,2]}}(y)} \cdot e^{-2(2z-1)}.
+Then since $h$ is binary decomp all the values are small norm (0 or 1), and $\mu_{2}$ is a bit so is also small. Hence error grows by $(n+1)\log q$ every multiplication. Hence bound on depth $d$ is
 $$
-Then:
-1. $y$ is always in $[-2,2].$ If $y\not\in [-1,1]$ then we must have $H_{1}$.
-2. Otherwise the likelihood ratio is $2e^{2-4z},$ so we get $H_{0}$ if $z\leq \frac{{2+\ln_{}2}}{4}$ and $H_{1}$ otherwise.</p>
-<h3 id="b_1">(b)</h3>
-<p>If the truth is $H_{0}$ then probability of error is equal to $z\geq \frac{{2+\ln2}}{4}$ i.e. $Q\left( 1+\frac{{\ln{2}}}{2} \right)$ and if the truth is $H_{1}$ then probability of error is equal to $y \in [-1,1]$ and $z\leq \frac{{2+\ln2}}{4}$ i.e. $\frac{1}{2} Q\left( 1-\frac{\ln2}{2} \right),$ hence the total probability of error is
+((n+1)\log q)^{d}\leq q,
 $$
-\frac{1}{2}Q\left( 1+\frac{\ln2}{2} \right)+\frac{1}{4}Q\left( 1-\frac{\ln2}{2} \right).
-$$</p>
-<h2 id="problem-14">Problem 1.4</h2>
-<h3 id="a_3">(a)</h3>
-<p>Since they're generated independently, the coin flip is "arbitrary" and opening the second envelope is equivalent to sampling from the PDF again. Then you switch envelopes if and only if the amount of money in the first envelope is less than the median of the PDF.</p>
-<h3 id="b_2">(b)</h3>
-<p>Sample a random number $z$ from the normal Gaussian. Then switch envelopes if the envelope you open has money less than $z,$ and keep otherwise.
-- If both envelopes have less than $z$ before you flip the coin, then this strategy doesn't change the likelihood of winning.
-- Similarly if both have more than $z$ this strategy doesn't change the likelihood of winning.
-- However if one envelope has more than $z$ and the other has less than $z$ then this strategy guarantees you win.
-Since there is a nonzero probability of drawing some $z$ in between the values contained in the two envelopes, this strategy yields a strictly better than half chance of winning.</p></p>
+i.e.
+$$
+d \leq \log_{(n+1)\log q}q.
+$$
+Don't forget that adding linearly adds error, so with these can get $d=n^{0.99}$ with large enough $q.$</p>
+<h2 id="bootstrapping">Bootstrapping</h2>
+<p>We want to "reset" the error. Do this by encrypting the secret key under itself, and giving this to the evaluator. Then they can "clean" the ciphertext $C=E(s)$ by evaluating $D(E(E(C)))$ using $E(s).$ This is bootstrapping, and permits infinite-depth FHE!</p></p>
     </article>
 </section>
 <!-- endblock -->

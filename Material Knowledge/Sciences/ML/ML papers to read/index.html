@@ -353,6 +353,11 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models</p>
 <li>[ ] <a href="https://arxiv.org/abs/2410.23208">kinetix rl physics lib</a></li>
 <li>[ ] <a href="https://mobile-aloha.github.io/resources/mobile-aloha.pdf">aloha robotics</a></li>
 <li>[ ] <a href="https://arxiv.org/abs/2406.09246">openvla</a></li>
+<li>[x] stockfish vs alphazero<ul>
+<li>stockfish has a hardcoded/manually finetuned eval, uses early pruning on a huge (depth 18, 20) MCTS to calculate minimax value</li>
+<li>alphazero uses a CNN to model, has a policy and value head, policy head is policy backprop'd against "stronger version" of itself from MCTS, value head is pushed up to rollout result</li>
+</ul>
+</li>
 <li>[x] <a href="https://spinningup.openai.com/en/latest/algorithms/ppo.html">ppo</a><ul>
 <li>want your policy to change but not by too much</li>
 <li>use advantage weighted log likelihood updates, but clip the upside to some $\epsilon$ makes it a lot more stable</li>
