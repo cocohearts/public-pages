@@ -159,11 +159,25 @@
 - hierarchical composability
 - standardized "parts"
 - plug-and-play for manufacturing, etc. all kinds of stuff</p>
-<h3 id="protein-design">protein design</h3>
+<h3 id="protein-design-part-1">protein design part 1</h3>
 <ul>
 <li>alpha helices, encouraged when gap of 3/4/7 have hydrogen bonding</li>
 <li>beta-sheets, bonds form between strands connecting into a sheet, side chains alternate</li>
 <li>beta-helix takes beta-sheets and it turns around an axis</li>
+</ul>
+<h3 id="protein-design-part-2">protein design part 2</h3>
+<ul>
+<li>ml / dl based!</li>
+<li>there's a lot of techniques—gnn PorteinMPNN for struct2seq, RFDiffusion for func2struct, transformers (?) AlphaFold for seq2struct, MLM for protein modelling for downstream, etc.</li>
+<li>have a specific protein can try to denature it with a target (ubiquitous protein cutting), generate a structure that will bind to it, etc.</li>
+<li>design flow for de novo design:<ul>
+<li>pick a binding site to target</li>
+<li>generate thousands of de novo structures</li>
+<li>generate hundreds of thousands of sequences</li>
+<li>verify, filter, simulate, etc. cut down to a hundred or so</li>
+</ul>
+</li>
+<li>space for: new autoencoder for structure? how to encode 3d structure automatically?</li>
 </ul></p>
     </article>
 </section>
