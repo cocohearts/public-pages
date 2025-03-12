@@ -3,7 +3,9 @@ dg-publish: "true"
 tags:
   - perm3
 ---
-https://openai.com/index/chain-of-thought-monitoring/
+https://arxiv.org/pdf/2503.07565
+https://www.arxiv.org/pdf/2503.03965
+- [x] https://openai.com/index/chain-of-thought-monitoring/
 grok linear transformers, mamba
 [SE3 transformers for rfdiffusion](https://arxiv.org/abs/2006.10503)
 https://diffusion.csail.mit.edu/

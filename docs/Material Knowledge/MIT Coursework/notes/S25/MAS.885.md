@@ -16,3 +16,14 @@ learning to apply engineering principles to biology
 	- generate hundreds of thousands of sequences
 	- verify, filter, simulate, etc. cut down to a hundred or so
 - space for: new autoencoder for structure? how to encode 3d structure automatically?
+### genetic circuits/gibson assembly
+can hack genes, viruses, etc. explore 
+gibson assembly
+epigenetic editors
+lots of crispr variants exist (eg crispr13 for rna)
+hard to get crispr to hit without creating cancers
+paradigm for viral genomic editing:
+1. promoters - on switches
+2. capsid - delivery vehicle
+3. virtal auxiliary sequences - packaging
+4. delivered gene - eg crispr system for editing
