@@ -27,3 +27,10 @@ paradigm for viral genomic editing:
 2. capsid - delivery vehicle
 3. virtal auxiliary sequences - packaging
 4. delivered gene - eg crispr system for editing
+### golden gate assembly
+learned about for hw! and did a whole simul in benchling
+take your vector—e.g. pGGA, often used for GGA
+figure out which GGA enzyme you want to use
+GG enzymes cut outside of recognition site, hence you can cut the recognition sites *out* of the fragment and no self-ligation, no double-cutting
+so then take the desired fragment, and design a primer that overhangs outside of said fragment with the recognition site and the matching overhang from the plasmid
+then after PCR with designed primers, can GGA and ligate with plasmid in same tube, very happy!
