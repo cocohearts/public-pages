@@ -196,7 +196,12 @@ take your vector—e.g. pGGA, often used for GGA
 figure out which GGA enzyme you want to use
 GG enzymes cut outside of recognition site, hence you can cut the recognition sites <em>out</em> of the fragment and no self-ligation, no double-cutting
 so then take the desired fragment, and design a primer that overhangs outside of said fragment with the recognition site and the matching overhang from the plasmid
-then after PCR with designed primers, can GGA and ligate with plasmid in same tube, very happy!</p></p>
+then after PCR with designed primers, can GGA and ligate with plasmid in same tube, very happy!</p>
+<h3 id="genome-circuits">genome circuits</h3>
+<p>can utilize promoter/activation/etc. circuits (2-input AND types, e.g.) to create targeted mRNAs
+Easy example is <a href="https://www.strandtx.com/strandtx-solutions/">Strand Therapeutics</a>. Self-replicating RNA drug that only activates when reacting to specific micro-RNA signatures in cells. Then it'll activate expression of {lysis, antigens, inflammation signaling} etc.
+Check out paper: https://www.nature.com/articles/s41589-018-0146-9
+How to create a genetic circuit that will only activate? can directly use stuff as repressor/activators. The synthetic RNA codes for binding proteins that bind to my RNA if desired compound is NOT present (they will destabilize without existence). Similarly can also code for binding proteins that bind to my RNA if desired compound IS present. Finally include replicon sequence from RNA viruses to make self-propagating copies in cells where it is expressed (i.e. target cancer cells). Am a little scared of mutations in synthetic RNA.</p></p>
     </article>
 </section>
 <!-- endblock -->
