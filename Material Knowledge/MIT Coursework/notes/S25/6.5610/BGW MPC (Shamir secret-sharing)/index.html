@@ -1,0 +1,222 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>BGW MPC (Shamir secret sharing) - Alex Zhao's Public Pages</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../../../assets/favicon.ico">
+            
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../../../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../../../assets/css/main.min.css">
+                <link href="../../../../../../extra.css" rel="stylesheet">
+                <script src="../../../../../../extra.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+                <script src="../../../../../../search/main.js"></script>
+
+            
+                
+                     <style>:root {--text: var(--color-white);}</style> 
+                     <style>:root {--title: var(--color-orange);}</style> 
+                     <style>:root {--primary: var(--color-orange);}</style> 
+                     <style>:root {--background: var(--color-black);}</style> 
+                
+            
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Alex Zhao's Public Pages</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../../../Public%20Pages/homepage/">[Welcome]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Crypto]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../../Material Knowledge/Sciences/Coding/Crypto/Proving Systems (Plonky3, Halo2, Circle STARKs, Binius).md" class="dropdown-item text-decoration-none ">ZK Notes</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Coding]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Sciences/Coding/Vim%20Tricks/" class="dropdown-item text-decoration-none ">Vim Tricks</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Sciences/Coding/USACO/General%20Thoughts%2C%20Paradigms/" class="dropdown-item text-decoration-none ">USACO Notes</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Sciences/ML/ML%20papers%20to%20read/" class="dropdown-item text-decoration-none ">ML papers</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Food and Cooking]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Food%2BCooking/%E5%AE%B6%E5%B8%B8%E8%8F%9C%E8%B0%B1/%E7%B3%96%E9%86%8B%E6%8E%92%E9%AA%A8/" class="dropdown-item text-decoration-none ">糖醋排骨</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">BGW MPC (Shamir secret sharing)</h1>
+            
+        </header>
+        <p><h3 id="shamir-secret-sharing">Shamir secret sharing</h3>
+<p>Getting some message $m$ and splitting it up among a bunch of sharers.
+Given message $m$, set degree $t$ polynomial $f$ with $f(0)=m$ and randomized coefficients; then share $f(1),\dots,f(n).$ Then any $t$ sharers can meet and Lagrange interpolate to find $f(0).$ With $t-1$, can't do.
+Shamir's secret sharing is similar to Reed-Solomon coding, where you take $m$ bits, interpolate the unique polynomial that hits on the first $m,$ and the codeword is the polynomial evaluated over the whole field. (Recall that <code>plonk</code> uses the Merkle-hashed codeword!)</p>
+<h2 id="bgw">BGW</h2>
+<p>Safety from $t$ corruptors is defined by if adversaries control $t$ parties in whatever way they want, output is the same as if a single trusted party ran the whole thing.
+Protection from honest-curious is defined by, each adversary gets the log of all messages sent/received, and the distribution of their input/outputs can be simulated using only their inputs (same as ZK).</p>
+<p>First, each party Shamir secret shares with everybody else; party $i$ sends party $j$ the value $p_{i}(j)$ where $p_{i}(0)=s_{i}.$</p>
+<p>Next we do joint computation on shares. We want to get each party a share of the final answer, then we can recombine shares.
+Addition is easy; share $j$ of $s_{i_{1}}+s_{i_{2}}$ is just $p_{i_{1}}(j)+p_{i_{2}}(j).$</p>
+<p>Multiplication is harder; start by just multiplying $p_{i_{1}}(j)p_{i_{2}}(j),$ now a degree $2t$ polynomial in $j$; now we need to re-randomize the polynomial and reduce the degree.</p>
+<p>Re-randomization is easy; each party secret shares $0$ and then all-gather the shares. The coefficients of the degree $2t$ polynomial are now randomized.</p>
+<p>Degree reduction we can do since there exists a fixed matrix $A$ that maps $g(i)$ with degree $2t$ to truncated $g(i),$ for any $g$ (namely, invert Vandermonde (get coeffs), then use truncated diagonal, then apply Vandermonde again). Computing this matrix is a all-gather-scatter operation.
+Each party:
+* secret shares with everyone
+* takes all of the secret shares they've gathered and computes their corresponding shares of the matrix output
+* sends share of output $i$ to party $i$</p>
+<p>Finally, once all computations are done, all-gather naked secrets and recombine!</p>
+<p>To make this safe against malicious adversaries, need to ensure that all outputs come from a fixed degree $t$ polynomial, i.e. use polynomial commitments.</p>
+<p>Applications include anonymized telemetry, voting, etc. it works lol</p></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script>var base_url = '../../../../../..';</script>
+            <script src="../../../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../../../assets/js/main.min.js""></script>
+                <script src="../../../../../../extra.js" defer></script>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+                <script src="../../../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>
