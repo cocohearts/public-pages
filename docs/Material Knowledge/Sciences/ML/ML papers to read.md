@@ -3,6 +3,7 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+tarflow
 thunderkittens
 https://arxiv.org/pdf/2503.07565
 https://www.arxiv.org/pdf/2503.03965
