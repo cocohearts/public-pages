@@ -3,6 +3,8 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+gemma
+[nvidia whitepaper](https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/lindholm08_tesla.pdf)
 tarflow
 thunderkittens
 https://arxiv.org/pdf/2503.07565
