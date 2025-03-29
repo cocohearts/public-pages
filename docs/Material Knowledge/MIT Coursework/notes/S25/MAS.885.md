@@ -39,3 +39,8 @@ can utilize promoter/activation/etc. circuits (2-input AND types, e.g.) to creat
 Easy example is [Strand Therapeutics](https://www.strandtx.com/strandtx-solutions/). Self-replicating RNA drug that only activates when reacting to specific micro-RNA signatures in cells. Then it'll activate expression of {lysis, antigens, inflammation signaling} etc.
 Check out paper: https://www.nature.com/articles/s41589-018-0146-9
 How to create a genetic circuit that will only activate? can directly use stuff as repressor/activators. The synthetic RNA codes for binding proteins that bind to my RNA if desired compound is NOT present (they will destabilize without existence). Similarly can also code for binding proteins that bind to my RNA if desired compound IS present. Finally include replicon sequence from RNA viruses to make self-propagating copies in cells where it is expressed (i.e. target cancer cells). Am a little scared of mutations in synthetic RNA.
+## History of folding algos
+Generally, can measure entropy and enthalpy; free energy is some kind of funnel, there are several local minima ie there can be multiple ways to fold, but we want to find the local minima that has a "big receptive field"
+
+
+Start with basic rules: do some DP with some cost matrices, maybe use covariance (correlated evolutionary mutations), figure out which bps / amino acids are touching. Then twist and turn to put them together.
