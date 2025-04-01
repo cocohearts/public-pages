@@ -3,6 +3,9 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+"AI and the future of work" pdf in downloads from us national academies
+tencent t1
+qwen 2.5 omni
 gemma
 [nvidia whitepaper](https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/lindholm08_tesla.pdf)
 tarflow
