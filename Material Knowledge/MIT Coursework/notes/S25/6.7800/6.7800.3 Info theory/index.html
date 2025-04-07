@@ -1,7 +1,7 @@
 <!doctype html>
 <html data-bs-theme="">
     <head>
-                <title>6.7800.2 EM algo and suff statistics - Alex Zhao's Public Pages</title>
+                <title>6.7800.3 Info theory - Alex Zhao's Public Pages</title>
 
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -155,27 +155,66 @@
     <article>
         <header>
             
-                <h1 class=" title" id="component-title">6.7800.2 EM algo and suff statistics</h1>
+                <h1 class=" title" id="component-title">6.7800.3 Info theory</h1>
             
         </header>
-        <p><h2 id="sufficient-statistics">Sufficient statistics</h2>
-<p>Defined by a Markov chain, or by a conditional independence, or by equality in a Bayesian setting (i.e. conditional independence).</p>
-<p>Given $x$ parameterizing a model that generates data $y,$ we say $s(y)$ is sufficient iff. $\mathbb{P}(x|y)\equiv \mathbb{P}(x|t(y)).$ Equivalently:
-- the model $p_{y|t;x}$ is identical for all $x$ i.e. regardless of $x$ the statistic determines $y$
-- a single $t$ bunches multiple equivalent $y,$ i.e. $$ p_{y}(y;x)=a(t(y),x) \cdot b(y) $$ for some $a,b$ (Neyman Factorization). Use the independent $x$ definition. We get $a=p_{t|x}(t(y)|x)$ and $b=p_{y|t}(y|t(y)).$
-- $p_{y|t,x}(y|t(y),x)=p_{y|t}(y|t(y))$ (Bayesian interp); by inverting we get $p(x|y)\equiv p(x|t=t(y))$ i.e. all info we gain about $x$ from $y$ we also get from $t$
-This last one is a little nontrivial and needs rewriting a lot of conditionals.</p>
-<p>We also have degree of tightness. In particular, a statistic is sufficient iff. equivalent inputs yield equivalent inferences about $x.$ It is minimal if it can be mapped to from any sufficient statistic, i.e. nonequivalent inputs map to different inferences.</p>
-<h2 id="em-algo">EM algo</h2>
-<p>Suppose we have some complex process with parameters and underlying latents. Without knowing the latents, the parameters are correlated in weird ways depending on the prior on the latent.</p>
-<p>If we want to model the parameters, might as well have a prior on the latent. Then:
-- start with some random guess for parameters $x$
-- compute posterior for the latent (conditional)
-- revise estimate for $x$
-This is justified since the "pseudo-log likelihood"
-$$ \mathbb{E} \left[ \log p(y,s;x) \right] - \mathbb{E}\left[ \log q(s|y) \right] , $$
-lower bounds log likelihood. Then the $E$ step updates $q$ and the $M$ step picks $x$ maximizing the first term.</p>
-<p>Here $q$ is actually $p_{s|y;x_{0}}.$ Equality happens when $p_{s|y;x}\equiv q_{s|y;x_{1}}$ i.e. when the $x$ estimate converge.</p></p>
+        <p><h2 id="families">Families</h2>
+<h3 id="exponential-families">Exponential families</h3>
+<p>Usually used over discrete probability spaces, but also over continuous. Basically if we just ignore normalization and take geometric means across distributions. Yields an affine subspace in log-prob space. This is the "basis" interpretation. The parameter set is $\mathbb{R}^{n},$ and an $n-$parameter family of distributions is
+$$
+\exp \left{ \left(   \sum_{i}\lambda_{i}(x_{i})t_{i}(y) \right) - \alpha(x_{i})+\beta(y)\right} .
+$$</p>
+<p>Here $\alpha$ is <em>log-partition function</em>, $\lambda$ is <em>natural statistic</em>, and $\beta$ is <em>log base function</em>.</p>
+<p>The single-parameter case has some nice properties; partial in $\alpha$ is $\mathbb{E}[t(y)],$ and $\ddot{\alpha}=\text{var}\left[ t(y) \right]=J_{y}(x).$</p>
+<h3 id="linear-families">Linear families</h3>
+<p>We can also take the linear nullspace interpretation. Take some indicators $\lambda,$ then $\mathbb{E}<em>{q</em>{x}}[ p(x)]=e_{0}$ becomes a linear constraint in the probability space.</p>
+<h2 id="entropy-mutual-info">Entropy / Mutual Info</h2>
+<p>We make choices. For instance most standard inference uses log-loss cost; we get a distribution for the parameter, and cost is log-prob of true value. E.g. for Bayesian we use $-A \log q(x)+B(x)$ where $A=1$ and $B=-\log p_{prior}.$</p>
+<p>A cost (input truth, distribution) is <em>proper</em> if argmin is at the true Bayesian posterior. Meanwhile it is <em>local</em> if cost only depends on $x,q(x).$</p>
+<p>Log-lsos turns out to be the only smooth, local, proper cost function. If we introduce discontinuities then uniform can do ok.</p>
+<p>Here we can define entropy $H(p)=\mathbb{E}[-\log p]$, joint uncertainty $H(x,y)=\mathbb{E}<em>{p</em>{xy}}[-\log p],$ and mutual information $H(x)+H(y)-H(x,y),$ i.e. how much we learn about $x$ once we know $y$.</p>
+<p>Always remember
+$$
+I(x;y,z)=I(x;z)+I(x;y|z).
+$$
+Note also that if $s$ is deterministic func of $x$ then $H(x)=H(s)+H(x|s).$ Here conditional entropy is weighted over joint distribution. Alternatively, think of it as sampling the conditioning variable $y$, then computing expected entropy over all resulting parameterized distributions $p_{x}(x;y).$</p>
+<p>Hence recall that $$H(x|y)+I(x;y)=H(x),H(y|x)+I(x;y)=H(y), H(x)+H(y)-I(x;y)=H(x,y).$$
+Recall that we can also do entropy for continuous variables. It's just defined as $\int_{-\infty}^{\infty}p(x)\log p(x)\,dx.$ It changes on coordinate shifts, but the value change is only a function of the transformation. Letting $x=g(s),$ we get $p(x)=\frac{p(s)}{\dot{g}(s)}$ so 
+$$
+\begin{align<em>}
+h_{p,q}(x)
+&amp;=-\int p\log q(x)\,dx\
+&amp;=-\int \frac{p(s)}{\dot{g}(s)}\log \frac{q(s)}{\dot{g}(s)}\,\dot{g}(s)ds\
+&amp;=\int p(s)\dot{g}(s)\,ds-\int p(s)\log q(s)\,ds\
+&amp;=h_{p,q}(s)+\mathbb{E} [\dot{g}(s)].
+\end{align</em>}
+$$
+Hence <em>all relative entropies, including KL and mutual info, are independent of variable changes.</em></p>
+<h2 id="info-geometry">Info geometry</h2>
+<p>Now we define a "distance," the KL/information divergence $D(p||q)=\mathbb{E}<em>{p(x)}[-\log q(x)+\log p(x)].$ Can be called "relative entropy" of $q$ to $p,$ or thought of as the entropy of the odds $\frac{q}{p}$ when $p$ is truth. Note that $I(x;y)=D(p</em>{xy}||p_{x}p_{y}).$</p>
+<p>Note that the curvature of information divergence as parameterized by $x$ is determined by Fisher info. Specifically,</p>
+<p>$$
+\frac{\partial^{2}}{\partial x^{2}} D(p_{y}(y;x_{0})||p_{y}(y;x))=J_{y}(x).
+$$
+(Add a $\log e$ for bit-based systems.) Just rewrite as $\mathbb{E}<em>{p} \log p</em>{y}(y;x)- \mathbb{E}<em>{p} \log p</em>{y}(y;x_{0})$ and we immediately get $\mathbb{E}<em>{p} \frac{\partial^{2}}{\partial x^{2}}\log p</em>{y}(y;x)=J_{y}(x).$</p>
+<p>Now we can use KL divergence to look at distances between distributions, geometry in distribution space, etc. As from [[6.7800.3 Info theory#Exponential families]], normalized distributions for an affine space because of sum to 1, and un-normalized exponential families are affine spaces in log-prob space.</p>
+<p>The "projection" of $q$ onto a set $P$ is the "ground truth" $p$ that minimizes $D(p||q).$ $P$ is the set of hypotheses, and we want to find the one that "most easily explains" the data $q.$ Let $p^<em>$ be this projection. Take any other $p,$ then by walking from $p^</em>$ to $p$, derivative of $D(p||q)$ must be nonnegative.</p>
+<p>We get $\sum_{y}(p-p^<em>) \log \frac{p^</em>}{q}=D(p||q)-D(p||p^<em>)-D(p^</em>||q)$ i.e.</p>
+<blockquote>
+<p>[!important] Pythagoras', Info Version
+$$
+D(p||q)\geq D(p||p^<em>)+D(p^</em>||q)
+$$
+for all $p \in P.$</p>
+</blockquote>
+<p>In other words, when trying to go $p\to p' \to q,$ always pick $p'=p^*$ i.e. greedy for the second step.</p>
+<p>When $P$ is a [[6.7800.3 Info theory#Linear families]] we get equality, since we can walk either backwards or forwards and so the derivative must be 0.</p>
+<p>Finally, we can precisely describe the set whose projection to a linear family is $q.$ Note that $$D(p||q_{2})=\mathbb{E}<em>{p} \log \frac{q}{p}+\log \frac{q</em>{2}}{q}=D(p||q)+\mathbb{E}<em>{p}\log \frac{q</em>{2}}{q}.$$
+Hence if $\mathbb{E}<em>{p} \log \frac{q</em>{2}}{q}$ is independent of $q$ then the projection remains the same. Equivalently $\log \frac{q_{2}}{q}$ must be some linear combination of $t_{i}.$</p>
+<blockquote>
+<p>[!important] Orthogonality Correspondence
+If the linear family has constraints $\mathbb{E}_{p}[t(y)]=\overline{t}$ for some vector-valued function $t,$ then the set orthogonal to fixed $p^<em>$ is the exponential family $p^</em>(y)\exp \left{ x^{\dagger}t(y)-\alpha(x) \right}$ for free vector parameters $x.$</p>
+</blockquote></p>
     </article>
 </section>
 <!-- endblock -->
