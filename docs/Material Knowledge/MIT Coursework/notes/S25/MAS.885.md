@@ -42,5 +42,6 @@ How to create a genetic circuit that will only activate? can directly use stuff 
 ## History of folding algos
 Generally, can measure entropy and enthalpy; free energy is some kind of funnel, there are several local minima ie there can be multiple ways to fold, but we want to find the local minima that has a "big receptive field"
 
-
 Start with basic rules: do some DP with some cost matrices, maybe use covariance (correlated evolutionary mutations), figure out which bps / amino acids are touching. Then twist and turn to put them together.
+### synthetic cells
+make synthetic membranes from lipids, called cell-free systems. they can be freeze-dried, are well understood, just take the pieces that you want and mass-manufacture them with microfluidics. this gives you small easily reprogrammable biomachines. can be used for protein manufacturing, testing, color-based rna matching etc.

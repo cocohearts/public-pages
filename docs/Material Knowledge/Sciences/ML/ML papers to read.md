@@ -3,6 +3,7 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+simulating time w sqrt space
 "AI and the future of work" pdf in downloads from us national academies
 tencent t1
 qwen 2.5 omni
