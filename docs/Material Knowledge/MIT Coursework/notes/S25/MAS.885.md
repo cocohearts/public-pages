@@ -42,6 +42,20 @@ How to create a genetic circuit that will only activate? can directly use stuff 
 ## History of folding algos
 Generally, can measure entropy and enthalpy; free energy is some kind of funnel, there are several local minima ie there can be multiple ways to fold, but we want to find the local minima that has a "big receptive field"
 
-Start with basic rules: do some DP with some cost matrices, maybe use covariance (correlated evolutionary mutations), figure out which bps / amino acids are touching. Then twist and turn to put them together.
+Proteins have hierarchical structure, with secondary, tertiary etc. *Homology modeling* assumes new proteins will be similar to old ones with similar sequences; find similar sequences with pairwise alignment or large batched multi-sequence alignment (MSA). This works because similar sequences have shared evolutionary ancestors, which then might have similar functions. 
+
+*Rosetta* (2000) replaced fragments one at a time, and then tried to be smart about positioning the fragments relative to each other. Combination of de-novo physics with assumptions over fragments from database and statistical torsions.
+
+Then was *molecular dynamics* using basic physics simulation on individual atoms and molecules. Using "state models" instead of direct Markov simulation, cluster individual short paths into "states" and construct a brief graph between clustered states. This was competitive with Rosetta for small molecules de novo.
+
+Then came covariance modeling; if residues in sequences evolved together they're probably touching. Called *direct coupling analysis* Instead of direct input to modeling, this became indirect by adding as loss into a model that output score matrix. Don't need previous folded proteins like homolog; only need previous proteins. Output contacts fed into e.g. Rosetta. Came in 2010s with cheap sequencing. Helped with protein-protein modeling. Use a `Potts model` modelling log-likelihood of proteins as $h_{i}(x_{i})+J_{ij}(x_{i},x_{j})$ and then directly maximize likelihood.
+
+*Alphafold 1* used MSA input with a 2D CNN to generate residue contact map then gradient-based folding algo.
+Then was *Alphafold 2* using
+- a deep MSA
+- Evoformer with 48 sequential full attention/cross attention transformer blocks between embedded MSA sequences and representation of the pair interactions
+- structure module iteratively refining geometric backbone to match pair interactions representation (partly true analog representation e.g. distance, angles)
+- uses MSA but all folded proteins were learned into model weights, no homolog stuff
+
 ### synthetic cells
 make synthetic membranes from lipids, called cell-free systems. they can be freeze-dried, are well understood, just take the pieces that you want and mass-manufacture them with microfluidics. this gives you small easily reprogrammable biomachines. can be used for protein manufacturing, testing, color-based rna matching etc.
