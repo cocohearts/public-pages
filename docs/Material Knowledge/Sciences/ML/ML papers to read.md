@@ -3,6 +3,8 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+[diffdock](https://arxiv.org/pdf/2210.01776)
+https://arxiv.org/abs/2410.13643
 boltz-1
 simulating time w sqrt space
 "AI and the future of work" pdf in downloads from us national academies

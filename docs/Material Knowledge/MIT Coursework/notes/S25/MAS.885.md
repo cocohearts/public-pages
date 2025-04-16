@@ -39,6 +39,14 @@ can utilize promoter/activation/etc. circuits (2-input AND types, e.g.) to creat
 Easy example is [Strand Therapeutics](https://www.strandtx.com/strandtx-solutions/). Self-replicating RNA drug that only activates when reacting to specific micro-RNA signatures in cells. Then it'll activate expression of {lysis, antigens, inflammation signaling} etc.
 Check out paper: https://www.nature.com/articles/s41589-018-0146-9
 How to create a genetic circuit that will only activate? can directly use stuff as repressor/activators. The synthetic RNA codes for binding proteins that bind to my RNA if desired compound is NOT present (they will destabilize without existence). Similarly can also code for binding proteins that bind to my RNA if desired compound IS present. Finally include replicon sequence from RNA viruses to make self-propagating copies in cells where it is expressed (i.e. target cancer cells). Am a little scared of mutations in synthetic RNA.
+### synthetic cells
+make synthetic membranes from lipids, called cell-free systems. they can be freeze-dried, are well understood, just take the pieces that you want and mass-manufacture them with microfluidics. this gives you small easily reprogrammable biomachines. can be used for protein manufacturing, testing, color-based rna matching etc.
+### biomanufacturing + ginkgo
+The goal is to gradually reduce biology to engineering. Engineering is reducing a problem to a detailed, controlled, reproducible pipeline where each stage can be iterated on in a way that should yield desired product at scale.
+As in normal engineering, there are three parts:
+- Design: either creating a novel protein, or taking an existing protein and finding a novel enzyme pathway from feedstock (sugar, oil) to synthesize that protein. The key idea is to use evolutionary pathways that nature has found—de novo enzymes are very hard. Ideally find some map of existing enzyme pathways to get the desired. Search databases, but also ML-based design that learns from "focused selection" after iterated modeling / testing. Enzyme design is FUCKING HARD so you get this 'lab-in-the-loop' mechanic.
+- Build: Ginkgo has a big, programmable, protocol-based, modular robotics platform for biology at scle, complete with a scheduling 'OS' and train tracks to shuffle live organisms from one station to another. Usual assembly and insertion methods. Steps: chassis selection (E. coli, or beer yeast S. cerevisiae), design, fermentation, processing, QC. Want to utilize natural feedback loops where possible, e.g. yeast produces ethanol. Robotics systems have been custom-built for specific pipelines, but want a generalizable one.
+- Test: "part validation" (checking intermediate steps). Evolution factors in a bunch of self-clean-up, garbage collection etc. that we have to control for / optimize for in vitro.
 ## History of folding algos
 Generally, can measure entropy and enthalpy; free energy is some kind of funnel, there are several local minima ie there can be multiple ways to fold, but we want to find the local minima that has a "big receptive field"
 
@@ -56,6 +64,3 @@ Then was *Alphafold 2* using
 - Evoformer with 48 sequential full attention/cross attention transformer blocks between embedded MSA sequences and representation of the pair interactions
 - structure module iteratively refining geometric backbone to match pair interactions representation (partly true analog representation e.g. distance, angles)
 - uses MSA but all folded proteins were learned into model weights, no homolog stuff
-
-### synthetic cells
-make synthetic membranes from lipids, called cell-free systems. they can be freeze-dried, are well understood, just take the pieces that you want and mass-manufacture them with microfluidics. this gives you small easily reprogrammable biomachines. can be used for protein manufacturing, testing, color-based rna matching etc.
