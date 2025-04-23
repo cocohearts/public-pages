@@ -243,11 +243,22 @@ As in normal engineering, there are three parts:
 <p><em>Alphafold 3</em> uses Alphafold 2-style MSA / paired attention, but it deemphasizes the MSA (lower embedding dim) and adds a single-sequence latent. Both get fed into a 48-block Pairformer, which is then recycled. The structure module got replaced with a diffusion module that just uses the outputs from the MSA and the pairformer. The pairformer uses both attention-based and multiplication-based triangle updates, meaning computation is cubic in the length of the sequence.</p>
 <h3 id="mass-spectrometry">mass spectrometry</h3>
 <p>Goal is to measure mass-to-charge ratio of ions. Steps:
-- convert into gas ions with a laser or ionization
-- send it down an electric gradient field (func of charge) with some counter-drift (func of mass / size)
-- figuring out speed, or rate of oscillation, or time to travel
-For quadrupoles, if ratio of EM force to mass force isn't in a specific window, it will oscillate "off-center" and not reach the detector.</p>
-<p>Ions can be formed through electrospray, i.e. dissolve in some buffer / water / ethanol, spray through some small hole, and then apply a voltage on the way out. If electrostatic exceeds surface tension, the droplet will just explode. "Bare ionized molecule" just means all the extra H's are removed.</p></p>
+- liquid chromatography: separate with a sand-like compound (slightly polar), aka ion mobility (how well it moves through stuff)
+- for floppy proteins, can filter using ion mobility, hydrogen / deuterium swap (check if # exposed hydrogen spots is as expected)
+- convert into gas ions with a laser or electrospray
+    - dissolve in some buffer / water / ethanol, spray through some small hole, and then apply a voltage on the way out; droplets split from internal electrostatic
+    - "Bare ionized" means no H's, but usually it'll collect a bunch of H's, either because the side chains are polarized, or the peptide itself has charge
+- send it down an electric gradient field (func of charge) with some counter-drift (func of mass / size), this field is created by <em>quadrupole</em>. The voltage has a DC and an AC/radio voltage. Quadratic distance with AC will pull back/forth side to side, but DC will pull up. Only specific ratios keep stable oscillating paths; other oscillation paths degenerate and crash into the sides.
+- figure out speed, or rate of oscillation, or time to travel
+- triple quad uses normal quad to separate proteins, then breaks them up with N2, then separates the fragments, to get even more info; fragmentation with some enzyme can confirm you've got the right peptide sequence</p>
+<p>The resulting output spectrum has nice discretization; large molecules can pick up many H+'s.</p>
+<p>The raw spectra you get out of a triple quadrupole has four dimensions:
+- specific protein
+- peptide fragments of that protein
+- number of charges on that fragment
+- any isotopes in that fragment
+that you need to decompose. This is why mass spectrometry allows us to date stuff with carbon in it—because we can decompose the isotope dimension.</p>
+<p>Mass spectrometry is done to within 10PPM. The best orbitrap setups are 0.5ppm usually.</p></p>
     </article>
 </section>
 <!-- endblock -->
