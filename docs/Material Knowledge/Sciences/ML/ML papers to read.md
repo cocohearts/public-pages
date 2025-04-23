@@ -3,8 +3,15 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+dreamcoder
+https://sander.ai/2025/04/15/latents.html
+https://sander.ai/2024/06/14/noise-schedules.html
+sesame paper
 [diffdock](https://arxiv.org/pdf/2210.01776)
-https://arxiv.org/abs/2410.13643
+[discrete diff for proteins](https://arxiv.org/abs/2410.13643)
+af3 architecture, with config
+rosettafold architecture, with config
+proteinmpnn architecture, with config
 boltz-1
 simulating time w sqrt space
 "AI and the future of work" pdf in downloads from us national academies
@@ -226,6 +233,9 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models
 - [ ] [mamba2: ssm > transformers](https://arxiv.org/abs/2405.21060)
 - [ ] [mamba is attentino](https://arxiv.org/abs/2403.01590)
 ## audio/image/video specific
+- [x] [var](https://arxiv.org/pdf/2404.02905)
+	- motivation: want good bidirectional, want to be able to know bottom from top, want matryoshka-doll like stuff, just think harder about key causality relationship; tokenize-flatten seems bad
+	- autoregressive "chunk" is a discrete token "resolution", each chunk is still several tokens generated either in parallel or autoregressively (prolly AR)
 - in audio "conv subsampling" is just decreasing spatial resolution with convs
 - [x] [conformer](https://arxiv.org/pdf/2005.08100)
 	- FFM, MHA, Conv, FFM
