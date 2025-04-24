@@ -3,6 +3,7 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+https://arxiv.org/pdf/2503.14476
 dreamcoder
 https://sander.ai/2025/04/15/latents.html
 https://sander.ai/2024/06/14/noise-schedules.html
