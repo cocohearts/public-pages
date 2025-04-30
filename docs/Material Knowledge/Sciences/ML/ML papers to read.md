@@ -3,6 +3,7 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+[comma.ai driver](https://arxiv.org/pdf/2504.19077)
 https://arxiv.org/pdf/2503.14476
 dreamcoder
 https://sander.ai/2025/04/15/latents.html
