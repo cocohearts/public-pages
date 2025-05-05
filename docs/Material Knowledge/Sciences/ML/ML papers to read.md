@@ -3,6 +3,10 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+pluralis papers
+- https://openreview.net/pdf?id=HxPDWbaK1E
+- https://openreview.net/pdf?id=4O8nzTkHPI
+- https://openreview.net/pdf?id=UyPDg7ksTM
 [comma.ai driver](https://arxiv.org/pdf/2504.19077)
 https://arxiv.org/pdf/2503.14476
 dreamcoder
