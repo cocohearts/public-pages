@@ -108,3 +108,9 @@ The raw spectra you get out of a triple quadrupole has four dimensions:
 that you need to decompose. This is why mass spectrometry allows us to date stuff with carbon in it—because we can decompose the isotope dimension.
 
 Mass spectrometry is done to within 10PPM. The best orbitrap setups are 0.5ppm usually.
+### final project learnings
+- dsup from tardigrades binds to nucleosomes to protect dna, one guy tried it to protect ovarian cells since free radicals from monthly cycle can damage dna
+- sonoporation for thick-walled gram positive bacteria, use of an enzyme to try to produce concrete without huge carbon exposure
+- using bacteria to eat up / clean up pollution in all kinds of ways
+- yzx using siRNAs to interfere with mRNA for a specific carcinogenic gene in ovarian cancer cells, use the existing RNA-induced silencing complex (RISC) to control expression
+- lots of biosensors—just attach gbfp to a binding thing for a "genetic circuit"
