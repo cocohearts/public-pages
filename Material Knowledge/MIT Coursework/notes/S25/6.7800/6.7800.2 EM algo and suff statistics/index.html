@@ -170,7 +170,7 @@ This last one is a little nontrivial and needs rewriting a lot of conditionals.<
 <p>Suppose we have some complex process with parameters and underlying latents. Without knowing the latents, the parameters are correlated in weird ways depending on the prior on the latent.</p>
 <p>If we want to model the parameters, might as well have a prior on the latent. Then:
 - start with some random guess for parameters $x$
-- compute posterior for the latent (conditional)
+- compute posterior for the latent (conditional on guess)
 - revise estimate for $x$
 This is justified since the "pseudo-log likelihood"
 $$ \mathbb{E} \left[ \log p(y,s;x) \right] - \mathbb{E}\left[ \log q(s|y) \right] , $$

@@ -1,7 +1,7 @@
 <!doctype html>
 <html data-bs-theme="">
     <head>
-                <title>6.7800.6 Convergence and Asymptotics - Alex Zhao's Public Pages</title>
+                <title>6.7800.5 MCMC - Alex Zhao's Public Pages</title>
 
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -155,10 +155,18 @@
     <article>
         <header>
             
-                <h1 class=" title" id="component-title">6.7800.6 Convergence and Asymptotics</h1>
+                <h1 class=" title" id="component-title">6.7800.5 MCMC</h1>
             
         </header>
-        <p></p>
+        <p><p>Oftentimes distributions are hard to compute. More or less it's because some integral is difficult; if we want to do a conditional $p(y|x)$ have to compute the joint $p(x)$ which can be hard. Generally joints, log partitions, direct sampling from conditionals, etc.</p>
+<p>Then we want:
+- <em>Importance sampling</em>. To compute an EV, weight samples by their "normalized odds", i.e. sampling a mean from unnormalized $p,$ weight averages by $\frac{q}{p}$ if sampling from unnormalized $q.$
+- <em>Rejection sampling</em>. Similar to above, except we also need an upper bound (can't deal with odds &gt; 1). Accept with probability $\frac{p}{q}.$</p>
+<p>Monte Carlo is when you sample to try and solve a problem. Use a Markov Chain to sample!</p>
+<p>Set up a Markov Chain to have stable distribution equalling target distribution. Do this with <em>Metropolis-Hastings</em>:
+- Finitely many states, fully-communicating, not always acceptance 1, reversibility (conditioning on $X_{n-1}$ or $X_{n+1}$ yields same distribution for $X_{n}$)
+- Have initial state and proposal distribution $v(\cdot|x),$ and accept transition with probability $\min\left( 1, \frac{p(x')v(x|x')}{p(x)v(x'|x)}  \right).$
+- Works and is reversible because going one way, kernel likelihood is $\frac{p(y)v(x|y)}{p(x)},$ the other way is $v(x|y).$ Ratio of kernel transitions equals ratio of desired stable distribution.</p></p>
     </article>
 </section>
 <!-- endblock -->

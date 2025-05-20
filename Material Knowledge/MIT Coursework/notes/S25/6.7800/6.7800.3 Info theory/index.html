@@ -164,7 +164,7 @@
 $$
 \exp \left{ \left(   \sum_{i}\lambda_{i}(x_{i})t_{i}(y) \right) - \alpha(x_{i})+\beta(y)\right} .
 $$</p>
-<p>Here $\alpha$ is <em>log-partition function</em>, $\lambda$ is <em>natural statistic</em>, and $\beta$ is <em>log base function</em>.</p>
+<p>Here $\alpha$ is <em>log-partition function</em>, $t$ is the <em>sufficient statistic</em>, $\lambda$ is <em>natural statistic</em>, and $\beta$ is <em>log base function</em>.</p>
 <p>The single-parameter case has some nice properties; partial in $\alpha$ is $\mathbb{E}[t(y)],$ and $\ddot{\alpha}=\text{var}\left[ t(y) \right]=J_{y}(x).$</p>
 <h3 id="linear-families">Linear families</h3>
 <p>We can also take the linear nullspace interpretation. Take some indicators $\lambda,$ then $\mathbb{E}<em>{q</em>{x}}[ p(x)]=e_{0}$ becomes a linear constraint in the probability space.</p>
@@ -214,7 +214,14 @@ Hence if $\mathbb{E}<em>{p} \log \frac{q</em>{2}}{q}$ is independent of $q$ then
 <blockquote>
 <p>[!important] Orthogonality Correspondence
 If the linear family has constraints $\mathbb{E}_{p}[t(y)]=\overline{t}$ for some vector-valued function $t,$ then the set orthogonal to fixed $p^<em>$ is the exponential family $p^</em>(y)\exp \left{ x^{\dagger}t(y)-\alpha(x) \right}$ for free vector parameters $x.$</p>
-</blockquote></p>
+</blockquote>
+<p>We can also represent EM algorithm in info geometry. The $E$ step becomes
+$$
+\hat{p}<em>{z}^{(l-1)}=\arg\min</em>{p_{z}} D(p_{z}||p_{z}(\cdot,\hat{x}^{l-1})),
+$$
+$$
+\hat{x}^{l} = \arg\min_{x} D(\hat{p})
+$$</p></p>
     </article>
 </section>
 <!-- endblock -->

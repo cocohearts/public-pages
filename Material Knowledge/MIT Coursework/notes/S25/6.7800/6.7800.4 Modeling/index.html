@@ -159,8 +159,8 @@
             
         </header>
         <p><p>Modeling is fundamentally different from parameter estimation. We can't simply take our best parameter estimate and then apply it to a prediction, because it's a different loss we care about. For parameter estimation we use MSE or log loss; for modeling we want to use KL. This is the key idea.</p>
-<h2 id="minimax-modeling">Minimax Modeling</h2>
-<p>Let nature choose the true parameter $x$. Hell, let them choose the prior $p_{x}$ parameterized by $w(x).$ Then we want the model $q$ defined by</p>
+<h2 id="least-informative-prior-minimax-modeling">Least Informative Prior, Minimax Modeling</h2>
+<p>Let nature choose the true parameter $x$. Hell, let them choose the prior $p_{x}$ parameterized by $w(x).$ Then we want <em>the minimax model</em> $q$ defined by</p>
 <blockquote>
 <p>[!important] Minimax Decision Theory: Modeling
 $$
@@ -175,7 +175,7 @@ $$
 \max_{w \in \mathcal P^{\mathcal X}}\min_{q \in \mathcal P^{\mathcal Y}}\sum w(x)D(p_{y}(y;x)||q).\
 \end{align</em>}
 $$
-We denote constant shifts using $\equiv.$ The inner term is just
+We denote shifts independent of $q$ using $\equiv.$ The inner term is just
 $$
 \sum_{x}w(x)\sum_{y} p(y;x) \log \frac{q(y)}{p(y;x)}\equiv \sum_{x,y}w(x)p(y;x)\log q(y) \equiv \sum_{y} p_{w}(y) \log \frac{q(y)}{p_{w}(y)}=D(p_{w}(y)||q(y)),
 $$
@@ -188,7 +188,7 @@ $$
 &amp;= -D(p_{xy}||p_{x}p_{y})=-I(x;y).
 \end{align</em>}
 $$
-Hence the best $q$ for $y$ is that parametrized by $x$ in such a way that minimizes $I(x;y)$ over all possible joint distributions. This is called the <em>least informative prior</em> $p^<em>(x,y)$ and the </em>capacity<em> is $I_{p^</em>}(x,y)$. It's kind of in the "middle" of the model space, minimizing max distance to any other model.</p>
+Hence the best $q$ for $y$ is that parametrized by $x$ in such a way that <em>maximizes $I(x;y)$ over all possible joint distributions</em>. This is called the <em>least informative prior</em> $p^<em>(x,y)$ and the </em>capacity<em> is $I_{p^</em>}(x,y)$. It's kind of in the "middle" of the model space, minimizing max distance to any other model.</p>
 <blockquote>
 <p>[!important] Equidistance Property
 The optimum mixture model is equidistant from all candidate models whose parameters have nonzero prior.</p>
