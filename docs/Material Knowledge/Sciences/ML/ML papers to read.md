@@ -3,6 +3,8 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+https://arxiv.org/pdf/2503.20215
+https://arxiv.org/pdf/2503.01710
 https://arxiv.org/pdf/2505.10046
 pluralis papers
 - https://openreview.net/pdf?id=HxPDWbaK1E
