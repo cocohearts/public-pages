@@ -3,104 +3,101 @@ dg-publish: "true"
 tags:
   - perm3
 ---
-claude 4
-drfold2
-https://arxiv.org/pdf/2503.20215
-https://arxiv.org/pdf/2503.01710
-https://arxiv.org/pdf/2505.10046
-pluralis papers
-- https://openreview.net/pdf?id=HxPDWbaK1E
-- https://openreview.net/pdf?id=4O8nzTkHPI
-- https://openreview.net/pdf?id=UyPDg7ksTM
-[comma.ai driver](https://arxiv.org/pdf/2504.19077)
-https://arxiv.org/pdf/2503.14476
-dreamcoder
-https://sander.ai/2025/04/15/latents.html
-https://sander.ai/2024/06/14/noise-schedules.html
-sesame paper
-[diffdock](https://arxiv.org/pdf/2210.01776)
-[discrete diff for proteins](https://arxiv.org/abs/2410.13643)
-af3 architecture, with config
-rosettafold architecture, with config
-proteinmpnn architecture, with config
-boltz-1
-simulating time w sqrt space
-"AI and the future of work" pdf in downloads from us national academies
-tencent t1
-qwen 2.5 omni
-gemma
-[nvidia whitepaper](https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/lindholm08_tesla.pdf)
-tarflow
-thunderkittens
-https://arxiv.org/pdf/2503.07565
-https://www.arxiv.org/pdf/2503.03965
-- [x] https://openai.com/index/chain-of-thought-monitoring/
-grok linear transformers, mamba
-[SE3 transformers for rfdiffusion](https://arxiv.org/abs/2006.10503)
-https://diffusion.csail.mit.edu/
-https://github.com/MoonshotAI/Moonlight/blob/master/Moonlight.pdf
-https://arcinstitute.org/news/blog/evo2
-https://arxiv.org/pdf/2502.09609
-https://huggingface.co/spaces/nanotron/ultrascale-playbook
-https://arxiv.org/pdf/2412.15287
-sana, again
-openvla
-pizero source sent by ge
-moviegen
-[prime](https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f)
-video transformer arch
-flows, euler flow, etc. read flux codebase
-flow-dpm
-titans from gr
-boyuan diffusion papers (done)
+- [x] claude 4
+	- improved coding, with better problem solving
+	- MCP, with integrations into Asana, gdocs, gmail, github, etc.
+	- memory files, longer context problem solving
+- [x] [typical sampling](https://arxiv.org/pdf/2202.00666) 
+	- sample from the tokens whose negative log-prob is within a band of current conditional entropy, as opposed to nucleus (top-p)
+		- why do we trust conditional entropy to be accurate? low-prob logits are inaccurate becuase of bad coverage by training data :sus:
+- [ ] drfold2
+- [ ] https://arxiv.org/pdf/2503.20215
+- [ ] https://arxiv.org/pdf/2503.01710
+- [ ] https://arxiv.org/pdf/2505.10046
+- [ ] pluralis papers
+	- https://openreview.net/pdf?id=HxPDWbaK1E
+	- https://openreview.net/pdf?id=4O8nzTkHPI
+	- https://openreview.net/pdf?id=UyPDg7ksTM
+- [ ] [comma.ai driver](https://arxiv.org/pdf/2504.19077)
+- [ ] https://arxiv.org/pdf/2503.14476
+- [ ] dreamcoder
+- [x] [sander ai diffusion](https://sander.ai/2023/07/20/perspectives.html)
+	- different parametrizations of noise scheduling, cfg
+	- diffusion models as noise-regularized decoders
+	- 
+- [x] [tarflow](https://arxiv.org/pdf/2412.06329)
+	- autoregressive normalizing flow
+		- it's a flow (langevin process) from original distribution to unit normal
+		- loss = norm plus log "compression" (determinant of jacobian)
+		- parameterized by $x'[1:]=x[1:]e^{a(x)}+b(x)$
+- [ ] sesame paper
+- [ ] [diffdock](https://arxiv.org/pdf/2210.01776)
+- [ ] [discrete diff for proteins](https://arxiv.org/abs/2410.13643)
+- [ ] af3 architecture, with config
+- [ ] rosettafold architecture, with config
+- [ ] proteinmpnn architecture, with config
+- [ ] boltz-1
+- [ ] simulating time w sqrt space
+- [ ] "AI and the future of work" pdf in downloads from us national academies
+- [ ] tencent t1
+- [ ] qwen 2.5 omni
+- [ ] gemma
+- [ ] [nvidia whitepaper](https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/lindholm08_tesla.pdf)
+- [ ] tarflow
+- [ ] thunderkittens
+- [ ] https://arxiv.org/pdf/2503.07565
+- [ ] https://www.arxiv.org/pdf/2503.03965
+- https://openai.com/index/chain-of-thought-monitoring/
+- [ ] grok linear transformers, mamba
+- [ ] [SE3 transformers for rfdiffusion](https://arxiv.org/abs/2006.10503)
+- [ ] https://diffusion.csail.mit.edu/
+- [ ] https://github.com/MoonshotAI/Moonlight/blob/master/Moonlight.pdf
+- [ ] https://arcinstitute.org/news/blog/evo2
+- [ ] https://arxiv.org/pdf/2502.09609
+- [ ] https://huggingface.co/spaces/nanotron/ultrascale-playbook
+- [ ] https://arxiv.org/pdf/2412.15287
+- [ ] sana, again
+- [ ] openvla
+- [ ] pizero source sent by ge
+- [ ] moviegen
+- [ ] [prime](https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f)
+- [ ] video transformer arch
+- [ ] flows, euler flow, etc. read flux codebase
+- [ ] flow-dpm
+- [ ] titans from gr
+- [ ] boyuan diffusion papers (done)
 
-[prime](https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f)
-[olmo](https://arxiv.org/pdf/2501.00656)
-[flashinfer](https://arxiv.org/abs/2501.01005)
-srush tensor puzzles
-[meta lingua](https://github.com/facebookresearch/lingua)
-deepseek paper again
-learn triton
-[triton softmax](https://maharshi.bearblog.dev/optimizing-softmax-cuda/)
-srush triton puzzles
-read math in [prob ml](https://probml.github.io/pml-book/toc1.pdf)
+- [ ] [prime](https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f)
+- [ ] [olmo](https://arxiv.org/pdf/2501.00656)
+- [ ] [flashinfer](https://arxiv.org/abs/2501.01005)
+- [ ] srush tensor puzzles
+- [ ] [meta lingua](https://github.com/facebookresearch/lingua)
+- [ ] deepseek paper again
+- [ ] learn triton
+- [ ] [triton softmax](https://maharshi.bearblog.dev/optimizing-softmax-cuda/)
+- [ ] srush triton puzzles
+- [ ] read math in [prob ml](https://probml.github.io/pml-book/toc1.pdf)
 - [x] ditto
 	- can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs
-Large Memory Layers with Product Keys
-https://arxiv.org/pdf/1907.05242
-Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs
-https://arxiv.org/pdf/2401.06102
-Recovering the Pre-Fine-Tuning Weights of Generative Models
-https://arxiv.org/abs/2402.10208
-Location Verification for AI chips
-https://static1.squarespace.com/static/64edf8e7f2b10d716b5ba0e1/t/6670467ebe2a477eb1554f40/1718634112482/Location%2BVerification%2Bfor%2BAI%2BChips.pdf
-Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks
-https://arxiv.org/pdf/1703.10593
-Improving Alignment and Robustness with Circuit Breakers (s/o rowan for coauthoring)
-https://arxiv.org/pdf/2406.04313
-Quantization Model of Neural Scaling (s/o Uzay)
-https://arxiv.org/pdf/2303.13506
-Gradient Routing (s/o Jacob)
-https://arxiv.org/pdf/2410.04332
-Binlear MLPs for Interp
-https://openreview.net/pdf?id=gI0kPklUKS
+- [ ] [Large Memory Layers with Product Keys](https://arxiv.org/pdf/1907.05242)
+- [ ] [Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs](https://arxiv.org/pdf/2401.06102)
+- [ ] [Recovering the Pre-Fine-Tuning Weights of Generative Models](https://arxiv.org/abs/2402.10208)
+- [ ] [Location Verification for AI chips](https://static1.squarespace.com/static/64edf8e7f2b10d716b5ba0e1/t/6670467ebe2a477eb1554f40/1718634112482/Location%2BVerification%2Bfor%2BAI%2BChips.pdf)
+- [ ] [Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](https://arxiv.org/pdf/1703.10593)
+- [ ] [Improving Alignment and Robustness with Circuit Breakers (s/o rowan for coauthoring)](https://arxiv.org/pdf/2406.04313)
+- [ ] [Quantization Model of Neural Scaling (s/o Uzay)](https://arxiv.org/pdf/2303.13506)
+- [ ] [Gradient Routing (s/o Jacob)](https://arxiv.org/pdf/2410.04332)
+- [ ] [Binlear MLPs for Interp](https://openreview.net/pdf?id=gI0kPklUKS)
 
 Not really AI:
-Anatomy of a Bit: Information in a Time Series Observation
-https://arxiv.org/pdf/1105.2988
-Prediction, Retrodiction, and The Amount of Information Stored in the Present
-https://arxiv.org/abs/0905.3587
+- [ ] [Anatomy of a Bit: Information in a Time Series Observation](https://arxiv.org/pdf/1105.2988)
+- [ ] [Prediction, Retrodiction, and The Amount of Information Stored in the Present](https://arxiv.org/abs/0905.3587)
 
-sasha rush awesome (outdated?)
-https://github.com/huggingface/awesome-papers
-long awesome ML
-https://github.com/aimerou/awesome-ai-papers?tab=readme-ov-file
-o1-related
-https://github.com/srush/awesome-o1/
-awesome ML tools
-https://github.com/srush/awesome-machine-learning
-awesome discrete diffusion
-https://github.com/kuleshov-group/awesome-discrete-diffusion-models
+- [ ] [sasha rush awesome (outdated?)](https://github.com/huggingface/awesome-papers)
+- [ ] [long awesome ML](https://github.com/aimerou/awesome-ai-papers?tab=readme-ov-file)
+- [ ] [o1-related](https://github.com/srush/awesome-o1/)
+- [ ] [awesome ML tools](https://github.com/srush/awesome-machine-learning)
+- [ ] [awesome discrete diffusion](https://github.com/kuleshov-group/awesome-discrete-diffusion-models)
 ## sys/inference optimization, large text models
 - [ ] PRIME
 - [ ] grok 1
@@ -221,7 +218,8 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models
 - [ ] [sergey levine](https://people.eecs.berkeley.edu/~svlevine/) from berkeley has takes
 - [ ] some yilun du papers: original [EBM](https://arxiv.org/abs/1903.08689), his [thesis](https://yilundu.github.io/thesis.pdf), his [research statement](https://yilundu.github.io/research_statement.pdf)
 ## diffusion
-- [ ] [diffusion amth](https://www.peterholderrieth.com/blog/2023/The-Fokker-Planck-Equation-and-Diffusion-Models/)
+- [ ] [2022 diffusion design survey](https://arxiv.org/pdf/2206.00364)
+- [ ] [diffusion math](https://www.peterholderrieth.com/blog/2023/The-Fokker-Planck-Equation-and-Diffusion-Models/)
 - [ ] figure out diffusion/normalizing flow/flow forcing, fr, https://boyuan.space/diffusion-forcing/
 - [ ] [flow matching math](https://arxiv.org/abs/2210.02747)
 - [ ] [moviegen](https://ai.meta.com/static-resource/movie-gen-research-paper)
@@ -342,3 +340,4 @@ https://github.com/kuleshov-group/awesome-discrete-diffusion-models
 - [x] BERT and original [transformers](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
 	- attention (2017): add in positional encodings, also mask attention before softmax using causal, transformers solve text gen
 	- BERT: full self-attention with masks using masked language modeling (MLM) loss; cross-entropy on logits on masked tokens
+## graveyard
