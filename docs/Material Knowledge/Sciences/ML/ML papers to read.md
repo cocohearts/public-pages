@@ -98,6 +98,10 @@ Not really AI:
 - [ ] [o1-related](https://github.com/srush/awesome-o1/)
 - [ ] [awesome ML tools](https://github.com/srush/awesome-machine-learning)
 - [ ] [awesome discrete diffusion](https://github.com/kuleshov-group/awesome-discrete-diffusion-models)
+## reasoning
+- [x] [intuitor](https://arxiv.org/pdf/2505.19590)
+	- same thing as grpo (rl with verified rewards), except use confidence (average negative log-likelihood) instead of entropy (expected negative log-likelihood)
+	- importantly, confidence is "mode-seeking" instead of "mode-covering"
 ## sys/inference optimization, large text models
 - [ ] PRIME
 - [ ] grok 1
