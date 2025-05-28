@@ -224,6 +224,8 @@ Not really AI:
 ## diffusion
 - [ ] [2022 diffusion design survey](https://arxiv.org/pdf/2206.00364)
 - [ ] [diffusion math](https://www.peterholderrieth.com/blog/2023/The-Fokker-Planck-Equation-and-Diffusion-Models/)
+- [x] [more diffusion math](https://arxiv.org/pdf/2406.08929)
+- [ ] [6.S184 notes](https://diffusion.csail.mit.edu/docs/lecture-notes.pdf)
 - [ ] figure out diffusion/normalizing flow/flow forcing, fr, https://boyuan.space/diffusion-forcing/
 - [ ] [flow matching math](https://arxiv.org/abs/2210.02747)
 - [ ] [moviegen](https://ai.meta.com/static-resource/movie-gen-research-paper)
