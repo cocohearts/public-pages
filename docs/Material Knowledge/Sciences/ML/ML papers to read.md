@@ -3,6 +3,8 @@ dg-publish: "true"
 tags:
   - perm3
 ---
+- [ ] https://arxiv.org/pdf/2505.20290
+- [ ] https://www.pi.website/research/knowledge_insulation
 - [x] claude 4
 	- improved coding, with better problem solving
 	- MCP, with integrations into Asana, gdocs, gmail, github, etc.
