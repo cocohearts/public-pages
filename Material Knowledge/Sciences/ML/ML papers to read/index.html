@@ -158,134 +158,40 @@
                 <h1 class=" title" id="component-title">ML papers</h1>
             
         </header>
-        <p><ul>
-<li>[ ] https://arxiv.org/pdf/2505.20290</li>
-<li>[ ] https://www.pi.website/research/knowledge_insulation</li>
-<li>[x] claude 4<ul>
-<li>improved coding, with better problem solving</li>
-<li>MCP, with integrations into Asana, gdocs, gmail, github, etc.</li>
-<li>memory files, longer context problem solving</li>
-</ul>
-</li>
-<li>[x] <a href="https://arxiv.org/pdf/2202.00666">typical sampling</a> <ul>
-<li>sample from the tokens whose negative log-prob is within a band of current conditional entropy, as opposed to nucleus (top-p)<ul>
-<li>why do we trust conditional entropy to be accurate? low-prob logits are inaccurate becuase of bad coverage by training data :sus:</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>[ ] drfold2</li>
-<li>[ ] https://arxiv.org/pdf/2503.20215</li>
-<li>[ ] https://arxiv.org/pdf/2503.01710</li>
-<li>[ ] https://arxiv.org/pdf/2505.10046</li>
-<li>[ ] pluralis papers<ul>
-<li>https://openreview.net/pdf?id=HxPDWbaK1E</li>
-<li>https://openreview.net/pdf?id=4O8nzTkHPI</li>
-<li>https://openreview.net/pdf?id=UyPDg7ksTM</li>
-</ul>
-</li>
-<li>[ ] <a href="https://arxiv.org/pdf/2504.19077">comma.ai driver</a></li>
-<li>[ ] https://arxiv.org/pdf/2503.14476</li>
-<li>[ ] dreamcoder</li>
-<li>[x] <a href="https://sander.ai/2023/07/20/perspectives.html">sander ai diffusion</a><ul>
-<li>different parametrizations of noise scheduling, cfg</li>
-<li>diffusion models as noise-regularized decoders</li>
-<li></li>
-</ul>
-</li>
-<li>[x] <a href="https://arxiv.org/pdf/2412.06329">tarflow</a><ul>
-<li>autoregressive normalizing flow<ul>
-<li>it's a flow (langevin process) from original distribution to unit normal</li>
-<li>loss = norm plus log "compression" (determinant of jacobian)</li>
-<li>parameterized by $x'[1:]=x[1:]e^{a(x)}+b(x)$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>[ ] sesame paper</li>
-<li>[ ] <a href="https://arxiv.org/pdf/2210.01776">diffdock</a></li>
-<li>[ ] <a href="https://arxiv.org/abs/2410.13643">discrete diff for proteins</a></li>
-<li>[ ] af3 architecture, with config</li>
-<li>[ ] rosettafold architecture, with config</li>
-<li>[ ] proteinmpnn architecture, with config</li>
-<li>[ ] boltz-1</li>
-<li>[ ] simulating time w sqrt space</li>
-<li>[ ] "AI and the future of work" pdf in downloads from us national academies</li>
-<li>[ ] tencent t1</li>
-<li>[ ] qwen 2.5 omni</li>
-<li>[ ] gemma</li>
-<li>[ ] <a href="https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/lindholm08_tesla.pdf">nvidia whitepaper</a></li>
-<li>[ ] tarflow</li>
-<li>[ ] thunderkittens</li>
-<li>[ ] https://arxiv.org/pdf/2503.07565</li>
-<li>[ ] https://www.arxiv.org/pdf/2503.03965</li>
-<li>https://openai.com/index/chain-of-thought-monitoring/</li>
-<li>[ ] grok linear transformers, mamba</li>
-<li>[ ] <a href="https://arxiv.org/abs/2006.10503">SE3 transformers for rfdiffusion</a></li>
-<li>[ ] https://diffusion.csail.mit.edu/</li>
-<li>[ ] https://github.com/MoonshotAI/Moonlight/blob/master/Moonlight.pdf</li>
-<li>[ ] https://arcinstitute.org/news/blog/evo2</li>
-<li>[ ] https://arxiv.org/pdf/2502.09609</li>
-<li>[ ] https://huggingface.co/spaces/nanotron/ultrascale-playbook</li>
-<li>[ ] https://arxiv.org/pdf/2412.15287</li>
-<li>[ ] sana, again</li>
-<li>[ ] openvla</li>
-<li>[ ] pizero source sent by ge</li>
-<li>[ ] moviegen</li>
-<li>[ ] <a href="https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f">prime</a></li>
-<li>[ ] video transformer arch</li>
-<li>[ ] flows, euler flow, etc. read flux codebase</li>
-<li>[ ] flow-dpm</li>
-<li>[ ] titans from gr</li>
-<li>
-<p>[ ] boyuan diffusion papers (done)</p>
-</li>
-<li>
-<p>[ ] <a href="https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f">prime</a></p>
-</li>
-<li>[ ] <a href="https://arxiv.org/pdf/2501.00656">olmo</a></li>
-<li>[ ] <a href="https://arxiv.org/abs/2501.01005">flashinfer</a></li>
-<li>[ ] srush tensor puzzles</li>
-<li>[ ] <a href="https://github.com/facebookresearch/lingua">meta lingua</a></li>
-<li>[ ] deepseek paper again</li>
-<li>[ ] learn triton</li>
-<li>[ ] <a href="https://maharshi.bearblog.dev/optimizing-softmax-cuda/">triton softmax</a></li>
-<li>[ ] srush triton puzzles</li>
-<li>[ ] read math in <a href="https://probml.github.io/pml-book/toc1.pdf">prob ml</a></li>
-<li>[x] ditto<ul>
-<li>can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs</li>
-</ul>
-</li>
+        <p><h2 id="reasoning">reasoning</h2>
+<ul>
+<li>[ ] <a href="https://arxiv.org/pdf/2503.14476">bytedance dapo</a></li>
 <li>[ ] <a href="https://arxiv.org/pdf/1907.05242">Large Memory Layers with Product Keys</a></li>
-<li>[ ] <a href="https://arxiv.org/pdf/2401.06102">Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs</a></li>
-<li>[ ] <a href="https://arxiv.org/abs/2402.10208">Recovering the Pre-Fine-Tuning Weights of Generative Models</a></li>
-<li>[ ] <a href="https://static1.squarespace.com/static/64edf8e7f2b10d716b5ba0e1/t/6670467ebe2a477eb1554f40/1718634112482/Location%2BVerification%2Bfor%2BAI%2BChips.pdf">Location Verification for AI chips</a></li>
-<li>[ ] <a href="https://arxiv.org/pdf/1703.10593">Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks</a></li>
-<li>[ ] <a href="https://arxiv.org/pdf/2406.04313">Improving Alignment and Robustness with Circuit Breakers (s/o rowan for coauthoring)</a></li>
-<li>[ ] <a href="https://arxiv.org/pdf/2303.13506">Quantization Model of Neural Scaling (s/o Uzay)</a></li>
-<li>[ ] <a href="https://arxiv.org/pdf/2410.04332">Gradient Routing (s/o Jacob)</a></li>
-<li>[ ] <a href="https://openreview.net/pdf?id=gI0kPklUKS">Binlear MLPs for Interp</a></li>
-</ul>
-<p>Not really AI:
-- [ ] <a href="https://arxiv.org/pdf/1105.2988">Anatomy of a Bit: Information in a Time Series Observation</a>
-- [ ] <a href="https://arxiv.org/abs/0905.3587">Prediction, Retrodiction, and The Amount of Information Stored in the Present</a></p>
-<ul>
-<li>[ ] <a href="https://github.com/huggingface/awesome-papers">sasha rush awesome (outdated?)</a></li>
-<li>[ ] <a href="https://github.com/aimerou/awesome-ai-papers?tab=readme-ov-file">long awesome ML</a></li>
-<li>[ ] <a href="https://github.com/srush/awesome-o1/">o1-related</a></li>
-<li>[ ] <a href="https://github.com/srush/awesome-machine-learning">awesome ML tools</a></li>
-<li>[ ] <a href="https://github.com/kuleshov-group/awesome-discrete-diffusion-models">awesome discrete diffusion</a></li>
-</ul>
-<h2 id="reasoning">reasoning</h2>
-<ul>
 <li>[x] <a href="https://arxiv.org/pdf/2505.19590">intuitor</a><ul>
 <li>same thing as grpo (rl with verified rewards), except use confidence (average negative log-likelihood) instead of entropy (expected negative log-likelihood)</li>
 <li>importantly, confidence is "mode-seeking" instead of "mode-covering"</li>
 </ul>
 </li>
 </ul>
-<h2 id="sysinference-optimization-large-text-models">sys/inference optimization, large text models</h2>
+<h2 id="sysinference-optimization-large-models">sys/inference optimization, large models</h2>
 <ul>
+<li>[ ] <a href="https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f">prime</a></li>
+<li>[ ] <a href="https://arxiv.org/abs/2501.01005">flashinfer</a></li>
+<li>[ ] <a href="https://arxiv.org/pdf/2501.00656">olmo</a></li>
+<li>[ ] https://huggingface.co/spaces/nanotron/ultrascale-playbook</li>
+<li>[ ] thunderkittens</li>
+<li>[ ] <a href="https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/lindholm08_tesla.pdf">nvidia whitepaper</a></li>
+<li>[x] claude 4<ul>
+<li>improved coding, with better problem solving</li>
+<li>MCP, with integrations into Asana, gdocs, gmail, github, etc.</li>
+<li>memory files, longer context problem solving</li>
+</ul>
+</li>
+<li>[ ] <a href="https://arxiv.org/pdf/2503.20215">qwen2.5-omni</a></li>
+<li>[ ] pluralis papers<ul>
+<li>https://openreview.net/pdf?id=HxPDWbaK1E</li>
+<li>https://openreview.net/pdf?id=4O8nzTkHPI</li>
+<li>https://openreview.net/pdf?id=UyPDg7ksTM</li>
+</ul>
+</li>
+<li>[ ] tencent t1</li>
+<li>[ ] qwen 2.5 omni</li>
+<li>[ ] gemma</li>
 <li>[ ] PRIME</li>
 <li>[ ] grok 1</li>
 <li>[ ] siglip</li>
@@ -352,6 +258,13 @@
 </ul>
 <h2 id="interp">interp</h2>
 <ul>
+<li>[ ] <a href="https://arxiv.org/pdf/2401.06102">Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs</a></li>
+<li>[ ] <a href="https://arxiv.org/pdf/2406.04313">Improving Alignment and Robustness with Circuit Breakers (s/o rowan for coauthoring)</a></li>
+<li>[ ] <a href="https://arxiv.org/pdf/2303.13506">Quantization Model of Neural Scaling (s/o Uzay)</a></li>
+<li>[ ] <a href="https://arxiv.org/pdf/2410.04332">Gradient Routing (s/o Jacob)</a></li>
+<li>[ ] <a href="https://openreview.net/pdf?id=gI0kPklUKS">Binlear MLPs for Interp</a></li>
+<li>[ ] <a href="https://arxiv.org/abs/2402.10208">Recovering the Pre-Fine-Tuning Weights of Generative Models</a></li>
+<li>[ ] <a href="https://openai.com/index/chain-of-thought-monitoring/">cot monitoring</a></li>
 <li>[ ] <a href="https://papers.nips.cc/paper_files/paper/2023/file/34e1dbe95d34d7ebaf99b9bcaeb5b2be-Paper-Conference.pdf">automated circuit discovery</a></li>
 <li>[ ] <a href="https://arxiv.org/pdf/2304.05969">path patching</a></li>
 <li>[ ] <a href="https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens">the logit lens (blogpost)</a></li>
@@ -413,7 +326,7 @@
 <p>[ ] <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Huang_Not_All_Image_Regions_Matter_Masked_Vector_Quantization_for_Autoregressive_CVPR_2023_paper.pdf">A Mathematical Framework for Transformer Circuits</a></p>
 </li>
 </ul>
-<h2 id="rl-agentsautomation">rl agents/automation</h2>
+<h2 id="rl-agents">rl agents</h2>
 <ul>
 <li>[ ] <a href="https://arxiv.org/abs/2408.06292">sakana</a></li>
 <li>[ ] <a href="https://diffusion-policy.cs.columbia.edu/">diffusion policy</a><ul>
@@ -422,8 +335,13 @@
 </ul>
 </li>
 </ul>
-<h2 id="roboticsrl">robotics/rl</h2>
+<h2 id="robotics-control">robotics control</h2>
 <ul>
+<li>[ ] openvla</li>
+<li>[ ] pizero source sent by ge</li>
+<li>[ ] <a href="https://arxiv.org/pdf/2504.19077">comma.ai driver</a></li>
+<li>[ ] <a href="https://arxiv.org/pdf/2505.20290">egozero</a></li>
+<li>[ ] <a href="https://www.pi.website/research/knowledge_insulation">better vlas from pi</a></li>
 <li>[ ] <a href="https://arxiv.org/abs/2410.23208">kinetix rl physics lib</a></li>
 <li>[ ] <a href="https://mobile-aloha.github.io/resources/mobile-aloha.pdf">aloha robotics</a></li>
 <li>[ ] <a href="https://arxiv.org/abs/2406.09246">openvla</a></li>
@@ -450,9 +368,19 @@
 <li>[ ] <a href="https://people.eecs.berkeley.edu/~svlevine/">sergey levine</a> from berkeley has takes</li>
 <li>[ ] some yilun du papers: original <a href="https://arxiv.org/abs/1903.08689">EBM</a>, his <a href="https://yilundu.github.io/thesis.pdf">thesis</a>, his <a href="https://yilundu.github.io/research_statement.pdf">research statement</a></li>
 </ul>
-<h2 id="diffusion">diffusion</h2>
+<h2 id="diffusion-flows">diffusion / flows</h2>
 <ul>
+<li>[x] ditto</li>
+<li>[ ] <a href="https://arxiv.org/pdf/2502.09609">one-step using jensen-shannon</a><ul>
+<li>can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs</li>
+</ul>
+</li>
+<li>[ ] flow-dpm</li>
+<li>[ ] boyuan diffusion papers (done)</li>
+<li>[ ] <a href="https://arxiv.org/pdf/2503.07565">Inductive Moment Matching</a></li>
+<li>[ ] <a href="https://arxiv.org/pdf/2505.10046">fusing diffusion to llm</a></li>
 <li>[ ] <a href="https://arxiv.org/pdf/2206.00364">2022 diffusion design survey</a></li>
+<li>[ ] <a href="https://diffusion.csail.mit.edu/docs/lecture-notes.pdf">6.S184 course notes</a></li>
 <li>[ ] <a href="https://www.peterholderrieth.com/blog/2023/The-Fokker-Planck-Equation-and-Diffusion-Models/">diffusion math</a></li>
 <li>[x] <a href="https://arxiv.org/pdf/2406.08929">more diffusion math</a></li>
 <li>[ ] <a href="https://diffusion.csail.mit.edu/docs/lecture-notes.pdf">6.S184 notes</a></li>
@@ -461,9 +389,27 @@
 <li>[ ] <a href="https://ai.meta.com/static-resource/movie-gen-research-paper">moviegen</a></li>
 <li>[ ] dall-e algorithm</li>
 <li>[ ] <a href="https://arxiv.org/abs/2305.03486">papers</a> from <a href="https://arxiv.org/abs/2206.00364">william brandon</a></li>
+<li>[x] <a href="https://arxiv.org/pdf/2412.06329">tarflow</a><ul>
+<li>autoregressive normalizing flow<ul>
+<li>it's a flow (langevin process) from original distribution to unit normal</li>
+<li>loss = norm plus log "compression" (determinant of jacobian)</li>
+<li>parameterized by $x'[1:]=x[1:]e^{a(x)}+b(x)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>[ ] <a href="https://sander.ai/2023/07/20/perspectives.html">sander ai diffusion</a><ul>
+<li>different parametrizations of noise scheduling, cfg</li>
+<li>diffusion models as noise-regularized decoders</li>
+<li></li>
+</ul>
+</li>
+<li>[ ] https://diffusion.csail.mit.edu/</li>
 </ul>
 <h2 id="sci-of-dl">sci of dl</h2>
 <ul>
+<li>[ ] <a href="https://github.com/MoonshotAI/Moonlight/blob/master/Moonlight.pdf">muon</a></li>
+<li>[ ] <a href="https://arxiv.org/pdf/2412.15287">sampling-aware finetuning</a></li>
 <li>[ ] <a href="https://arxiv.org/abs/2004.10802">scaling via data manifolds</a></li>
 <li>[x] <a href="https://arxiv.org/abs/2106.09685">low rank</a><ul>
 <li>can update matrix weights using low rank factorizations of matrices</li>
@@ -479,15 +425,27 @@
 <li>Formalize modules into a fwd, mass, sensitivity (curvature), and norm for the weights (defined by norms over input/output).</li>
 </ul>
 </li>
+<li>[x] <a href="https://arxiv.org/pdf/2202.00666">typical sampling</a> <ul>
+<li>sample from the tokens whose negative log-prob is within a band of current conditional entropy, as opposed to nucleus (top-p)<ul>
+<li>why do we trust conditional entropy to be accurate? low-prob logits are inaccurate becuase of bad coverage by training data :sus:</li>
 </ul>
-<h2 id="ssm">ssm</h2>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="subquadratic">subquadratic</h2>
 <ul>
+<li>[ ] <a href="https://arxiv.org/pdf/2501.00663v1">gdm titans</a></li>
 <li>[ ] albert gu's thesis</li>
 <li>[ ] <a href="https://arxiv.org/abs/2405.21060">mamba2: ssm &gt; transformers</a></li>
 <li>[ ] <a href="https://arxiv.org/abs/2403.01590">mamba is attentino</a></li>
+<li>[ ] grok linear transformers, mamba</li>
 </ul>
 <h2 id="audioimagevideo-specific">audio/image/video specific</h2>
 <ul>
+<li>[ ] moviegen</li>
+<li>[ ] <a href="https://arxiv.org/pdf/2503.01710">spark-tts</a></li>
+<li>[ ] sesame paper</li>
 <li>[x] <a href="https://arxiv.org/pdf/2404.02905">var</a><ul>
 <li>motivation: want good bidirectional, want to be able to know bottom from top, want matryoshka-doll like stuff, just think harder about key causality relationship; tokenize-flatten seems bad</li>
 <li>autoregressive "chunk" is a discrete token "resolution", each chunk is still several tokens generated either in parallel or autoregressively (prolly AR)</li>
@@ -612,6 +570,19 @@
 <li>[ ] <a href="https://tracks-to-4d.github.io/">tracks-to-4d</a></li>
 <li>[ ] <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Huang_Not_All_Image_Regions_Matter_Masked_Vector_Quantization_for_Autoregressive_CVPR_2023_paper.pdf">mqvae</a></li>
 </ul>
+<h2 id="bio">bio</h2>
+<ul>
+<li>[ ] <a href="https://arxiv.org/pdf/2210.01776">diffdock</a></li>
+<li>[ ] <a href="https://arxiv.org/abs/2006.10503">SE3 transformers for rfdiffusion</a></li>
+<li>[ ] <a href="https://www.arxiv.org/pdf/2503.03965">DiT for molecules</a></li>
+<li>[ ] <a href="https://arxiv.org/abs/2410.13643">discrete diff for proteins</a></li>
+<li>[ ] af3 architecture, with config</li>
+<li>[ ] rosettafold architecture, with config</li>
+<li>[ ] proteinmpnn architecture, with config</li>
+<li>[ ] boltz-1</li>
+<li>[ ] https://arcinstitute.org/news/blog/evo2</li>
+<li>[ ] drfold2</li>
+</ul>
 <h2 id="miscell">miscell</h2>
 <ul>
 <li>[ ]  <a href="https://arxiv.org/pdf/2305.18290">DPO</a></li>
@@ -628,6 +599,23 @@
 <li>BERT: full self-attention with masks using masked language modeling (MLM) loss; cross-entropy on logits on masked tokens</li>
 </ul>
 </li>
+<li>[ ] srush tensor puzzles</li>
+<li>[ ] simulating time w sqrt space</li>
+<li>[ ] <a href="https://github.com/facebookresearch/lingua">meta lingua</a></li>
+<li>[ ] <a href="https://maharshi.bearblog.dev/optimizing-softmax-cuda/">triton softmax</a></li>
+<li>[ ] srush triton puzzles</li>
+<li>[ ] read math in <a href="https://probml.github.io/pml-book/toc1.pdf">prob ml</a></li>
+<li>[ ] <a href="https://static1.squarespace.com/static/64edf8e7f2b10d716b5ba0e1/t/6670467ebe2a477eb1554f40/1718634112482/Location%2BVerification%2Bfor%2BAI%2BChips.pdf">Location Verification for AI chips</a></li>
+<li>[ ] <a href="https://github.com/huggingface/awesome-papers">sasha rush awesome (outdated?)</a></li>
+<li>[ ] <a href="https://arxiv.org/pdf/1105.2988">Anatomy of a Bit: Information in a Time Series Observation</a></li>
+<li>[ ] dreamcoder</li>
+<li>[ ] "AI and the future of work" pdf in downloads from us national academies</li>
+<li>[ ] <a href="https://arxiv.org/pdf/1703.10593">Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks</a></li>
+<li>[ ] <a href="https://arxiv.org/abs/0905.3587">Prediction, Retrodiction, and The Amount of Information Stored in the Present</a></li>
+<li>[ ] <a href="https://github.com/aimerou/awesome-ai-papers?tab=readme-ov-file">long awesome ML</a></li>
+<li>[ ] <a href="https://github.com/srush/awesome-o1/">o1-related</a></li>
+<li>[ ] <a href="https://github.com/srush/awesome-machine-learning">awesome ML tools</a></li>
+<li>[ ] <a href="https://github.com/kuleshov-group/awesome-discrete-diffusion-models">awesome discrete diffusion</a></li>
 </ul>
 <h2 id="graveyard">graveyard</h2></p>
     </article>
