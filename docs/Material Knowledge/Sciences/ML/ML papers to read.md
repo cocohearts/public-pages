@@ -3,108 +3,31 @@ dg-publish: "true"
 tags:
   - perm3
 ---
-- [ ] https://arxiv.org/pdf/2505.20290
-- [ ] https://www.pi.website/research/knowledge_insulation
+## reasoning
+- [ ] [bytedance dapo](https://arxiv.org/pdf/2503.14476)
+- [ ] [Large Memory Layers with Product Keys](https://arxiv.org/pdf/1907.05242)
+- [x] [intuitor](https://arxiv.org/pdf/2505.19590)
+	- same thing as grpo (rl with verified rewards), except use confidence (average negative log-likelihood) instead of entropy (expected negative log-likelihood)
+	- importantly, confidence is "mode-seeking" instead of "mode-covering"
+## sys/inference optimization, large models
+- [ ] [prime](https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f)
+- [ ] [flashinfer](https://arxiv.org/abs/2501.01005)
+- [ ] [olmo](https://arxiv.org/pdf/2501.00656)
+- [ ] https://huggingface.co/spaces/nanotron/ultrascale-playbook
+- [ ] thunderkittens
+- [ ] [nvidia whitepaper](https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/lindholm08_tesla.pdf)
 - [x] claude 4
 	- improved coding, with better problem solving
 	- MCP, with integrations into Asana, gdocs, gmail, github, etc.
 	- memory files, longer context problem solving
-- [x] [typical sampling](https://arxiv.org/pdf/2202.00666) 
-	- sample from the tokens whose negative log-prob is within a band of current conditional entropy, as opposed to nucleus (top-p)
-		- why do we trust conditional entropy to be accurate? low-prob logits are inaccurate becuase of bad coverage by training data :sus:
-- [ ] drfold2
-- [ ] https://arxiv.org/pdf/2503.20215
-- [ ] https://arxiv.org/pdf/2503.01710
-- [ ] https://arxiv.org/pdf/2505.10046
+- [ ] [qwen2.5-omni](https://arxiv.org/pdf/2503.20215)
 - [ ] pluralis papers
 	- https://openreview.net/pdf?id=HxPDWbaK1E
 	- https://openreview.net/pdf?id=4O8nzTkHPI
 	- https://openreview.net/pdf?id=UyPDg7ksTM
-- [ ] [comma.ai driver](https://arxiv.org/pdf/2504.19077)
-- [ ] https://arxiv.org/pdf/2503.14476
-- [ ] dreamcoder
-- [x] [sander ai diffusion](https://sander.ai/2023/07/20/perspectives.html)
-	- different parametrizations of noise scheduling, cfg
-	- diffusion models as noise-regularized decoders
-	- 
-- [x] [tarflow](https://arxiv.org/pdf/2412.06329)
-	- autoregressive normalizing flow
-		- it's a flow (langevin process) from original distribution to unit normal
-		- loss = norm plus log "compression" (determinant of jacobian)
-		- parameterized by $x'[1:]=x[1:]e^{a(x)}+b(x)$
-- [ ] sesame paper
-- [ ] [diffdock](https://arxiv.org/pdf/2210.01776)
-- [ ] [discrete diff for proteins](https://arxiv.org/abs/2410.13643)
-- [ ] af3 architecture, with config
-- [ ] rosettafold architecture, with config
-- [ ] proteinmpnn architecture, with config
-- [ ] boltz-1
-- [ ] simulating time w sqrt space
-- [ ] "AI and the future of work" pdf in downloads from us national academies
 - [ ] tencent t1
 - [ ] qwen 2.5 omni
 - [ ] gemma
-- [ ] [nvidia whitepaper](https://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/lindholm08_tesla.pdf)
-- [ ] tarflow
-- [ ] thunderkittens
-- [ ] https://arxiv.org/pdf/2503.07565
-- [ ] https://www.arxiv.org/pdf/2503.03965
-- https://openai.com/index/chain-of-thought-monitoring/
-- [ ] grok linear transformers, mamba
-- [ ] [SE3 transformers for rfdiffusion](https://arxiv.org/abs/2006.10503)
-- [ ] https://diffusion.csail.mit.edu/
-- [ ] https://github.com/MoonshotAI/Moonlight/blob/master/Moonlight.pdf
-- [ ] https://arcinstitute.org/news/blog/evo2
-- [ ] https://arxiv.org/pdf/2502.09609
-- [ ] https://huggingface.co/spaces/nanotron/ultrascale-playbook
-- [ ] https://arxiv.org/pdf/2412.15287
-- [ ] sana, again
-- [ ] openvla
-- [ ] pizero source sent by ge
-- [ ] moviegen
-- [ ] [prime](https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f)
-- [ ] video transformer arch
-- [ ] flows, euler flow, etc. read flux codebase
-- [ ] flow-dpm
-- [ ] titans from gr
-- [ ] boyuan diffusion papers (done)
-
-- [ ] [prime](https://curvy-check-498.notion.site/Process-Reinforcement-through-Implicit-Rewards-15f4fcb9c42180f1b498cc9b2eaf896f)
-- [ ] [olmo](https://arxiv.org/pdf/2501.00656)
-- [ ] [flashinfer](https://arxiv.org/abs/2501.01005)
-- [ ] srush tensor puzzles
-- [ ] [meta lingua](https://github.com/facebookresearch/lingua)
-- [ ] deepseek paper again
-- [ ] learn triton
-- [ ] [triton softmax](https://maharshi.bearblog.dev/optimizing-softmax-cuda/)
-- [ ] srush triton puzzles
-- [ ] read math in [prob ml](https://probml.github.io/pml-book/toc1.pdf)
-- [x] ditto
-	- can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs
-- [ ] [Large Memory Layers with Product Keys](https://arxiv.org/pdf/1907.05242)
-- [ ] [Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs](https://arxiv.org/pdf/2401.06102)
-- [ ] [Recovering the Pre-Fine-Tuning Weights of Generative Models](https://arxiv.org/abs/2402.10208)
-- [ ] [Location Verification for AI chips](https://static1.squarespace.com/static/64edf8e7f2b10d716b5ba0e1/t/6670467ebe2a477eb1554f40/1718634112482/Location%2BVerification%2Bfor%2BAI%2BChips.pdf)
-- [ ] [Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](https://arxiv.org/pdf/1703.10593)
-- [ ] [Improving Alignment and Robustness with Circuit Breakers (s/o rowan for coauthoring)](https://arxiv.org/pdf/2406.04313)
-- [ ] [Quantization Model of Neural Scaling (s/o Uzay)](https://arxiv.org/pdf/2303.13506)
-- [ ] [Gradient Routing (s/o Jacob)](https://arxiv.org/pdf/2410.04332)
-- [ ] [Binlear MLPs for Interp](https://openreview.net/pdf?id=gI0kPklUKS)
-
-Not really AI:
-- [ ] [Anatomy of a Bit: Information in a Time Series Observation](https://arxiv.org/pdf/1105.2988)
-- [ ] [Prediction, Retrodiction, and The Amount of Information Stored in the Present](https://arxiv.org/abs/0905.3587)
-
-- [ ] [sasha rush awesome (outdated?)](https://github.com/huggingface/awesome-papers)
-- [ ] [long awesome ML](https://github.com/aimerou/awesome-ai-papers?tab=readme-ov-file)
-- [ ] [o1-related](https://github.com/srush/awesome-o1/)
-- [ ] [awesome ML tools](https://github.com/srush/awesome-machine-learning)
-- [ ] [awesome discrete diffusion](https://github.com/kuleshov-group/awesome-discrete-diffusion-models)
-## reasoning
-- [x] [intuitor](https://arxiv.org/pdf/2505.19590)
-	- same thing as grpo (rl with verified rewards), except use confidence (average negative log-likelihood) instead of entropy (expected negative log-likelihood)
-	- importantly, confidence is "mode-seeking" instead of "mode-covering"
-## sys/inference optimization, large text models
 - [ ] PRIME
 - [ ] grok 1
 - [ ] siglip
@@ -153,6 +76,13 @@ Not really AI:
 	- Transformers arch with LN, LinUp, split SSM/Attn, LinDown, (+), LN, FFN, (+)
 	- (N-3)/2 SWA Hymba blocks on each side of global attention
 ## interp
+- [ ] [Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs](https://arxiv.org/pdf/2401.06102)
+- [ ] [Improving Alignment and Robustness with Circuit Breakers (s/o rowan for coauthoring)](https://arxiv.org/pdf/2406.04313)
+- [ ] [Quantization Model of Neural Scaling (s/o Uzay)](https://arxiv.org/pdf/2303.13506)
+- [ ] [Gradient Routing (s/o Jacob)](https://arxiv.org/pdf/2410.04332)
+- [ ] [Binlear MLPs for Interp](https://openreview.net/pdf?id=gI0kPklUKS)
+- [ ] [Recovering the Pre-Fine-Tuning Weights of Generative Models](https://arxiv.org/abs/2402.10208)
+- [ ] [cot monitoring](https://openai.com/index/chain-of-thought-monitoring/)
 - [ ] [automated circuit discovery](https://papers.nips.cc/paper_files/paper/2023/file/34e1dbe95d34d7ebaf99b9bcaeb5b2be-Paper-Conference.pdf)
 - [ ] [path patching](https://arxiv.org/pdf/2304.05969)
 - [ ] [the logit lens (blogpost)](https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens)
@@ -198,12 +128,17 @@ Not really AI:
 	- recursive is easier to ensure selected subgraph is actually connected
 
 - [ ] [A Mathematical Framework for Transformer Circuits](https://openaccess.thecvf.com/content/CVPR2023/papers/Huang_Not_All_Image_Regions_Matter_Masked_Vector_Quantization_for_Autoregressive_CVPR_2023_paper.pdf)
-## rl agents/automation
+## rl agents
 - [ ] [sakana](https://arxiv.org/abs/2408.06292)
 - [ ] [diffusion policy](https://diffusion-policy.cs.columbia.edu/)
 	- use diffusion to denoise action latents that guide some agent in rl
 	- for whatever reason diffusion is rlly good lol idk
-## robotics/rl
+## robotics control
+- [ ] openvla
+- [ ] pizero source sent by ge
+- [ ] [comma.ai driver](https://arxiv.org/pdf/2504.19077)
+- [ ] [egozero](https://arxiv.org/pdf/2505.20290)
+- [ ] [better vlas from pi](https://www.pi.website/research/knowledge_insulation)
 - [ ] [kinetix rl physics lib](https://arxiv.org/abs/2410.23208)
 - [ ] [aloha robotics](https://mobile-aloha.github.io/resources/mobile-aloha.pdf)
 - [ ] [openvla](https://arxiv.org/abs/2406.09246)
@@ -223,8 +158,16 @@ Not really AI:
 - [x] [action latents](https://arxiv.org/html/2410.11758v1)
 - [ ] [sergey levine](https://people.eecs.berkeley.edu/~svlevine/) from berkeley has takes
 - [ ] some yilun du papers: original [EBM](https://arxiv.org/abs/1903.08689), his [thesis](https://yilundu.github.io/thesis.pdf), his [research statement](https://yilundu.github.io/research_statement.pdf)
-## diffusion
+## diffusion / flows
+- [x] ditto
+- [ ] [one-step using jensen-shannon](https://arxiv.org/pdf/2502.09609)
+	- can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs
+- [ ] flow-dpm
+- [ ] boyuan diffusion papers (done)
+- [ ] [Inductive Moment Matching](https://arxiv.org/pdf/2503.07565)
+- [ ] [fusing diffusion to llm](https://arxiv.org/pdf/2505.10046)
 - [ ] [2022 diffusion design survey](https://arxiv.org/pdf/2206.00364)
+- [ ] [6.S184 course notes](https://diffusion.csail.mit.edu/docs/lecture-notes.pdf)
 - [ ] [diffusion math](https://www.peterholderrieth.com/blog/2023/The-Fokker-Planck-Equation-and-Diffusion-Models/)
 - [x] [more diffusion math](https://arxiv.org/pdf/2406.08929)
 - [ ] [6.S184 notes](https://diffusion.csail.mit.edu/docs/lecture-notes.pdf)
@@ -233,7 +176,19 @@ Not really AI:
 - [ ] [moviegen](https://ai.meta.com/static-resource/movie-gen-research-paper)
 - [ ] dall-e algorithm
 - [ ] [papers](https://arxiv.org/abs/2305.03486) from [william brandon](https://arxiv.org/abs/2206.00364)
+- [x] [tarflow](https://arxiv.org/pdf/2412.06329)
+	- autoregressive normalizing flow
+		- it's a flow (langevin process) from original distribution to unit normal
+		- loss = norm plus log "compression" (determinant of jacobian)
+		- parameterized by $x'[1:]=x[1:]e^{a(x)}+b(x)$
+- [ ] [sander ai diffusion](https://sander.ai/2023/07/20/perspectives.html)
+	- different parametrizations of noise scheduling, cfg
+	- diffusion models as noise-regularized decoders
+	- 
+- [ ] https://diffusion.csail.mit.edu/
 ## sci of dl
+- [ ] [muon](https://github.com/MoonshotAI/Moonlight/blob/master/Moonlight.pdf)
+- [ ] [sampling-aware finetuning](https://arxiv.org/pdf/2412.15287)
 - [ ] [scaling via data manifolds](https://arxiv.org/abs/2004.10802)
 - [x] [low rank](https://arxiv.org/abs/2106.09685)
 	- can update matrix weights using low rank factorizations of matrices
@@ -245,11 +200,19 @@ Not really AI:
 	4. Generalizing, we want to maintain smoothness of our layers for easy future gradient descent. Given the gradient, want to update in the direction that gives the most "bang for buck" accounting for some norm on the weights. Above maximum can be interpreted as curvature, i.e. fastest ROC of output given fixed input change. Dualizer is the argmax of this norm.
 	- They arrive at several duality maps for different modules using specific norms, e.g. RMS for linear, max(RMS) over channels for convolution, $l_{1}\to RMS$ for embedding. Using the above max expression, get spectral nom for Linear, max spectral norm for Conv2D, some other weird stuff idk lmao
 	- Formalize modules into a fwd, mass, sensitivity (curvature), and norm for the weights (defined by norms over input/output).
-## ssm
+- [x] [typical sampling](https://arxiv.org/pdf/2202.00666) 
+	- sample from the tokens whose negative log-prob is within a band of current conditional entropy, as opposed to nucleus (top-p)
+		- why do we trust conditional entropy to be accurate? low-prob logits are inaccurate becuase of bad coverage by training data :sus:
+## subquadratic
+- [ ] [gdm titans](https://arxiv.org/pdf/2501.00663v1)
 - [ ] albert gu's thesis
 - [ ] [mamba2: ssm > transformers](https://arxiv.org/abs/2405.21060)
 - [ ] [mamba is attentino](https://arxiv.org/abs/2403.01590)
+- [ ] grok linear transformers, mamba
 ## audio/image/video specific
+- [ ] moviegen
+- [ ] [spark-tts](https://arxiv.org/pdf/2503.01710)
+- [ ] sesame paper
 - [x] [var](https://arxiv.org/pdf/2404.02905)
 	- motivation: want good bidirectional, want to be able to know bottom from top, want matryoshka-doll like stuff, just think harder about key causality relationship; tokenize-flatten seems bad
 	- autoregressive "chunk" is a discrete token "resolution", each chunk is still several tokens generated either in parallel or autoregressively (prolly AR)
@@ -335,6 +298,17 @@ Not really AI:
 		- try again
 - [ ] [tracks-to-4d](https://tracks-to-4d.github.io/)
 - [ ] [mqvae](https://openaccess.thecvf.com/content/CVPR2023/papers/Huang_Not_All_Image_Regions_Matter_Masked_Vector_Quantization_for_Autoregressive_CVPR_2023_paper.pdf)
+## bio
+- [ ] [diffdock](https://arxiv.org/pdf/2210.01776)
+- [ ] [SE3 transformers for rfdiffusion](https://arxiv.org/abs/2006.10503)
+- [ ] [DiT for molecules](https://www.arxiv.org/pdf/2503.03965)
+- [ ] [discrete diff for proteins](https://arxiv.org/abs/2410.13643)
+- [ ] af3 architecture, with config
+- [ ] rosettafold architecture, with config
+- [ ] proteinmpnn architecture, with config
+- [ ] boltz-1
+- [ ] https://arcinstitute.org/news/blog/evo2
+- [ ] drfold2
 ## miscell
 - [ ]  [DPO](https://arxiv.org/pdf/2305.18290)
 - [ ] [transfer learning survey](https://arxiv.org/pdf/2010.03978)
@@ -348,4 +322,22 @@ Not really AI:
 - [x] BERT and original [transformers](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)
 	- attention (2017): add in positional encodings, also mask attention before softmax using causal, transformers solve text gen
 	- BERT: full self-attention with masks using masked language modeling (MLM) loss; cross-entropy on logits on masked tokens
+- [ ] srush tensor puzzles
+- [ ] simulating time w sqrt space
+- [ ] [meta lingua](https://github.com/facebookresearch/lingua)
+- [ ] [triton softmax](https://maharshi.bearblog.dev/optimizing-softmax-cuda/)
+- [ ] srush triton puzzles
+- [ ] read math in [prob ml](https://probml.github.io/pml-book/toc1.pdf)
+- [ ] [Location Verification for AI chips](https://static1.squarespace.com/static/64edf8e7f2b10d716b5ba0e1/t/6670467ebe2a477eb1554f40/1718634112482/Location%2BVerification%2Bfor%2BAI%2BChips.pdf)
+- [ ] [sasha rush awesome (outdated?)](https://github.com/huggingface/awesome-papers)
+- [ ] [Anatomy of a Bit: Information in a Time Series Observation](https://arxiv.org/pdf/1105.2988)
+- [ ] dreamcoder
+- [ ] "AI and the future of work" pdf in downloads from us national academies
+- [ ] [Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](https://arxiv.org/pdf/1703.10593)
+- [ ] [Prediction, Retrodiction, and The Amount of Information Stored in the Present](https://arxiv.org/abs/0905.3587)
+- [ ] [long awesome ML](https://github.com/aimerou/awesome-ai-papers?tab=readme-ov-file)
+- [ ] [o1-related](https://github.com/srush/awesome-o1/)
+- [ ] [awesome ML tools](https://github.com/srush/awesome-machine-learning)
+- [ ] [awesome discrete diffusion](https://github.com/kuleshov-group/awesome-discrete-diffusion-models)
+
 ## graveyard
