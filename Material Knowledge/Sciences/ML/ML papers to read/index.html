@@ -340,8 +340,19 @@
 <li>[ ] openvla</li>
 <li>[ ] pizero source sent by ge</li>
 <li>[ ] <a href="https://arxiv.org/pdf/2504.19077">comma.ai driver</a></li>
-<li>[ ] <a href="https://arxiv.org/pdf/2505.20290">egozero</a></li>
-<li>[ ] <a href="https://www.pi.website/research/knowledge_insulation">better vlas from pi</a></li>
+<li>[x] <a href="https://arxiv.org/pdf/2505.20290">egozero</a><ul>
+<li>use smart glasses that have a fisheye lens rgb and two lidar sensors for triangulation of fixed points in the scene</li>
+<li>noticed that need open hand gesture to make sure hand poses can be accurately estimated</li>
+<li>use normal behavior cloning, achieve good results on one-shot in-distribution tasks</li>
+</ul>
+</li>
+<li>[x] <a href="https://www.pi.website/research/knowledge_insulation">better vlas from pi</a><ul>
+<li>use "knowledge insulation" where discretized actions (high-level actions) are trained on the backbone, then stop-gradient and train a continuous diffusion head for high-granularity high-frequency dexterous actions</li>
+<li>the continuous action head uses flow matching (MCMC) to diffuse the action chunk (contiguous time interval) into the desired future subsequence</li>
+<li>VLM backbone trained using text / prompt inputs and reasoning / discrete action token outputs</li>
+<li>Details: use FAST (discrete cosine transform for pose), followed by quantization and BPE, to create supervised discrete action data</li>
+</ul>
+</li>
 <li>[ ] <a href="https://arxiv.org/abs/2410.23208">kinetix rl physics lib</a></li>
 <li>[ ] <a href="https://mobile-aloha.github.io/resources/mobile-aloha.pdf">aloha robotics</a></li>
 <li>[ ] <a href="https://arxiv.org/abs/2406.09246">openvla</a></li>
