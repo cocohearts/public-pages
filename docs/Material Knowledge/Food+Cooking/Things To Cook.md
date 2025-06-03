@@ -1,3 +1,4 @@
+- [ ] one pot spaghetti
 - [x] eggs benedict 
 - [x] https://www.thespruceeats.com/rum-eggnog-recipes-760561
 - [ ] easy over, correctly
