@@ -184,6 +184,20 @@
 </li>
 <li>[ ] <a href="https://arxiv.org/pdf/2503.20215">qwen2.5-omni</a></li>
 <li>[ ] pluralis papers<ul>
+<li><a href="https://arxiv.org/pdf/2506.01260">projection compression</a><ul>
+<li>because of adamW, low-SV vectors are depressed at train-time anyways</li>
+<li>PP break happens after each down-projection, so we only need to communicate activations (forward) and their gradients (backward)</li>
+<li>activations and gradients can be compressed (cuz they came out of down-projection)</li>
+<li>activations are broken into<ul>
+<li>post-attention (per block)</li>
+<li>post-ffn (per block)</li>
+<li>TE and PE (init)</li>
+</ul>
+</li>
+<li>have shared low-rank subspace (shared $UU^{\dagger}$) for all down-projections</li>
+<li>update subspace every 500 steps diloco-style using a loss penalizing non-orthogonality (Grassman manifold)</li>
+</ul>
+</li>
 <li>https://openreview.net/pdf?id=HxPDWbaK1E</li>
 <li>https://openreview.net/pdf?id=4O8nzTkHPI</li>
 <li>https://openreview.net/pdf?id=UyPDg7ksTM</li>
@@ -192,7 +206,17 @@
 <li>[ ] tencent t1</li>
 <li>[ ] qwen 2.5 omni</li>
 <li>[ ] gemma</li>
-<li>[ ] PRIME</li>
+<li>[x] prime intellect's PRIME / DiLoCo<ul>
+<li>DiLoCo: distributed low-communication training, where each island does its own opt; inner is usual AdamW (or Muon), outer is Nesterov momentum</li>
+<li>Outer optimization happens once every 500 steps or so</li>
+<li>Used to do pretraining for INTELLECT-1</li>
+</ul>
+</li>
+<li>[x] prime intellect's distributed RL<ul>
+<li>permissionless service using "inference provider" and "relay nodes" using verification with random sampling, final layer logit hashes, etc. various statistical checks to ensure larger model is being sampled correctly</li>
+<li>per-island backprop as usual.</li>
+</ul>
+</li>
 <li>[ ] grok 1</li>
 <li>[ ] siglip</li>
 <li>[x] <a href="https://arxiv.org/abs/2205.14135">flashattention</a><ul>
@@ -387,15 +411,27 @@
 </ul>
 </li>
 <li>[ ] flow-dpm</li>
-<li>[ ] boyuan diffusion papers (done)</li>
+<li>[x] <a href="https://sander.ai/2024/06/14/noise-schedules.html#superfluous">sander.ai: noise schedules</a><ul>
+<li>between timestep schedules and noise schedules, they're not super relevant; the root DOF is "relative noise level" i.e. noise level at consecutive inference steps</li>
+<li>countless params: have diff. noise levels at train, inference time, can randomize spacing, loss weighting, diff. forcing, etc.</li>
+</ul>
+</li>
+<li>[ ] boyuan diffusion papers</li>
 <li>[ ] <a href="https://arxiv.org/pdf/2503.07565">Inductive Moment Matching</a></li>
 <li>[ ] <a href="https://arxiv.org/pdf/2505.10046">fusing diffusion to llm</a></li>
 <li>[ ] <a href="https://arxiv.org/pdf/2206.00364">2022 diffusion design survey</a></li>
 <li>[ ] <a href="https://diffusion.csail.mit.edu/docs/lecture-notes.pdf">6.S184 course notes</a></li>
 <li>[ ] <a href="https://www.peterholderrieth.com/blog/2023/The-Fokker-Planck-Equation-and-Diffusion-Models/">diffusion math</a></li>
 <li>[x] <a href="https://arxiv.org/pdf/2406.08929">more diffusion math</a></li>
-<li>[ ] <a href="https://diffusion.csail.mit.edu/docs/lecture-notes.pdf">6.S184 notes</a></li>
-<li>[ ] figure out diffusion/normalizing flow/flow forcing, fr, https://boyuan.space/diffusion-forcing/</li>
+<li>[x] <a href="https://boyuan.space/diffusion-forcing/">diffusion forcing</a><ul>
+<li>autoregressive: unmasking one tok at a time</li>
+<li>diffusion: denoising full seq</li>
+<li>chunked diffusion: denoising next bit of sequence</li>
+<li>diffusion forcing: next N toks all have arbitrary noise levels, predict the $\epsilon$</li>
+<li>thesis: noising is like masking but continuous instead of T/F</li>
+<li>this way, can have farther-away stuff be noisier, so denoising sequence and then add a single full-noise token to the end for long-context denoising, autoregressive style</li>
+</ul>
+</li>
 <li>[ ] <a href="https://arxiv.org/abs/2210.02747">flow matching math</a></li>
 <li>[ ] <a href="https://ai.meta.com/static-resource/movie-gen-research-paper">moviegen</a></li>
 <li>[ ] dall-e algorithm</li>
