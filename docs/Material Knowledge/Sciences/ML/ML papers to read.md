@@ -22,13 +22,29 @@ tags:
 	- memory files, longer context problem solving
 - [ ] [qwen2.5-omni](https://arxiv.org/pdf/2503.20215)
 - [ ] pluralis papers
+	- [projection compression](https://arxiv.org/pdf/2506.01260)
+		- because of adamW, low-SV vectors are depressed at train-time anyways
+		- PP break happens after each down-projection, so we only need to communicate activations (forward) and their gradients (backward)
+		- activations and gradients can be compressed (cuz they came out of down-projection)
+		- activations are broken into
+			- post-attention (per block)
+			- post-ffn (per block)
+			- TE and PE (init)
+		- have shared low-rank subspace (shared $UU^{\dagger}$) for all down-projections
+		- update subspace every 500 steps diloco-style using a loss penalizing non-orthogonality (Grassman manifold)
 	- https://openreview.net/pdf?id=HxPDWbaK1E
 	- https://openreview.net/pdf?id=4O8nzTkHPI
 	- https://openreview.net/pdf?id=UyPDg7ksTM
 - [ ] tencent t1
 - [ ] qwen 2.5 omni
 - [ ] gemma
-- [ ] PRIME
+- [x] prime intellect's PRIME / DiLoCo
+	- DiLoCo: distributed low-communication training, where each island does its own opt; inner is usual AdamW (or Muon), outer is Nesterov momentum
+	- Outer optimization happens once every 500 steps or so
+	- Used to do pretraining for INTELLECT-1
+- [x] prime intellect's distributed RL
+	- permissionless service using "inference provider" and "relay nodes" using verification with random sampling, final layer logit hashes, etc. various statistical checks to ensure larger model is being sampled correctly
+	- per-island backprop as usual.
 - [ ] grok 1
 - [ ] siglip
 - [x] [flashattention](https://arxiv.org/abs/2205.14135)
@@ -170,15 +186,23 @@ tags:
 - [ ] [one-step using jensen-shannon](https://arxiv.org/pdf/2502.09609)
 	- can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs
 - [ ] flow-dpm
-- [ ] boyuan diffusion papers (done)
+- [x] [sander.ai: noise schedules](https://sander.ai/2024/06/14/noise-schedules.html#superfluous)
+	- between timestep schedules and noise schedules, they're not super relevant; the root DOF is "relative noise level" i.e. noise level at consecutive inference steps
+	- countless params: have diff. noise levels at train, inference time, can randomize spacing, loss weighting, diff. forcing, etc.
+- [ ] boyuan diffusion papers
 - [ ] [Inductive Moment Matching](https://arxiv.org/pdf/2503.07565)
 - [ ] [fusing diffusion to llm](https://arxiv.org/pdf/2505.10046)
 - [ ] [2022 diffusion design survey](https://arxiv.org/pdf/2206.00364)
 - [ ] [6.S184 course notes](https://diffusion.csail.mit.edu/docs/lecture-notes.pdf)
 - [ ] [diffusion math](https://www.peterholderrieth.com/blog/2023/The-Fokker-Planck-Equation-and-Diffusion-Models/)
 - [x] [more diffusion math](https://arxiv.org/pdf/2406.08929)
-- [ ] [6.S184 notes](https://diffusion.csail.mit.edu/docs/lecture-notes.pdf)
-- [ ] figure out diffusion/normalizing flow/flow forcing, fr, https://boyuan.space/diffusion-forcing/
+- [x] [diffusion forcing](https://boyuan.space/diffusion-forcing/)
+	- autoregressive: unmasking one tok at a time
+	- diffusion: denoising full seq
+	- chunked diffusion: denoising next bit of sequence
+	- diffusion forcing: next N toks all have arbitrary noise levels, predict the $\epsilon$
+	- thesis: noising is like masking but continuous instead of T/F
+	- this way, can have farther-away stuff be noisier, so denoising sequence and then add a single full-noise token to the end for long-context denoising, autoregressive style
 - [ ] [flow matching math](https://arxiv.org/abs/2210.02747)
 - [ ] [moviegen](https://ai.meta.com/static-resource/movie-gen-research-paper)
 - [ ] dall-e algorithm
