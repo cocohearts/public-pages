@@ -212,10 +212,13 @@ tags:
 		- it's a flow (langevin process) from original distribution to unit normal
 		- loss = norm plus log "compression" (determinant of jacobian)
 		- parameterized by $x'[1:]=x[1:]e^{a(x)}+b(x)$
-- [ ] [sander ai diffusion](https://sander.ai/2023/07/20/perspectives.html)
+- [x] [sander ai diffusion](https://sander.ai/2023/07/20/perspectives.html) ✅ 2025-06-09
 	- different parametrizations of noise scheduling, cfg
 	- diffusion models as noise-regularized decoders
-	- 
+	- they solve SDEs
+	- are flow-based
+	- are iterative / RNNs
+	- estimate expectations of the posterior
 - [ ] https://diffusion.csail.mit.edu/
 ## sci of dl
 - [ ] [muon](https://github.com/MoonshotAI/Moonlight/blob/master/Moonlight.pdf)
