@@ -406,6 +406,12 @@
 <h2 id="diffusion-flows">diffusion / flows</h2>
 <ul>
 <li>[x] ditto</li>
+<li>[x] <a href="https://www.peterholderrieth.com/blog/2023/Diffusion-Models-with-Stochastic-Differential-Equations-A-Introduction-with-Self-Contained-Mathematical-Proofs/">diffusion loss derivation</a><ul>
+<li>diffusion is an sde (ito's equation). we want to run it backwards. assuming affine diffusion, running backwards requires score function of distribution at current timestamp.</li>
+<li>but distribution is a mixture of gaussians, so score is mixture of scores of gaussians, weighted by the posterior probabilities, each of which is just "point back to the mean"</li>
+<li>using mse against true loss and then Cauchy yields the "per-data point" MSE diffusion loss usually used</li>
+</ul>
+</li>
 <li>[ ] <a href="https://arxiv.org/pdf/2502.09609">one-step using jensen-shannon</a><ul>
 <li>can backprop differentiable losses on diffusion model outputs to noise inputs! and get desired outputs</li>
 </ul>
@@ -565,7 +571,7 @@
 <li>Transformer decoder with just a linear and rearrange to get predicted $\epsilon$ and diagonal $\Sigma.$</li>
 </ul>
 </li>
-<li>[ ] original <a href="https://arxiv.org/pdf/2010.11929">vit</a></li>
+<li>[x] original <a href="https://arxiv.org/pdf/2010.11929">vit</a></li>
 <li>[x] <a href="https://arxiv.org/pdf/2410.10629">sana</a><ul>
 <li>huge compression vae, with F32C32P1 instead of standard F8C8P2, leads to 4x fewer tokens (1/16 "patches", 4x channels, 4x patches)</li>
 <li>linear attention using $ReLU(Q)ReLU(K)^{T}$ instead of softmax, then instead of computing $n\times n$ matrix can do $ReLU(K)^{T}V$ first to get $d\times d$ matrix for linear time full sequence training<ul>
