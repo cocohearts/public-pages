@@ -423,11 +423,21 @@
 </ul>
 </li>
 <li>[ ] boyuan diffusion papers</li>
-<li>[ ] <a href="https://arxiv.org/pdf/2503.07565">Inductive Moment Matching</a></li>
-<li>[ ] <a href="https://arxiv.org/pdf/2505.10046">fusing diffusion to llm</a></li>
+<li>[x] <a href="https://arxiv.org/pdf/2505.10046">fusing diffusion to llm</a><ul>
+<li>do "deep fusion" of llm blocks with dit blocks</li>
+<li>doesn't make sense to put llm last-token activations into dit cuz they're focused on predicting the next token</li>
+<li>instead, condition by fusing the attention; concat image tok seq to text tok seq, and image has full self-attention plus attending to text on each block</li>
+<li>can adjust dim size, skip blocks, etc. many modifications</li>
+<li>llm weights stay frozen</li>
+</ul>
+</li>
 <li>[ ] <a href="https://arxiv.org/pdf/2206.00364">2022 diffusion design survey</a></li>
 <li>[ ] <a href="https://diffusion.csail.mit.edu/docs/lecture-notes.pdf">6.S184 course notes</a></li>
-<li>[ ] <a href="https://www.peterholderrieth.com/blog/2023/The-Fokker-Planck-Equation-and-Diffusion-Models/">diffusion math</a></li>
+<li>[ ] <a href="https://www.peterholderrieth.com/blog/2023/The-Fokker-Planck-Equation-and-Diffusion-Models/">diffusion math</a><ul>
+<li>fokker-plank from ito diffusion equation using ito's lemma</li>
+<li>derive ddim</li>
+</ul>
+</li>
 <li>[x] <a href="https://arxiv.org/pdf/2406.08929">more diffusion math</a></li>
 <li>[x] <a href="https://boyuan.space/diffusion-forcing/">diffusion forcing</a><ul>
 <li>autoregressive: unmasking one tok at a time</li>
@@ -438,14 +448,28 @@
 <li>this way, can have farther-away stuff be noisier, so denoising sequence and then add a single full-noise token to the end for long-context denoising, autoregressive style</li>
 </ul>
 </li>
-<li>[ ] <a href="https://arxiv.org/abs/2210.02747">flow matching math</a></li>
+<li>[x] <a href="https://arxiv.org/abs/2210.02747">flow matching math</a><ul>
+<li>CNF's: flow a probability field from data to gaussian, use Jacobians to track compression and maximize log prob</li>
+<li>flow matching: match the flow / velocity field directly, but use conditional instead of marginal</li>
+<li>inference-time do it using the ODE, use an ODE solver / can go forward or backwards</li>
+<li>sorta like ddim</li>
+</ul>
+</li>
+<li>[x] <a href="https://arxiv.org/pdf/2503.07565">Inductive Moment Matching</a><ul>
+<li>generalize diffusion, flow matching with stochastic interpolants (some stochastic process that interpolates from data to prior)</li>
+<li>inform the model on distance / make diffusion "consistent" by inferring the marginal $x_{s}$ given some $x_{t},$ and pick an interpolation s.t. the resulting distribution for $x_{s}$ is $t$-independent</li>
+<li>loss is diff between $x_{s}$ from $x_{r}$ vs from $x_{t},$ for $r&lt;t$</li>
+<li>They use the DDIM interpolant </li>
+<li>Somehow they match "higher" moments (powers of the distribution) ?? idk lmfao wtf</li>
+</ul>
+</li>
 <li>[ ] <a href="https://ai.meta.com/static-resource/movie-gen-research-paper">moviegen</a></li>
 <li>[ ] dall-e algorithm</li>
 <li>[ ] <a href="https://arxiv.org/abs/2305.03486">papers</a> from <a href="https://arxiv.org/abs/2206.00364">william brandon</a></li>
 <li>[x] <a href="https://arxiv.org/pdf/2412.06329">tarflow</a><ul>
 <li>autoregressive normalizing flow<ul>
 <li>it's a flow (langevin process) from original distribution to unit normal</li>
-<li>loss = norm plus log "compression" (determinant of jacobian)</li>
+<li>loss = norm plus log "compression" (determinant of jacobian), derived from NLL of prob. density flow</li>
 <li>parameterized by $x'[1:]=x[1:]e^{a(x)}+b(x)$</li>
 </ul>
 </li>
