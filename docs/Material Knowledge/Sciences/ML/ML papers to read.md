@@ -194,11 +194,17 @@ tags:
 	- between timestep schedules and noise schedules, they're not super relevant; the root DOF is "relative noise level" i.e. noise level at consecutive inference steps
 	- countless params: have diff. noise levels at train, inference time, can randomize spacing, loss weighting, diff. forcing, etc.
 - [ ] boyuan diffusion papers
-- [ ] [Inductive Moment Matching](https://arxiv.org/pdf/2503.07565)
-- [ ] [fusing diffusion to llm](https://arxiv.org/pdf/2505.10046)
+- [x] [fusing diffusion to llm](https://arxiv.org/pdf/2505.10046)
+	- do "deep fusion" of llm blocks with dit blocks
+	- doesn't make sense to put llm last-token activations into dit cuz they're focused on predicting the next token
+	- instead, condition by fusing the attention; concat image tok seq to text tok seq, and image has full self-attention plus attending to text on each block
+	- can adjust dim size, skip blocks, etc. many modifications
+	- llm weights stay frozen
 - [ ] [2022 diffusion design survey](https://arxiv.org/pdf/2206.00364)
 - [ ] [6.S184 course notes](https://diffusion.csail.mit.edu/docs/lecture-notes.pdf)
 - [ ] [diffusion math](https://www.peterholderrieth.com/blog/2023/The-Fokker-Planck-Equation-and-Diffusion-Models/)
+	- fokker-plank from ito diffusion equation using ito's lemma
+	- derive ddim
 - [x] [more diffusion math](https://arxiv.org/pdf/2406.08929)
 - [x] [diffusion forcing](https://boyuan.space/diffusion-forcing/)
 	- autoregressive: unmasking one tok at a time
@@ -207,14 +213,24 @@ tags:
 	- diffusion forcing: next N toks all have arbitrary noise levels, predict the $\epsilon$
 	- thesis: noising is like masking but continuous instead of T/F
 	- this way, can have farther-away stuff be noisier, so denoising sequence and then add a single full-noise token to the end for long-context denoising, autoregressive style
-- [ ] [flow matching math](https://arxiv.org/abs/2210.02747)
+- [x] [flow matching math](https://arxiv.org/abs/2210.02747)
+	- CNF's: flow a probability field from data to gaussian, use Jacobians to track compression and maximize log prob
+	- flow matching: match the flow / velocity field directly, but use conditional instead of marginal
+	- inference-time do it using the ODE, use an ODE solver / can go forward or backwards
+	- sorta like ddim
+- [x] [Inductive Moment Matching](https://arxiv.org/pdf/2503.07565)
+	- generalize diffusion, flow matching with stochastic interpolants (some stochastic process that interpolates from data to prior)
+	- inform the model on distance / make diffusion "consistent" by inferring the marginal $x_{s}$ given some $x_{t},$ and pick an interpolation s.t. the resulting distribution for $x_{s}$ is $t$-independent
+	- loss is diff between $x_{s}$ from $x_{r}$ vs from $x_{t},$ for $r<t$
+	- They use the DDIM interpolant 
+	- Somehow they match "higher" moments (powers of the distribution) ?? idk lmfao wtf
 - [ ] [moviegen](https://ai.meta.com/static-resource/movie-gen-research-paper)
 - [ ] dall-e algorithm
 - [ ] [papers](https://arxiv.org/abs/2305.03486) from [william brandon](https://arxiv.org/abs/2206.00364)
 - [x] [tarflow](https://arxiv.org/pdf/2412.06329)
 	- autoregressive normalizing flow
 		- it's a flow (langevin process) from original distribution to unit normal
-		- loss = norm plus log "compression" (determinant of jacobian)
+		- loss = norm plus log "compression" (determinant of jacobian), derived from NLL of prob. density flow
 		- parameterized by $x'[1:]=x[1:]e^{a(x)}+b(x)$
 - [x] [sander ai diffusion](https://sander.ai/2023/07/20/perspectives.html) ✅ 2025-06-09
 	- different parametrizations of noise scheduling, cfg
