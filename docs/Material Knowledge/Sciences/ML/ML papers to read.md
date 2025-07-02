@@ -91,6 +91,8 @@ tags:
 	- combine SSM and transformer *side by side* as opposed to in sequence, has good "synergy" because of opposing behaviors
 	- Transformers arch with LN, LinUp, split SSM/Attn, LinDown, (+), LN, FFN, (+)
 	- (N-3)/2 SWA Hymba blocks on each side of global attention
+## chips
+- [x] [tpus](https://henryhmko.github.io/posts/tpu/tpu.html)
 ## interp
 - [ ] [Patchscope: A Unifying Framework for Inspecting Hidden Representations of LLMs](https://arxiv.org/pdf/2401.06102)
 - [ ] [Improving Alignment and Robustness with Circuit Breakers (s/o rowan for coauthoring)](https://arxiv.org/pdf/2406.04313)
