@@ -1,0 +1,319 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>8.04.7 Momentum space, Expectation, Uncertainty 2 - Alex Zhao's Public Pages</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../../assets/favicon.ico">
+            
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../../../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../../../../assets/css/mkdocstrings.min.css">
+                <link href="../../../../../extra.css" rel="stylesheet">
+                <script src="../../../../../extra.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+                <script src="../../../../../search/main.js"></script>
+
+            
+                
+                     <style>:root {--text: var(--color-white);}</style> 
+                     <style>:root {--title: var(--color-orange);}</style> 
+                     <style>:root {--primary: var(--color-orange);}</style> 
+                     <style>:root {--background: var(--color-black);}</style> 
+                
+            
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Alex Zhao's Public Pages</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../../Public%20Pages/homepage.html">[Welcome]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Crypto]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Material Knowledge/Sciences/Coding/Crypto/Proving Systems (Plonky3, Halo2, Circle STARKs, Binius).md" class="dropdown-item text-decoration-none ">ZK Notes</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Coding]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../Coding/Vim%20Tricks.html" class="dropdown-item text-decoration-none ">Vim Tricks</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../Coding/USACO/General%20Thoughts%2C%20Paradigms.html" class="dropdown-item text-decoration-none ">USACO Notes</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../ML/ML%20papers%20to%20read.html" class="dropdown-item text-decoration-none ">ML papers</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Food and Cooking]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../Food%2BCooking/%E5%AE%B6%E5%B8%B8%E8%8F%9C%E8%B0%B1/%E7%B3%96%E9%86%8B%E6%8E%92%E9%AA%A8.html" class="dropdown-item text-decoration-none ">糖醋排骨</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">8.04.7 Momentum space, Expectation, Uncertainty 2</h1>
+            
+        </header>
+        <p><p>Typically, Fourier Inversion tells us</p>
+<p>$$\hat f(\xi)=\int f(x)e^{-2\pi i\xi x}\,dx\implies f(x)=\int \hat f(\xi)e^{2\pi i\xi x}\,d\xi.$$
+If we take $\xi=\frac1{2\pi}k$ then $\hat f(k)=\int f(x)e^{-ikx},$ $f(x)=\frac1{2\pi}\int f(x)e^{ikx}\,dk.$</p>
+<p>Splitting this factor and changing things around, we can use</p>
+<blockquote>
+<p>[!important] QM coordinate space Fourier transform
+$$\Psi(x)=\frac1{\sqrt{2\pi}}\int \Phi(x)e^{ikx}\,dk,$$
+$$\Phi(k)=\frac1{\sqrt{2\pi}}\int \Psi(x)e^{-ikx}\,dx.$$</p>
+</blockquote>
+<p>Through some interesting manipulation, one can arrive at $\delta(k)=\frac1{2\pi}\int e^{i kx}\,dx.$ Just a broken version of the usual $\delta(\xi)=\int e^{2\pi i x\xi}\,dx.$</p>
+<p>Now if we want to rewrite in terms of momentum we do something similar; now $k=\frac1\hbar p,$ so distributing that factor yields</p>
+<blockquote>
+<p>[!important] QM momentum space Fourier transform
+$$\Psi(x)=\frac1{\sqrt{2\pi\hbar}}\int \Phi(p)e^{ipx/\hbar}\,dp,$$
+$$\Phi(p)=\frac1{\sqrt{2\pi\hbar}}\int \Psi(x)e^{-ipx/\hbar}\,dx.$$</p>
+</blockquote>
+<p>Then by Parseval/Plancherel's theorem $\int |f|^2\,dx=\int|\hat f|^2\,d\xi,$ we get
+$$\int|\Psi|^2\,dx=\int|\Phi|^2\,dp.$$
+Then $\Phi$ denotes probability distribution of getting that particular momentum.</p>
+<p>If we take the wavenumber interpretation, $\Phi$ becomes distribution of getting that particular wavenumber.</p>
+<h3 id="expectation">Expectation</h3>
+<p>Pretty simple, really.
+$$\mathbb E(Q)=\int Q(x)P(x)\,dx=\int Q(x)|\Psi(x)|^2\,dx=\int \Psi^<em>Q\Psi\,dx.$$
+Then we have "joint probabilities" $\langle f|g\rangle$ which is basically $\int f^</em>g\,dx$.</p>
+<p>We denote expectation using $\langle Q\rangle.$ Time derivative plugged into Schrodinger's yields</p>
+<blockquote>
+<p>[!faq] ROC of Expectation
+$$\frac{\partial}{\partial t}\langle Q\rangle=\frac1{i\hbar}\left\langle[\hat Q,\hat H]\right\rangle.$$</p>
+</blockquote>
+<h2 id="uncertainty-computation">Uncertainty Computation</h2>
+<p>We can now even plug-and-chug uncertainty, as follows. </p>
+<h3 id="proof-1-smarter">Proof 1 (smarter)</h3>
+<p>First note that for arbitrary $u,v$ and constant $t,$ $\int (u+tv)^2=\int u^2+2t\int uv+t^2\int v^2\geq 0,$ so the discriminant in $t$ must be nonpositive i.e. $(2\int uv)^2\leq 4(\int u^2)(\int v^2),$ yielding</p>
+<blockquote>
+<p>[!c] Cauchy-Schwarz Inequality
+$$\int u^2\int v^2\geq \int uv.$$</p>
+</blockquote>
+<p>Recall that $A$ is <em>Hermitian</em> if $\int \phi^<em>A\psi=\int\psi^</em>A\phi.$ </p>
+<p>Now let $A_0$ be the expected for $A$, and $B_0$ the same for $B$. </p>
+<p>Assume that $A_0=B_0=0.$ We will not use this condition, and are justified because $\mathbb E[(X-c)^2]$ in general is minimized when $c=\mathbb E[X],$ so we don't lose information by moving the distribution/assuming the mean is $0$ and not using that condition later.</p>
+<p>Then $\sigma_A\sigma_b=\langle |A|^2\rangle\langle |B|^2\rangle.$ Note that $\langle |A|^2\rangle=\int \Psi^<em>A^</em>A\Psi=\int|A\Psi|^2.$ Then using Cauchy's from above,</p>
+<p>$$
+\begin{aligned}
+\int|A\Psi|^2\int|B\Psi^2|
+&amp;\geq\int|A\Psi||B\Psi|\
+&amp;\geq\int\left|\text{Im}((A\Psi)^<em>B\Psi)\right|\
+&amp;\geq\left|\text{Im}\left(\int(A\Psi)^</em>B\Psi\right)\right|\
+&amp;=\left|\frac{\int (A\Psi)^<em>B\Psi - (B\Psi)^</em>A\Psi}{2i}\right|.
+\end{aligned}
+$$
+Now because $A,B$ are Hermitian,
+$$
+\begin{aligned}
+\left|\frac{\int (A\Psi)^<em>B\Psi - (B\Psi)^</em>A\Psi}{2i}\right|
+&amp;=\left|\frac{\int \Psi^<em>BA\Psi-\Psi^</em>AB\Psi}{2i}\right|\
+&amp;=\left|\frac{\langle [A,B]\rangle}{2}\right|.
+\end{aligned}
+$$
+Thus we've arrived at</p>
+<blockquote>
+<p>[!important] Robertson Uncertainty
+If $A,B$ are Hermitian operators,
+$$\sigma_A\sigma_B\geq\left|\frac{\langle [A,B]\rangle}{2}\right|. $$</p>
+</blockquote>
+<p>Finally,
+$$[\hat x,\hat p]=x\frac\hbar i\frac{\partial}{\partial x}-\frac\hbar i\frac{\partial}{\partial x} x=-\frac\hbar i=\hbar i.$$
+Therefore,</p>
+<blockquote>
+<p>[!important] Heisenberg Uncertainty
+$$\sigma_x\sigma_p\geq\frac\hbar 2.$$</p>
+</blockquote>
+<h3 id="proof-2-dumber">Proof 2 (dumber)</h3>
+<p>As before, note that $\sigma_A=\int\Psi^<em>(A-A_0)^2\Psi=\int\Psi^</em>(A-A_0)^*(A-A_0)\Psi=\int|(A-A_0)\Psi)|^2.$ </p>
+<p>Assume that $\Psi(x),\Phi(p)$ are 0-meaned. Then $\sigma_x^2=\langle x\Psi(x)\mid x\Psi(x)\rangle,$ and $\sigma_p^2=\int p|\Phi(p)|^2\,dp.$ Note that by Parseval's, $\int p|\Phi(p)|^2\,dp=\langle\mathcal F^{-1}(p\Phi(p))\mid\mathcal F^{-1}(p\Phi(p))\rangle,$ so now we compute this function using <em>integration by parts.</em></p>
+<p>First 
+$$
+\begin{aligned}
+p\Phi(p)\sqrt{2\pi\hbar}
+&amp;=\int p\Psi(x)e^{-ipx/\hbar}\,dx\
+&amp;=\left.i\hbar\Psi(x)e^{-ipx/\hbar}\right|_{-\infty}^{\infty} - i\hbar\int\frac{\partial\Psi}{\partial x}e^{-ipx/\hbar}\,dx\
+&amp;=-i\hbar\int\frac{\partial\Psi}{\partial x}e^{-ipx/\hbar}\,dx.
+\end{aligned}
+$$
+Then
+$$
+\begin{aligned}
+\mathcal F^{-1}(p\Phi(p))(x)
+&amp;=\frac1{\sqrt{2\pi\hbar}}\int p\Phi(p)e^{ipx/\hbar}\,dp\
+&amp;=\frac1{2\pi\hbar}\int e^{ipx/\hbar}\,dp(-i\hbar)\int\frac{\partial\Psi}{\partial x'}e^{-ipx'/\hbar}\,dx'\
+&amp;=\frac1{2\pi i}\int \frac{\partial\Psi}{\partial x'}\,dx'\int e^{\frac{ip(x-x')}\hbar}\,dp\
+&amp;=\frac{\hbar}i\frac{\partial\Psi}{\partial x}\
+&amp;=\hat p\Psi(x).
+\end{aligned}
+$$
+Finally,
+$$
+\begin{aligned}
+\sigma_x^2\sigma_p^2
+&amp;= \langle x\Psi(x)\mid x\Psi(x)\rangle\langle \hat p\Psi(x)\mid\hat p\Psi(x)\rangle\
+&amp;\geq |\langle x\Psi(x)\mid\hat p\Psi(x)\rangle|^2\
+&amp;\geq \left(\frac{\langle x\Psi(x)\mid \hat p\Psi(x)\rangle-\langle \hat p\Psi(x)\mid x\Psi(x)\rangle}{2i}\right)^2.
+\end{aligned}
+$$
+Then (because of magic and how self-adjoint operators like $\hat p$ work)
+$$
+\begin{aligned}
+\langle x\Psi(x)\mid\hat p\Psi(x)\rangle-\langle\hat p\Psi(x)\mid x\Psi(x)\rangle
+&amp;=\langle x\Psi(x)\mid\hat p\Psi(x)\rangle-\langle\Psi(x)\mid \hat p(x\Psi(x))\rangle\
+&amp;=\int x\Psi^<em>\frac\hbar i\Psi'-\Psi^</em>\frac\hbar{i}\frac{\partial}{\partial x}(x\Psi)\,dx\
+&amp;=\frac\hbar i\int -\Psi\Psi^*\,dx\
+&amp;=\hbar i.
+\end{aligned}
+$$
+Thus $\sigma_x^2\sigma_p^2\geq \left(\frac{\hbar}2\right)^2$ and $\sigma_x\sigma_p\geq\frac\hbar2.$</p></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script>var base_url = '../../../../..';</script>
+            <script src="../../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../../assets/js/main.min.js""></script>
+                <script src="../../../../../extra.js" defer></script>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+                <script src="../../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>
