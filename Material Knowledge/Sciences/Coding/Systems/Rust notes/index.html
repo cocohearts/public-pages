@@ -1,0 +1,257 @@
+<!doctype html>
+<html data-bs-theme="">
+    <head>
+                <title>Rust notes - Alex Zhao's Public Pages</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            
+            
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="../../../../../assets/favicon.ico">
+            
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link rel="stylesheet" href="../../../../../assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../../../../assets/css/root.min.css">
+            <link rel="stylesheet" href="../../../../../assets/css/main.min.css">
+            <link rel="stylesheet" href="../../../../../assets/css/media.min.css">
+            <link rel="stylesheet" href="../../../../../assets/css/mkdocstrings.min.css">
+                <link href="../../../../../extra.css" rel="stylesheet">
+                <script src="../../../../../extra.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+                <script src="../../../../../search/main.js"></script>
+
+            
+                
+                     <style>:root {--text: var(--color-white);}</style> 
+                     <style>:root {--title: var(--color-orange);}</style> 
+                     <style>:root {--primary: var(--color-orange);}</style> 
+                     <style>:root {--background: var(--color-black);}</style> 
+                
+            
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">Alex Zhao's Public Pages</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+    
+        <li class="nav-item" id="component-menu">
+            <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="
+                            nav-link text-gray text-decoration-none" href="../../../../../Public%20Pages/homepage/">[Welcome]</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Crypto]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../../Material Knowledge/Sciences/Coding/Crypto/Proving Systems (Plonky3, Halo2, Circle STARKs, Binius).md" class="dropdown-item text-decoration-none ">ZK Notes</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Coding]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../Vim%20Tricks/" class="dropdown-item text-decoration-none ">Vim Tricks</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../USACO/General%20Thoughts%2C%20Paradigms/" class="dropdown-item text-decoration-none ">USACO Notes</a>
+    </li>
+<!-- endblock -->
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../ML/ML%20papers%20to%20read/" class="dropdown-item text-decoration-none ">ML papers</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="
+                            nav-link dropdown-toggle text-decoration-none" href="#" data-bs-toggle="dropdown">[Food and Cooking]</a>
+                            <ul class="dropdown-menu">
+                                    <!-- block dropdown-menu -->
+    <li>
+        <a href="../../../../Food%2BCooking/%E5%AE%B6%E5%B8%B8%E8%8F%9C%E8%B0%B1/%E7%B3%96%E9%86%8B%E6%8E%92%E9%AA%A8/" class="dropdown-item text-decoration-none ">糖醋排骨</a>
+    </li>
+<!-- endblock -->
+                            </ul>
+                        </li>
+            </ul>
+        </li>
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+
+                
+                        <!-- block content -->
+<section class="container post" id="component-content">
+    <article>
+        <header>
+            
+                <h1 class=" title" id="component-title">Rust notes</h1>
+            
+        </header>
+        <p><p>Rust is a parallel language to C++, with many similar ideas (static typing, compiled language) but also many new ones (very strong compiler guarantees, safe/unsafe code).</p>
+<p>Here are some the of the key ideas.</p>
+<h1 id="rust-compiler-stronk">Rust Compiler Stronk</h1>
+<h3 id="ownership">Ownership</h3>
+<p>Every item is owned by some variable name. The code must always "know" what each object is owned by. For instance, a vector owns all of its constituents. These are the permitted operations:
+- Immutable borrow (must be "returned")
+- Mutable borrow (can write, nobody else can borrow, must be "returned")
+- Move (change ownership, previous variable gets "consumed")
+When passing <code>&amp;var</code> or <code>&amp;mut var</code> in a function signature, that's a borrow. But when directly passing <code>var</code>, that's a move, and the original variable cannot be accessed anymore.</p>
+<p>Consuming can be a good API for when an object should not be used anymore after a function call, i.e. all of the important guts got "moved" out.</p>
+<p>There's lots of work that goes into moving objects that can't be <code>clone()</code>, such as <code>remove()</code> and <code>swap()</code>.</p>
+<h3 id="lifetimes">Lifetimes</h3>
+<p>There are also lifetimes, which the compiler usually infers but sometimes special things need to be done.
+- Suppose A has a skateboard, B borrows the skateboard from A, and C borrows a sticker on the skateboard from B. Then C gives the sticker to D (function return).
+- The first borrow must last at least as long as the second borrow, i.e. the reference must live at least as long.</p>
+<p>This is only used when change of scope happens and the second reference moves out of the scope e.g. function calls. If the sticker is borrowed in "inline" code the skateboard reference is immediately required to live that long.</p>
+<h3 id="safety-paradigms">Safety paradigms</h3>
+<p>C++ makes the choice of making the programmer check guarantees at <em>runtime</em>. The Rust compiler enforces certain guarantees at <em>compile-time</em> so that those bugs can be found earlier by the compiler, rather than in production.</p>
+<p>The errors thrown at compiletime are usually <em>panics</em>, such as division by zero, unwrapping a None value, </p>
+<h1 id="typing-choices">Typing choices</h1>
+<h3 id="traits">Traits</h3>
+<p>Rust borrows a lot from type theory, while mixing in some of the compiled-language efficiency of C++. Namely, all objects have static types, defined with the <code>struct</code> keyword.</p>
+<p>Traits are a "property" that multiple types can satisfy. Traits can provide "associated types" and methods.</p>
+<p>Functions have their arguments be a certain type, but they can also have arguments satisfy certain traits.</p>
+<h3 id="generics">Generics</h3>
+<p>Syntactically, generic types are integrated into function signatures and traits in a way different from other languages. Rust's rigorous type checking encourages frequent use of generics. Generics can also be required to have trait bounds, so that e.g. an argument assumed to be of a certain type satisfying a given trait can call the methods from that trait, and Rust will know those methods exist.</p>
+<p>Traits with different generics become different traits, so <code>MyTrait&lt;i32&gt;</code> and <code>MyTrait&lt;bool&gt;</code> can both be implemented by the same type.</p>
+<h3 id="enums">Enums</h3>
+<p>An enum is syntactic sugar for some type to be one of a list of hard-coded types. There is special <code>match</code> syntax that allows for concise control flow depending on the type of an enum.</p>
+<h3 id="the-optiont-type">The <code>Option&lt;T&gt;</code> type</h3>
+<p>The <code>Null</code> type is just horrible. Hence, the <code>Option&lt;T&gt;</code>, which is an enum for either <code>None</code> or <code>T</code>. Calling <code>None.unwrap()</code> will <code>panic!()</code>.</p>
+<h3 id="trait-objects">Trait objects</h3>
+<p>There is a special <code>&amp;dyn Trait</code> keyword that allows for pointers to a set of objects that satisfy a given trait. Then these objects could be any type that implements the trait, allowing for expandable features.
+This is implemented under the hood with a <em>vtable</em> matching types to function pointers.</p>
+<h3 id="smart-pointers">Smart pointers</h3>
+<p>There's <code>Box</code>, <code>Mutex</code>, <code>Rc</code>, <code>Arc</code>, when the reference doesn't suffice. Just google if necessary.</p>
+<p>Specifically, the <code>Box</code> moves its contents to heap and adds a pointer to the object on the stack, returning the pointer. It puts the object in a box.</p>
+<h1 id="other-rust-specifics">Other Rust specifics</h1>
+<h3 id="iterators">Iterators</h3>
+<p>Oh, my god! these are awesome. Calling <code>.iter()</code> on a collection will create an object satisfying the <code>Iterator</code> trait, i.e. it has <code>next()</code> etc. creating immutable borrow. Then there's <code>iter_mut()</code> which returns mutable borrows, and <code>into_iter()</code> creating iterators that own the respective objects.</p>
+<h3 id="unsafe-code">Unsafe code</h3>
+<p>When exposing some key functionality such as splitting a vector (consuming a mutable slice and returning two halves of that slice) unsafe code must be used. It's wrapped in a <code>unsafe</code> code block, and it's up to the programmer to check that the <em>contracts</em> of that function are satisfied.</p>
+<h3 id="tests">Tests</h3>
+<p>Rust has builtin configs such as <code>#[cfg(test)]</code> that makes unit tests and integration tests very easy.</p>
+<h3 id="routing">Routing</h3>
+<p>Code is organized into crates. Crates are split into "library" denoted by <code>src</code> and "binary" denoted by <code>bin</code>. The binaries are meant for production, and libraries as APIs for binaries or other projects.</p>
+<p>Cyclic imports between crates is not allowed, but any imports within one crate is fine. Imports from other crates need to be declared in <code>Cargo.toml</code>, along with other compilation and testing options. <code>mod</code> creates a module, and <code>use</code> imports things.</p>
+<p>Obviously, the placement and naming of files can determine their import paths.</p>
+<h3 id="macros">Macros</h3>
+<p>Every <code>#[...]</code> generates code of some kind, using a <code>TokenStream</code> of the code block below it. All the <code>macro!()</code> lines apply some pattern to generate code in place at compile time, in a way similar to functions, except the assembly is quite literally expanded.</p>
+<h3 id="parallelism">Parallelism</h3>
+<p>Can initiate multiple threads. Object must implement <code>Send</code> if its ownership is going to be transferred to another thread, and must implement <code>Sync</code> if its references can be sent between threads (i.e. multiple threads can read/write). So constants are Send, and Arc/Mutex are Sync, etc.</p></p>
+    </article>
+</section>
+<!-- endblock -->
+                
+                
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script>var base_url = '../../../../..';</script>
+            <script src="../../../../../assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="../../../../../assets/js/bootstrap.bundle.min.js""></script>
+            <script src="../../../../../assets/js/main.min.js""></script>
+                <script src="../../../../../extra.js" defer></script>
+                <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+                <script src="../../../../../search/main.js" defer></script>
+
+    </body>
+
+</html>
